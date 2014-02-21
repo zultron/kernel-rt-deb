@@ -1,32 +1,85 @@
-linux (3.12.9-1) unstable; urgency=high
+linux (3.13.2-1~exp1) UNRELEASED; urgency=low
 
   * New upstream stable update:
-    http://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.12.9
-    - Revert "ACPI: Add BayTrail SoC GPIO and LPSS ACPI IDs"
-      (regression in 3.12.7)
-    - GFS2: Increase i_writecount during gfs2_setattr_chown
-    - vfs: Fix a regression in mounting proc (regression in 3.12)
-    - fork: Allow CLONE_PARENT after setns(CLONE_NEWPID) (regression in 3.12)
-    - i2c: Re-instate body of i2c_parent_is_i2c_adapter() (regression in 3.12)
-    - writeback: Fix data corruption on NFS
-    - thp: fix copy_page_rep GPF by testing is_huge_zero_pmd once only
-    - [x86] ftrace: Load ftrace_ops in parameter not the variable holding it
-    - nilfs2: fix segctor bug that causes file system corruption
-    - md: fix problem when adding device to read-only array with bitmap.
-    - md/raid10: fix bug when raid10 recovery fails to recover a block.
-    - md/raid10: fix two bugs in handling of known-bad-blocks.
-    - md/raid5: Fix possible confusion when multiple write errors occur.
-    - mm: Make {,set}page_address() static inline if WANT_PAGE_VIRTUAL
-      (fixes FTBFS on sparc and m68k)
-    - [x86] drm/i915: Don't grab crtc mutexes in intel_modeset_gem_init()
-      (regression in 3.12.7)
-    - [arm] 7938/1: OMAP4/highbank: Flush L2 cache before disabling
+    http://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.13.1
+    http://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.13.2
 
   [ Ben Hutchings ]
-  * HID: Enable HID_ELO, HID_XINMO as modules (Closes: #736369)
-  * xhci: Revert generalised sg support (Closes: #733826, #736274)
+  * [x86] Enable POWERCAP, INTEL_RAPL as module (Closes: #736399)
+  * [arm] Disable OABI_COMPAT and enable AUDITSYSCALL (except for
+    armel/{ixp4xx,orion5x}) (Closes: #728975, #736843)
+  * [x86] Enable R8188EU as module, 88EU_AP_MODE and 88EU_P2P (Closes: #736905)
+  * [x86] Enable I2C_DESIGNWARE_PLATFORM as module (Closes: #737163)
+  * [x86] snd-pcsp: Disable autoload (Closes: #697709)
+  * DFSG: Remove the af9005 initialisation script and vs6624 driver again
+    (they were renamed in 3.7)
+  * linux-image.postinst: Use lstat() to check symlink existence
+    (Closes: #738707)
+  * [hppa] Update configuration, thanks to Helge Deller (Closes: #738487)
+    - megaraid: Enable MEGARAID_NEWGEN as module; disable MEGARAID_LEGACY
+    - drm: Change DRM from module to built-in
+    - [/parisc64-smp] udeb: Add fb-modules package containing radeon driver
 
- -- Ben Hutchings <ben@decadent.org.uk>  Sat, 01 Feb 2014 18:50:01 +0100
+ -- Ben Hutchings <ben@decadent.org.uk>  Thu, 23 Jan 2014 15:05:08 +0000
+
+linux (3.13-1~exp1) experimental; urgency=low
+
+  * New upstream release: http://kernelnewbies.org/Linux_3.13
+
+  [ Ben Hutchings ]
+  * [armhf] xen/pci: Fix build on non-x86
+  * [hppa/parisc64-smp] Disable MLONGCALLS (Closes: #733897)
+  * [armel] Remove iop32x flavour (fixes FTBFS)
+  * aufs: Update to aufs3.x-rcN-20140120
+    - bugfix, removed /proc/PID/fd/N
+
+  [ Bastian Blank ]
+  * Initial Python 3 support:
+    - Build-depend on python-six.
+
+  [ Aurelien Jarno ]
+  * [mipsel] Remove cobalt d-i files.
+  * [mipsel] Enable KEXEC like on mips.
+  * [mipsel] Explicitly unset RAPIDIO like on mips. 
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Mon, 20 Jan 2014 05:43:51 +0000
+
+linux (3.13~rc6-1~exp1) experimental; urgency=low
+
+  * New upstream release candidate
+
+  [ Ben Hutchings ]
+  * [rt] Disable until it is updated for 3.13 or later
+  * aufs: Update to aufs3.x-rcN-20131223
+  * [x86] staging: lustre: Make LUSTRE_LLITE_LLOOP tristate
+  * mm: Enable MEM_SOFT_DIRTY, NUMA_BALANCING but not
+    NUMA_BALANCING_DEFAULT_ENABLED
+  * ipv6: Enable IPV6_VTI as module
+  * netfilter: Enable NF_TABLES, NFT_EXTHDR, NFT_META, NFT_CT, NFT_RBTREE,
+    NFT_HASH, NFT_COUNTER, NFT_LOG, NFT_LIMIT, NFT_NAT, NFT_COMPAT,
+    IP_SET_HASH_NETPORTNET, IP_SET_HASH_NETNET, IP_NF_TARGET_SYNPROXY,
+    IP6_NF_TARGET_SYNPROXY as modules
+  * net/sched: Enable NET_CLS_BPF as module
+  * nfc: Enable NFC_DIGITAL, NFC_PORT100 as modules
+  * block: Enable BLK_DEV_NULL_BLK, BLK_DEV_SKD as modules
+  * SCSI: Enable SCSI_ESAS2R as module
+  * net/usb: Enable USB_NET_HUAWEI_CDC_NCM as module
+  * touchscreen: Enable TOUCHSCREEN_SUR40 as module
+  * [x86] video: Enable X86_SYSFB, FB_SIMPLE
+  * [x86] ACPI: Enable ACPI_EXTLOG
+  * [x86] touchscreen: Enable TOUCHSCREEN_TSC_SERIO as module
+  * [x86] tpm: Enable TCG_TIS_I2C_ATMEL, TCG_TIS_I2C_INFINEON,
+    TCG_TIS_I2C_NUVOTON, TCG_ST33_I2C, TCG_XEN as modules
+  * [amd64] misc: Enable INTEL_MIC_HOST as module
+  * [powerpc/powerpc64] block: Enable AIX_PARTITION
+  * net/sched: Change NET_CLS_CGROUP from built-in to module
+  * nfc: Disable NFC_NCI as no enabled drivers need it
+  * misc: Disable BMP085_I2C as unlikely to be useful
+
+  [ Aurelien Jarno ]
+  * [mipsel] Remove r5k-cobalt flavour.
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Mon, 30 Dec 2013 02:36:11 +0100
 
 linux (3.12.8-1) unstable; urgency=medium
 
