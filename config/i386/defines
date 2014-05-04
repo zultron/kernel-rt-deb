@@ -1,10 +1,3 @@
-[abi]
-ignore-changes:
- disable_hlt
- enable_hlt
-# Only for use by the vendor-specific KVM modules
- module:arch/x86/kvm/kvm
-
 [base]
 featuresets:
  none
@@ -45,7 +38,7 @@ recommends: libc6-i686
 
 [amd64_description]
 hardware: 64-bit PCs
-hardware-long: PCs with AMD64, Intel 64 or VIA Nano processors
+hardware-long: PCs with AMD64 or Intel 64 processors
 
 [amd64_image]
 configs:

@@ -8,7 +8,7 @@ are set.
 
 --- a/Makefile
 +++ b/Makefile
-@@ -976,7 +976,7 @@ endif
+@@ -806,7 +806,7 @@ endif
  prepare2: prepare3 outputmakefile asm-generic
  
  prepare1: prepare2 include/linux/version.h include/generated/utsrelease.h \
@@ -16,8 +16,8 @@ are set.
 +                   include/config/auto.conf include/generated/package.h
  	$(cmd_crmodverdir)
  
- archprepare: archscripts prepare1 scripts_basic
-@@ -1008,12 +1008,25 @@ define filechk_version.h
+ archprepare: archheaders archscripts prepare1 scripts_basic
+@@ -838,12 +838,25 @@ define filechk_version.h
  	echo '#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))';)
  endef
  
@@ -50,9 +50,9 @@ are set.
  #include <linux/bug.h>
  #include <linux/utsname.h>
 +#include <generated/package.h>
- #include <asm/system.h>
  #include <asm/uaccess.h>
  #include <asm/io.h>
+ #include <linux/atomic.h>
 @@ -166,11 +167,12 @@ static void show_last_breaking_event(str
   */
  void dump_stack(void)
@@ -103,19 +103,19 @@ are set.
 +		current->comm, print_tainted(), init_utsname()->release,
 +		LINUX_PACKAGE_ID);
  	printk(KERN_INFO "RIP: %04lx:[<%016lx>]\n", PT_REGS_CS(regs) & 0xffff,
- 	       PT_REGS_RIP(regs));
+ 	       PT_REGS_IP(regs));
  	printk(KERN_INFO "RSP: %016lx  EFLAGS: %08lx\n", PT_REGS_SP(regs),
 --- a/arch/x86/kernel/process.c
 +++ b/arch/x86/kernel/process.c
-@@ -14,6 +14,7 @@
- #include <linux/utsname.h>
+@@ -17,6 +17,7 @@
+ #include <linux/cpuidle.h>
  #include <trace/events/power.h>
  #include <linux/hw_breakpoint.h>
 +#include <generated/package.h>
  #include <asm/cpu.h>
- #include <asm/system.h>
  #include <asm/apic.h>
-@@ -105,11 +106,12 @@ void show_regs_common(void)
+ #include <asm/syscalls.h>
+@@ -146,11 +147,12 @@ void show_regs_common(void)
  	board = dmi_get_system_info(DMI_BOARD_NAME);
  
  	printk(KERN_CONT "\n");
@@ -140,7 +140,7 @@ are set.
  
  #include <asm/stacktrace.h>
  
-@@ -185,11 +186,12 @@ void dump_stack(void)
+@@ -188,11 +189,12 @@ void dump_stack(void)
  	unsigned long stack;
  
  	bp = stack_frame(current, NULL);
@@ -157,15 +157,15 @@ are set.
  EXPORT_SYMBOL(dump_stack);
 --- a/arch/ia64/kernel/process.c
 +++ b/arch/ia64/kernel/process.c
-@@ -29,6 +29,7 @@
- #include <linux/kdebug.h>
+@@ -30,6 +30,7 @@
  #include <linux/utsname.h>
  #include <linux/tracehook.h>
+ #include <linux/rcupdate.h>
 +#include <generated/package.h>
  
  #include <asm/cpu.h>
  #include <asm/delay.h>
-@@ -111,9 +112,9 @@ show_regs (struct pt_regs *regs)
+@@ -112,9 +113,9 @@ show_regs (struct pt_regs *regs)
  	print_modules();
  	printk("\nPid: %d, CPU %d, comm: %20s\n", task_pid_nr(current),
  			smp_processor_id(), current->comm);
@@ -187,7 +187,7 @@ are set.
  
  #include <asm/cacheflush.h>
  #include <asm/leds.h>
-@@ -261,11 +262,12 @@ void __show_regs(struct pt_regs *regs)
+@@ -278,11 +279,12 @@ void __show_regs(struct pt_regs *regs)
  	unsigned long flags;
  	char buf[64];
  
@@ -212,7 +212,7 @@ are set.
  
  #include <asm/pgtable.h>
  #include <asm/uaccess.h>
-@@ -626,8 +627,9 @@ void show_regs(struct pt_regs * regs)
+@@ -644,8 +645,9 @@ void show_regs(struct pt_regs * regs)
  
  	printk("NIP: "REG" LR: "REG" CTR: "REG"\n",
  	       regs->nip, regs->link, regs->ctr);
@@ -226,15 +226,15 @@ are set.
  	printk("  CR: %08lx  XER: %08lx\n", regs->ccr, regs->xer);
 --- a/arch/sh/kernel/process_32.c
 +++ b/arch/sh/kernel/process_32.c
-@@ -22,6 +22,7 @@
- #include <linux/ftrace.h>
+@@ -23,6 +23,7 @@
  #include <linux/hw_breakpoint.h>
  #include <linux/prefetch.h>
+ #include <linux/stackprotector.h>
 +#include <generated/package.h>
  #include <asm/uaccess.h>
  #include <asm/mmu_context.h>
- #include <asm/system.h>
-@@ -32,10 +33,11 @@ void show_regs(struct pt_regs * regs)
+ #include <asm/fpu.h>
+@@ -33,10 +34,11 @@ void show_regs(struct pt_regs * regs)
  {
  	printk("\n");
  	printk("Pid : %d, Comm: \t\t%s\n", task_pid_nr(current), current->comm);

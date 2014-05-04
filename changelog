@@ -1,3 +1,11 @@
+linux (3.5.7-1) unstable; urgency=medium
+
+  * Start from Debian Wheezy kernel package sources, SVN r21260
+  * Update to linux 3.5.7
+  * Add Xenomai featureset
+
+ -- John Morris <john@zultron.com>  Thu, 01 May 2014 16:27:00 -0500
+
 linux (3.2.57-3) wheezy; urgency=medium
 
   * rtl8192ce: Fix null dereference in watchdog (Closes: #745137)

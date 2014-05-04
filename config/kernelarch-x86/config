@@ -384,9 +384,6 @@ CONFIG_EDAC_AMD8111=m
 CONFIG_EDD=m
 # CONFIG_EDD_OFF is not set
 CONFIG_EFI_VARS=m
-CONFIG_EFI_VARS_PSTORE=y
-#. Runtime-disabled by default
-CONFIG_EFI_VARS_PSTORE_DEFAULT_DISABLE=y
 CONFIG_DELL_RBU=m
 CONFIG_DCDBAS=m
 CONFIG_DMIID=y
@@ -418,12 +415,11 @@ CONFIG_DRM_MGA=m
 CONFIG_DRM_SIS=m
 
 ##
-## file: drivers/staging/gma500/Kconfig
+## file: drivers/gpu/drm/gma500/Kconfig
 ##
 CONFIG_DRM_GMA500=m
 CONFIG_DRM_GMA600=y
 CONFIG_DRM_GMA3600=y
-CONFIG_DRM_MEDFIELD=y
 
 ##
 ## file: drivers/gpu/drm/nouveau/Kconfig
@@ -1012,6 +1008,7 @@ CONFIG_DSCC4_PCISYNC=y
 CONFIG_DSCC4_PCI_RST=y
 CONFIG_DLCI=m
 CONFIG_DLCI_MAX=8
+CONFIG_CYCLADES_SYNC=m
 CONFIG_SBNI=m
 # CONFIG_SBNI_MULTILINE is not set
 
@@ -1116,10 +1113,11 @@ CONFIG_PNP=y
 ##
 ## file: drivers/power/Kconfig
 ##
-CONFIG_POWER_SUPPLY=m
+CONFIG_POWER_SUPPLY=y
 # CONFIG_POWER_SUPPLY_DEBUG is not set
 CONFIG_PDA_POWER=m
 CONFIG_BATTERY_DS2760=m
+CONFIG_BATTERY_SBS=m
 
 ##
 ## file: drivers/rtc/Kconfig
@@ -1293,13 +1291,6 @@ CONFIG_STAGING_MEDIA=y
 ## file: drivers/staging/media/easycap/Kconfig
 ##
 CONFIG_EASYCAP=m
-
-##
-## file: drivers/staging/line6/Kconfig
-##
-CONFIG_LINE6_USB=m
-# CONFIG_LINE6_USB_DUMP_PCM is not set
-# CONFIG_LINE6_USB_IMPULSE_RESPONSE is not set
 
 ##
 ## file: drivers/staging/media/go7007/Kconfig
@@ -1691,6 +1682,11 @@ CONFIG_IRNET=m
 ## file: net/lapb/Kconfig
 ##
 CONFIG_LAPB=m
+
+##
+## file: net/wanrouter/Kconfig
+##
+CONFIG_WAN_ROUTER=m
 
 ##
 ## file: sound/drivers/Kconfig
