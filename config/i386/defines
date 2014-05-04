@@ -1,6 +1,7 @@
 [base]
 featuresets:
 # none
+ xenomai
 kernel-arch: x86
 
 [description]

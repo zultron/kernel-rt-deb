@@ -1,0 +1,67 @@
+Xenomai kernel Debian packaging for Linux 3.5.7
+
+This builds Xenomai-patched kernel packages for Debian and Ubuntu.
+
+How to build:
+=============
+
+# Set up
+apt-get install linux-patch-xenomai
+wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.5.7.tar.xz \
+     -O linux_3.5.7.orig.tar.xz
+tar xJf linux_3.5.7.orig.tar.xz --strip-components=1
+mkdir linux-rt-deb
+cd linux-rt-deb
+git clone https://github.com/zultron/kernel-rt-deb2.git debian
+debian/rules debian/control; debian/rules orig
+
+# Build binary packages with one of the following:
+#   Build everything (probably not what you want)
+fakeroot debian/rules binary
+#   Build amd64 Xenomai package only
+fakeroot make -f debian/rules.gen binary-arch_amd64_xenomai
+#   Build i386 vanilla package only, with 16 concurrent threads
+fakeroot make MAKE='make -j16' -f debian/rules.gen binary-arch_i386
+
+# Other useful targets:
+debian/rules clean
+debian/rules maintainerclean
+
+# Create and rebuild source package:
+dpkg-source -b .
+cd ..
+dpkg-source -x *.dsc
+cd linux-<version>
+dpkg-buildpackage -B
+
+Methodology:
+============
+
+Started from a clone of the Debian kernel packaging for Wheezy, r21260:
+git svn clone svn://anonscm.debian.org/svn/kernel/dists/wheezy/linux/debian
+
+Based on Debian Linux Kernel Handbook, 4.3 Building a development
+version of the Debian kernel package [4]:
+
+wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.5.7.tar.xz \
+     -O linux_3.5.7.orig.tar.xz
+tar xJf linux_3.5.7.orig.tar.xz --strip-components=1
+mkdir linux-rt-deb
+cd linux-rt-deb
+git svn clone svn://anonscm.debian.org/svn/kernel/dists/wheezy/linux/debian
+
+Made changes; see top commits; summary:
+- Removed a lot of non-x86 architectures (pkg is x86-only for now)
+- Removed the rt feature set (no PREEMPT_RT patch for 3.5.7)
+- Updated to 3.5.7, incl. kernel configs from r19407 [3]
+- Added some featureset-friendly tweaks to packaging
+- Added the Xenomai feature set
+- Added the r8168 driver
+
+Links:
+======
+
+[1] https://wiki.debian.org/DebianKernel
+[2] http://dslab.lzu.edu.cn:8080/members/steven/howto/kernel/Debian-kernel-packages.html
+[3] http://anonscm.debian.org/viewvc/kernel/dists/trunk/linux/debian/patches/?pathrev=19407
+[4] http://kernel-handbook.alioth.debian.org/ch-common-tasks.html#s-common-official-vcs

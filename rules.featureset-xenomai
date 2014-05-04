@@ -1,0 +1,36 @@
+#							-*-makefile-*-
+# Extra rules to build the Xenomai feature set
+#
+# This depends on a hacked debian/rules file that includes
+# debian/rules.featureset-* makefiles
+
+
+# This package currently only builds x86-arch packages
+XENO_PATCH_ARCH = x86
+
+# Get xenomai patch file name from the linux-patch-xenomai package
+XENO_PATCH_KEY = $(VERSION_UPSTREAM)-$(XENO_PATCH_ARCH)
+XENO_PATCH_SRC = \
+	$(shell dpkg-query -L linux-patch-xenomai | grep $(XENO_PATCH_KEY))
+
+# Compute the destination patch name
+XENO_PATCH_FILE = $(shell basename $(XENO_PATCH_SRC) .gz)
+XENO_PATCH_DST = features/all/xenomai/$(XENO_PATCH_FILE)
+
+debian/patches/series-xenomai:
+#	# ensure src patch exists
+	test -e $(XENO_PATCH_SRC)
+
+	gzip -cd $(XENO_PATCH_SRC) \
+	    > debian/patches/$(XENO_PATCH_DST)
+	echo $(XENO_PATCH_DST) \
+	    > debian/patches/series-xenomai
+
+# hook in as a prereq to debian/control
+debian/control: debian/patches/series-xenomai
+
+maintainerclean-xenomai:
+	rm -f debian/patches/series-xenomai \
+	    debian/patches/$(XENO_PATCH_DST)
+
+maintainerclean: maintainerclean-xenomai

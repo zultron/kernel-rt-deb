@@ -1,0 +1,7 @@
+[abi]
+ignore-changes: *
+
+[description]
+part-long-xenomai: This kernel includes the Xenomai realtime patch set.
+part-short-xenomai: Xenomai
+parts: xenomai
