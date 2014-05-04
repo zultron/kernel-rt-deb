@@ -8,7 +8,6 @@ ignore-changes:
 [base]
 featuresets:
  none
- rt
 kernel-arch: x86
 
 [description]
