@@ -88,6 +88,7 @@ endif
 debian/control-real: debian/bin/gencontrol.py $(CONTROL_FILES)
 	$<
 	md5sum $^ > debian/control.md5sum
+ifneq ($(NOFAIL),true)
 	@echo
 	@echo This target is made to fail intentionally, to make sure
 	@echo that it is NEVER run during the automated build. Please
@@ -95,5 +96,11 @@ debian/control-real: debian/bin/gencontrol.py $(CONTROL_FILES)
 	@echo been generated SUCCESSFULLY.
 	@echo
 	exit 1
+endif
+
+# Hook for featuresets
+FEATURESETS := $(shell debian/bin/gencontrol.py --list-featuresets)
+INCLUDED_FROM_RULES = true
+-include $(foreach fs,$(FEATURESETS),debian/rules.featureset-$(fs))
 
 .PHONY: clean build setup binary-indep binary-arch binary

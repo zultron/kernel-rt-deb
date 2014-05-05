@@ -2,15 +2,19 @@ linux (3.8.13-3) unstable; urgency=medium
 
   * Modify upstream package to build i-pipe RT kernels for x86
     - Starting from Debian Sid kernel package sources, SVN r20131
+    - Set ABI name to '1mk' for Machinekit
   * Trim down to x86 arch, vanilla kernel only
     - Remove non-x86 configs and installer files
     - Remove most Debian patches
     - Remove 'rt' featureset
+  * Add r8168 NIC driver
   * Import kernel configs from Ubuntu Raring 3.8.13 packages [1]
     - Sid configs @20131 had problems, esp. missing virtio drivers
     - http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.8.13.23-raring
-  * Set ABI name to '1mk' for Machinekit
-  * Add r8168 NIC driver
+  * Fix upstream packaging to be more featureset-friendly
+    - Add hooks in debian/rules* for feature set rule inclusion
+    - Allow disabling 'none' featureset and irrelevent pkg builds
+    - Add special feature set 'Provides:' in image and headers pkgs
   * Fixes
     - require kernel-wedge >= 2.82 (was 2.84) to build on precise
 

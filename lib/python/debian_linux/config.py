@@ -141,7 +141,6 @@ class ConfigCoreHierarchy(object):
 
             if flavours:
                 base = ret['base', arch]
-                featuresets.insert(0, 'none')
                 base['featuresets'] = featuresets
                 del base['flavours']
                 ret['base', arch] = base

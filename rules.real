@@ -35,6 +35,11 @@ endif
 
 include debian/rules.defs
 
+# Hook for featuresets
+FEATURESETS := $(shell debian/bin/gencontrol.py --list-featuresets)
+INCLUDED_FROM_RULES_REAL = true
+-include $(foreach fs,$(FEATURESETS),debian/rules.featureset-$(fs))
+
 stamp = [ -d $(dir $@) ] || mkdir $(dir $@); touch $@
 
 setup_env := env -u ABINAME -u ABINAME_PART -u ARCH -u FEATURESET -u FLAVOUR -u VERSION -u LOCALVERSION
@@ -47,10 +52,12 @@ MAKEOVERRIDES =
 #
 # Targets
 #
+ifeq ($(filter none,$(ALL_FEATURESETS)),none)
 ifneq ($(FOREIGN_KERNEL),True)
   binary-arch-arch: install-headers_$(ARCH)
 endif
 binary-arch-arch: install-libc-dev_$(ARCH)
+endif
 binary-arch-featureset: install-headers_$(ARCH)_$(FEATURESET)
 binary-arch-flavour: install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)
 ifeq ($(DEBUG),True)
@@ -60,13 +67,23 @@ ifeq ($(MODULES),True)
   binary-arch-flavour: install-headers_$(ARCH)_$(FEATURESET)_$(FLAVOUR)
 endif
 
+ifeq ($(filter none,$(ALL_FEATURESETS)),none)
 binary-indep: install-doc
 binary-indep: install-manual
 binary-indep: install-source
 binary-indep: install-support
+else
+# Don't build -indep pkgs when 'none' featureset unconfigured
+binary-indep:
+endif
 
 build-arch: $(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)
+ifeq ($(filter none,$(ALL_FEATURESETS)),none)
 build-indep: $(STAMPS_DIR)/build-doc
+else
+# Don't build -indep pkgs when 'none' featureset unconfigured
+build-indep:
+endif
 
 setup-flavour: $(STAMPS_DIR)/setup_$(ARCH)_$(FEATURESET)_$(FLAVOUR)
 
@@ -318,11 +335,11 @@ install-libc-dev_$(ARCH):
 	find $(OUT_DIR)/include \( -name .install -o -name ..install.cmd \) -execdir rm {} +
 
 ifneq (,$(DEB_HOST_MULTIARCH))
-	# Move include/asm to arch-specific directory
+#	# Move include/asm to arch-specific directory
 	mkdir -p $(OUT_DIR)/include/$(DEB_HOST_MULTIARCH)
 	mv $(OUT_DIR)/include/asm $(OUT_DIR)/include/$(DEB_HOST_MULTIARCH)/
 endif
-	
+
 	+$(MAKE_SELF) install-base GENCONTROL_ARGS='$(call DEFINE_MULTIARCH,same)'
 
 install-support: PACKAGE_NAME = linux-support-$(ABINAME)
@@ -359,9 +376,25 @@ install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain:
 ifeq ($(MODULES),True)
 	+$(MAKE_CLEAN) -C $(DIR) modules_install DEPMOD='$(CURDIR)/debian/bin/no-depmod' INSTALL_MOD_PATH='$(CURDIR)'/$(PACKAGE_DIR) INSTALL_MOD_STRIP=1
 ifeq ($(DEBUG),True)
+#	# Hook for featuresets that want to install their own modules
+	for target in $(FEATURESET_MODULE_INSTALL_TARGETS_$(FEATURESET)); do \
+	    $(MAKE_SELF) \
+		$$target \
+		DIR='$(DIR)' \
+		PACKAGE_DIR='$(PACKAGE_DIR)' \
+		INSTALL_DIR='$(INSTALL_DIR)' \
+		REAL_VERSION='$(REAL_VERSION)' \
+		MODULES_DIR=$(CURDIR)/$(PACKAGE_DIR)/lib/modules/$(REAL_VERSION) \
+		|| exit 1; \
+	done
 	set -o pipefail; \
-	find $(PACKAGE_DIR) -name '*.ko' | sed 's|$(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel/||' | while read module ; do \
-	  objcopy --add-gnu-debuglink=$(DIR)/$$module $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel/$$module || exit; \
+	find $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel -name '*.ko' | \
+	    sed 's|$(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel/||' | \
+	    while read module ; do \
+		objcopy \
+		    --add-gnu-debuglink=$(DIR)/$$module \
+		    $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel/$$module \
+		    || exit; \
 	done
 endif
 	cp $(DIR)/.config $(PACKAGE_DIR)/boot/config-$(REAL_VERSION)
