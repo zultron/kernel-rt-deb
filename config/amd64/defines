@@ -1,11 +1,12 @@
 [base]
 featuresets:
- none
+# none
  rt
 kernel-arch: x86
 
 [build]
-debug-info: true
+# Don't build -dbg kernel image
+#debug-info: true
 image-file: arch/x86/boot/bzImage
 
 [image]

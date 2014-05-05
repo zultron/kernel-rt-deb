@@ -377,6 +377,9 @@ class PackageRelationEntry(object):
         return u''.join(ret)
     __unicode__ = __str__
 
+    def __repr__(self):
+        return "<PackageRelationEntry %s>" % str(self.__unicode__())
+
     def parse(self, value):
         match = self._re.match(value)
         if match is None:

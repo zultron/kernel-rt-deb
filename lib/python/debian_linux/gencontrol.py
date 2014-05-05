@@ -18,6 +18,7 @@ class Makefile(object):
     def __init__(self):
         self.rules = {}
         self.add('.NOTPARALLEL')
+        self.includes = set()
 
     def add(self, name, deps=None, cmds=None):
         if name in self.rules:
@@ -29,7 +30,12 @@ class Makefile(object):
                 if i not in self.rules:
                     self.rules[i] = self.Rule(i)
 
+    def include(self, name):
+        self.includes.add(name)
+
     def write(self, out):
+        for include in self.includes:
+            out.write('include %s\n' % include)
         for i in sorted(self.rules.keys()):
             self.rules[i].write(out)
 
@@ -65,7 +71,7 @@ class Makefile(object):
 
 class MakeFlags(dict):
     def __repr__(self):
-        repr = super(flags, self).__repr__()
+        repr = super(MakeFlags, self).__repr__()
         return "%s(%s)" % (self.__class__.__name__, repr)
 
     def __str__(self):
@@ -149,7 +155,13 @@ class Gencontrol(object):
 
         self.do_arch_setup(vars, makeflags, arch, extra)
         self.do_arch_makefile(makefile, arch, makeflags, extra)
-        self.do_arch_packages(packages, makefile, arch, vars, makeflags, extra)
+        if 'none' not in self.config[('base',arch,)]:
+            import warnings
+            warnings.warn(u'No "none" featureset defined; '
+                          u'disabling udeb, header and libc-dev builds')
+        else:
+            self.do_arch_packages(packages, makefile, arch, vars, makeflags,
+                                  extra)
         self.do_arch_recurse(packages, makefile, arch, vars, makeflags, extra)
 
     def do_arch_setup(self, vars, makeflags, arch, extra):

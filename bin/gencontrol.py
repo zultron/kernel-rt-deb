@@ -10,11 +10,13 @@ import io
 import os
 import os.path
 import subprocess
+import argparse
 
 from debian_linux import config
 from debian_linux.debian import *
 from debian_linux.gencontrol import Gencontrol as Base
 from debian_linux.utils import Templates, read_control
+from pprint import pprint
 
 
 class Gencontrol(Base):
@@ -207,6 +209,7 @@ class Gencontrol(Base):
 
         cmds_binary_arch = ["$(MAKE) -f debian/rules.real binary-arch-featureset %s" % makeflags]
         makefile.add('binary-arch_%s_%s_real' % (arch, featureset), cmds=cmds_binary_arch)
+        makefile.include('debian/rules.featureset-%s' % featureset)
 
     flavour_makeflags_base = (
         ('compiler', 'COMPILER', False),
@@ -270,9 +273,24 @@ class Gencontrol(Base):
                 item.arches = [arch]
         packages['source']['Build-Depends'].extend(relations_compiler_build_dep)
 
+        relations_build_dep = PackageRelation(
+            config_entry_relations.get('build-depends',{}))
+        for group in relations_build_dep:
+            for item in group:
+                item.arches = [arch]
+        packages['source']['Build-Depends'].extend(relations_build_dep)
+
         image_fields = {'Description': PackageDescription()}
         for field in 'Depends', 'Provides', 'Suggests', 'Recommends', 'Conflicts', 'Breaks':
-            image_fields[field] = PackageRelation(config_entry_image.get(field.lower(), None), override_arches=(arch,))
+            field_val = config_entry_image.get(field.lower(), None)
+            if isinstance(field_val,basestring):
+                # allow e.g. 'Provides:' values to be templated in
+                # 'definitions' files
+                field_val %= dict(vars.items(),
+                                  flavour=flavour,featureset=featureset)
+            pkg_rel = PackageRelation(field_val,
+                                      override_arches=(arch,))
+            image_fields[field] = pkg_rel
 
         generators = config_entry_image['initramfs-generators']
         l = PackageRelationGroup()
@@ -334,8 +352,15 @@ class Gencontrol(Base):
             makeflags['MODULES'] = True
             package_headers = self.process_package(headers[0], vars)
             package_headers['Depends'].extend(relations_compiler_headers)
+            if featureset and featureset != 'none':
+                # Add 'Provides: linux-headers-<featureset>'
+                package_headers.setdefault('Provides',
+                                           PackageRelationGroup()).append(
+                    'linux-headers-%s' % featureset)
             packages_own.append(package_headers)
-            extra['headers_arch_depends'].append('%s (= ${binary:Version})' % packages_own[-1]['Package'])
+            if 'none' in self.config['base',arch]:
+                extra['headers_arch_depends'].append(
+                    '%s (= ${binary:Version})' % packages_own[-1]['Package'])
 
         build_debug = config_entry_build.get('debug-info')
 
@@ -514,4 +539,22 @@ class Gencontrol(Base):
         f.close()
 
 if __name__ == '__main__':
-    Gencontrol()()
+    parser = argparse.ArgumentParser(
+        description='Debian package configurator')
+    parser.add_argument('--list-featuresets', action='store_true')
+    parser.add_argument('--dump-config', action='store_true')
+    args = parser.parse_args()
+
+    g = Gencontrol()
+
+    if args.list_featuresets:
+        enabled_featuresets = \
+            [fs for fs in g.config['base',]['featuresets'] \
+                 if g.config[('base', None, fs)]['enabled'] ]
+        print (' '.join(enabled_featuresets))
+        sys.exit(0)
+    elif args.dump_config:
+        pprint(g.__dict__['config'])
+        sys.exit(0)
+
+    g()

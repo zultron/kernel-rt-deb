@@ -53,6 +53,9 @@ featuresets:
  none
  rt
 
+[featureset-none_base]
+enabled: false
+
 [featureset-rt_base]
 enabled: false
 

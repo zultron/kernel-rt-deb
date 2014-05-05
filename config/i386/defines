@@ -1,6 +1,6 @@
 [base]
 featuresets:
- none
+# none
  rt
 kernel-arch: x86
 
@@ -32,7 +32,8 @@ configs:
  i386/config.586
 
 [686-pae_build]
-debug-info: true
+# Don't build -dbg kernel image
+#debug-info: true
 
 [686-pae_description]
 hardware: modern PCs
