@@ -2,3 +2,4 @@ debian/version.patch
 debian/kernelvariables.patch
 debian/doc-build-parallel.patch
 features/all/Kbuild-kconfig-Verbose-version-of-listnewconfig.patch
+debian/r8168.patch

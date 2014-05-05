@@ -10,7 +10,9 @@ linux (3.8.13-3) unstable; urgency=medium
     - Sid configs @20131 had problems, esp. missing virtio drivers
     - http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.8.13.23-raring
   * Set ABI name to '1mk' for Machinekit
-  * require kernel-wedge >= 2.82 (was 2.84) to build on precise
+  * Add r8168 NIC driver
+  * Fixes
+    - require kernel-wedge >= 2.82 (was 2.84) to build on precise
 
  -- John Morris <john@zultron.com>  Sat, 17 May 2014 23:20:59 +0200
 

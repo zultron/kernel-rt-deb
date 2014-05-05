@@ -33,6 +33,7 @@ my $have_conffile   = "";
 
 my $modules_base    = '/lib/modules';
 my $CONF_LOC        = '/etc/kernel-img.conf';
+my $r816x_blacklist = '/etc/modprobe.d/r816x_blacklist.conf';
 
 # Ignore all invocations except when called on to configure.
 exit 0 unless $ARGV[0] =~ /configure/;
@@ -621,11 +622,32 @@ sub do_modules {
   }
 }
 
+sub do_r816x_blacklist {
+    # If /etc/modprobe.d/r816x_blacklist.conf doesn't exist, create it
+    if (open (my $fh, '>', $r816x_blacklist)) {
+	print $fh "# The r8169 and r8168 kernel modules conflict,\n";
+	print $fh "# and one or the other needs to be blacklisted.\n";
+	print $fh "#\n";
+	print $fh "# If this system has an r8168 NIC, comment out the r8169\n";
+	print $fh "# line below and uncomment the r8168 line.\n";
+	print $fh "#blacklist r8169\n";
+	print $fh "blacklist r8168\n";
+	close $fh;
+    } else {
+	warn "Unable to write file '$r816x_blacklist'; if this system\n";
+	warn "    has an r8168 NIC, the r8169 driver may need to be\n";
+	warn "    blacklisted.\n";
+    }
+}
+
 # We may not have any modules installed
 if (-d "$modules_base/$version") {
   &do_modules();
 }
 
+if (! -f $r816x_blacklist) {
+    do_r816x_blacklist();
+}
 
 # Warn if we are ignoring the old ramdisk setting
 if ($ramdisk =~ /\S/) {
