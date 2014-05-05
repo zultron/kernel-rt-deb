@@ -1,6 +1,6 @@
 [base]
 featuresets:
- none
+# none
 kernel-arch: x86
 
 [build]

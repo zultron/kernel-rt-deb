@@ -117,6 +117,9 @@ class Gencontrol(Base):
         if self.changelog[0].distribution == 'UNRELEASED' and os.getenv('DEBIAN_KERNEL_DISABLE_INSTALLER'):
             import warnings
             warnings.warn(u'Disable building of debug infos on request (DEBIAN_KERNEL_DISABLE_INSTALLER set)')
+        elif 'none' not in self.config[('base',arch,)]:
+            import warnings
+            warnings.warn(u'No "none" featureset defined; disabling udeb builds')
         else:
             # Add udebs using kernel-wedge
             installer_def_dir = 'debian/installer'
@@ -214,6 +217,11 @@ class Gencontrol(Base):
         image_fields = {'Description': PackageDescription()}
         for field in 'Depends', 'Provides', 'Suggests', 'Recommends', 'Conflicts', 'Breaks':
             image_fields[field] = PackageRelation(config_entry_image.get(field.lower(), None), override_arches=(arch,))
+        if featureset and featureset != 'none':
+            # Add 'Provides: linux-image-<featureset>'
+            image_fields['Provides'].append(
+                'linux-image-%s' % featureset)
+        
 
         if config_entry_image.get('initramfs', True):
             generators = config_entry_image['initramfs-generators']
@@ -279,6 +287,11 @@ class Gencontrol(Base):
             makeflags['MODULES'] = True
             package_headers = self.process_package(headers[0], vars)
             package_headers['Depends'].extend(relations_compiler)
+            if featureset and featureset != 'none':
+                # Add 'Provides: linux-headers-<featureset>'
+                package_headers.setdefault('Provides',
+                                           PackageRelationGroup()).append(
+                    'linux-headers-%s' % featureset)
             packages_own.append(package_headers)
             extra['headers_arch_depends'].append('%s (= ${binary:Version})' % packages_own[-1]['Package'])
 

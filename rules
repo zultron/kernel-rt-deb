@@ -9,6 +9,9 @@ VERSION_BINNMU := $(shell echo "$(VERSION)" | sed -ne 's,.*+b\(.*\)$$,\1,p')
 
 include debian/rules.defs
 
+# Include any makefiles for featuresets
+include debian/rules.featureset-*
+
 stamp = [ -d $(dir $@) ] || mkdir $(dir $@); touch $@
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
