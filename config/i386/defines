@@ -2,6 +2,7 @@
 featuresets:
 # none
  xenomai
+ rtai
 kernel-arch: x86
 
 [description]

@@ -1,0 +1,110 @@
+#							-*-makefile-*-
+# Extra rules to build the RTAI feature set
+#
+# This depends on hacked gencontrol, debian/rules and
+# debian/rules.real files that include debian/rules.featureset-<name>
+# makefiles for all configured featuresets
+
+ifeq ($(FEATURESET),)  # Included from debian/rules
+######################################################################
+# Install the RTAI hal-linux patch during source package configuration
+
+# This package currently only builds x86-arch packages
+RTAI_PATCH_ARCH = x86
+
+# Get RTAI patch file name from the rtai-source package
+RTAI_PATCH_KEY = hal-linux-$(VERSION_UPSTREAM)-$(RTAI_PATCH_ARCH)
+RTAI_PATCH_SRC = \
+	$(shell dpkg-query -L rtai-source | grep $(RTAI_PATCH_KEY))
+
+# Compute the destination patch name
+RTAI_PATCH_FILE = $(shell basename $(RTAI_PATCH_SRC) .gz)
+RTAI_PATCH_DST = features/all/rtai/$(RTAI_PATCH_FILE)
+
+debian/patches/series-rtai:
+#	# ensure src patch exists
+	test -e $(RTAI_PATCH_SRC)
+
+	gzip -cd $(RTAI_PATCH_SRC) \
+	    > debian/patches/$(RTAI_PATCH_DST)
+	echo $(RTAI_PATCH_DST) \
+	    > debian/patches/series-rtai
+
+# hook in as a prereq to debian/control
+debian/control: debian/patches/series-rtai
+
+maintainerclean-rtai:
+	rm -f debian/patches/series-rtai \
+	    debian/patches/$(RTAI_PATCH_DST)
+
+maintainerclean: maintainerclean-rtai
+
+
+
+else  # Included from debian/rules.real
+######################################################################
+# Build RTAI modules
+
+
+# This is installed by the 'rtai-source' package
+RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
+
+$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
+		DIR = $(BUILD_DIR)/rtai-source
+$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
+#	# Be sure RTAI source tarball exists
+	test -f $(RTAI_TARBALL)
+
+#	# Unpack configured RTAI source tree
+	rm -rf '$(DIR)'; mkdir -p '$(DIR)'
+	tar xjCf '$(DIR)' $(RTAI_TARBALL)
+	mv '$(DIR)'/modules/rtai/* '$(DIR)'
+
+#	# Generate .rtai_config
+	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
+	    '$(DIR)/debian/control.in' > '$(DIR)/debian/control'
+	cd '$(DIR)' && \
+	    debian/rules \
+		KSRC=$(CURDIR)/$(DIR)/../build_$(ARCH)_rtai_$(FLAVOUR) \
+		RTAI_PREFIX=/usr/modules \
+		KVERS=$(ABINAME)$(LOCALVERSION) \
+		HOST_CPU=$(KERNEL_ARCH) \
+		kdist_config
+
+#	# Build modules
+	mkdir -p '$(DIR)/../kpkg-dest-dir'
+	cd '$(DIR)' && \
+	    debian/rules \
+	    KSRC='$(CURDIR)/$(DIR)/../build_$(ARCH)_rtai_$(FLAVOUR)' \
+	    ROOT_CMD=fakeroot \
+	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../kpkg-dest-dir' \
+	    binary-modules
+
+	touch $@
+
+# Build RTAI modules after kernel build...
+$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
+	$(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)
+# ...but as a dep of build-arch
+build-arch: $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build
+
+
+######################################################################
+# Install RTAI modules
+
+$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install:
+	mkdir -p $(MODULES_DIR)/tmp
+	make -C $(BUILD_DIR)/rtai-source \
+	    install DESTDIR=$(MODULES_DIR)/tmp
+	# FIXME for debugging
+	find $(MODULES_DIR)/tmp -print
+	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
+	    $(MODULES_DIR)
+	rm -rf $(MODULES_DIR)/tmp
+
+# Add module install target to 
+# install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain target hook
+FEATURESET_MODULE_INSTALL_TARGETS += \
+	$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install
+
+endif

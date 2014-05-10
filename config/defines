@@ -67,8 +67,12 @@ compiler: gcc-4.6
 featuresets:
 # none
  xenomai
+ rtai
 
 [featureset-xenomai_base]
+enabled: true
+
+[featureset-rtai_base]
 enabled: true
 
 [description]

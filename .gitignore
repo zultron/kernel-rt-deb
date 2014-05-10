@@ -30,3 +30,6 @@
 
 # Xenomai feature set
 /patches/series-xenomai
+
+# RTAI feature set
+/patches/series-rtai

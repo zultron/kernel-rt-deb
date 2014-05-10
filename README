@@ -1,12 +1,13 @@
-Xenomai kernel Debian packaging for Linux 3.5.7
+Xenomai and RTAI kernel Debian packaging for Linux 3.5.7
 
-This builds Xenomai-patched kernel packages for Debian and Ubuntu.
+This builds Xenomai- and RTAI-patched kernel packages for Debian and
+Ubuntu.
 
 How to build:
 =============
 
 # Set up
-apt-get install linux-patch-xenomai
+apt-get install linux-patch-xenomai rtai-source
 wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.5.7.tar.xz \
      -O linux_3.5.7.orig.tar.xz
 tar xJf linux_3.5.7.orig.tar.xz --strip-components=1
@@ -18,7 +19,7 @@ debian/rules debian/control; debian/rules orig
 # Build binary packages with one of the following:
 #   Build everything (probably not what you want)
 fakeroot debian/rules binary
-#   Build amd64 Xenomai package only
+#   Build amd64 Xenomai and RTAI package only
 fakeroot make -f debian/rules.gen binary-arch_amd64_xenomai
 #   Build i386 vanilla package only, with 16 concurrent threads
 fakeroot make MAKE='make -j16' -f debian/rules.gen binary-arch_i386
@@ -57,6 +58,7 @@ Made changes; see top commits; summary:
 - Added some featureset-friendly tweaks to packaging
 - Added the Xenomai feature set
 - Added the r8168 driver
+- Added the RTAI feature set
 
 Links:
 ======
