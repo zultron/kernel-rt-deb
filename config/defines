@@ -15,11 +15,15 @@ featuresets:
 # none
  xenomai.x86
  xenomai.beaglebone
+# rtai
 
 [featureset-xenomai.x86_base]
 enabled: true
 
 [featureset-xenomai.beaglebone_base]
+enabled: true
+
+[featureset-rtai_base]
 enabled: true
 
 [description]

@@ -1,6 +1,9 @@
-Xenomai kernel Debian packaging for Linux 3.8.13
+Xenomai and RTAI kernel Debian packaging for Linux 3.8.13
 
-This builds Xenomai-patched kernel packages for Debian and Ubuntu.
+This builds Xenomai- and RTAI-patched kernel packages for Debian and
+Ubuntu.
+
+RTAI packages are a WIP, and so are disabled by default (see below).
 
 How to build:
 =============
@@ -34,6 +37,14 @@ dpkg-source -x *.dsc
 cd linux-<version>
 dpkg-buildpackage -B
 
+# RTAI packages:
+#
+# RTAI packages are a WIP, and so disabled for now.  To build:
+# - Uncomment 'rtai' under 'featuresets:' in config/defines and
+#   config/{amd64,i386}/defines.
+# - Install the RTAI kernel sources:
+apt-get install rtai-source
+
 Methodology:
 ============
 
@@ -57,6 +68,7 @@ Made changes; see top commits; summary:
 - Added some featureset-friendly tweaks to packaging
 - Added the Xenomai feature set
 - Added the r8168 driver
+- Added the RTAI feature set
 
 Links:
 ======
