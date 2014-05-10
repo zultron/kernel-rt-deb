@@ -6,6 +6,7 @@ sys.path.append("debian/lib/python")
 import os
 import os.path
 import subprocess
+import argparse
 
 from debian_linux import config
 from debian_linux.debian import *
@@ -117,9 +118,6 @@ class Gencontrol(Base):
         if self.changelog[0].distribution == 'UNRELEASED' and os.getenv('DEBIAN_KERNEL_DISABLE_INSTALLER'):
             import warnings
             warnings.warn(u'Disable building of debug infos on request (DEBIAN_KERNEL_DISABLE_INSTALLER set)')
-        elif 'none' not in self.config[('base',arch,)]:
-            import warnings
-            warnings.warn(u'No "none" featureset defined; disabling udeb builds')
         else:
             # Add udebs using kernel-wedge
             installer_def_dir = 'debian/installer'
@@ -162,6 +160,7 @@ class Gencontrol(Base):
 
         cmds_binary_arch = ["$(MAKE) -f debian/rules.real binary-arch-featureset %s" % makeflags]
         makefile.add('binary-arch_%s_%s_real' % (arch, featureset), cmds=cmds_binary_arch)
+        makefile.include('debian/rules.featureset-%s' % featureset)
 
     flavour_makeflags_base = (
         ('compiler', 'COMPILER', False),
@@ -293,7 +292,9 @@ class Gencontrol(Base):
                                            PackageRelationGroup()).append(
                     'linux-headers-%s' % featureset)
             packages_own.append(package_headers)
-            extra['headers_arch_depends'].append('%s (= ${binary:Version})' % packages_own[-1]['Package'])
+            if 'none' in self.config[('base',arch,)]:
+                extra['headers_arch_depends'].append(
+                    '%s (= ${binary:Version})' % packages_own[-1]['Package'])
 
         build_debug = config_entry_build.get('debug-info')
 
@@ -437,4 +438,15 @@ class Gencontrol(Base):
         f.close()
 
 if __name__ == '__main__':
-    Gencontrol()()
+    parser = argparse.ArgumentParser(
+        description='Debian package configurator')
+    parser.add_argument('--list-featuresets', action='store_true')
+    args = parser.parse_args()
+
+    g = Gencontrol()
+
+    if args.list_featuresets:
+        print (' '.join(g.config[('base',)]['featuresets']))
+        sys.exit(0)
+
+    g()

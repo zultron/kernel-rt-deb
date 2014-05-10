@@ -9,9 +9,6 @@ VERSION_BINNMU := $(shell echo "$(VERSION)" | sed -ne 's,.*+b\(.*\)$$,\1,p')
 
 include debian/rules.defs
 
-# Include any makefiles for featuresets
-include debian/rules.featureset-*
-
 stamp = [ -d $(dir $@) ] || mkdir $(dir $@); touch $@
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
@@ -109,5 +106,9 @@ debian/control-real: debian/bin/gencontrol.py $(CONTROL_FILES)
 	@echo been generated SUCCESSFULLY.
 	@echo
 	exit 1
+
+# Hook for featuresets
+FEATURESETS := $(shell debian/bin/gencontrol.py --list-featuresets)
+include $(foreach fs,$(FEATURESETS),debian/rules.featureset-$(fs))
 
 .PHONY: clean build setup binary-indep binary-arch binary
