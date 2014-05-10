@@ -54,6 +54,7 @@ featuresets:
  rt
  xenomai.x86
  xenomai.beaglebone
+ rtai.x86
 
 [featureset-none_base]
 enabled: false
@@ -65,6 +66,9 @@ enabled: false
 enabled: true
 
 [featureset-xenomai.beaglebone_base]
+enabled: true
+
+[featureset-rtai.x86_base]
 enabled: true
 
 [description]

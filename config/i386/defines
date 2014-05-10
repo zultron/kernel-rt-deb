@@ -3,6 +3,7 @@ featuresets:
 # none
  rt
  xenomai.x86
+ rtai.x86
 kernel-arch: x86
 
 [build]

@@ -1,0 +1,6 @@
+[base]
+flavours:
+ 686-pae
+
+[686-pae_image]
+provides:  linux-image-rtai, rtai-modules-%(abiname)s-rtai.x86-686-pae

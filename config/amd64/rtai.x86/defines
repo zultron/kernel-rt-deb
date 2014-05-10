@@ -1,0 +1,6 @@
+[base]
+flavours:
+ amd64
+
+[amd64_image]
+provides:  linux-image-rtai, rtai-modules-%(abiname)s-rtai.x86-amd64
