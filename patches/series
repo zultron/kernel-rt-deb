@@ -2,3 +2,4 @@ debian/version.patch
 debian/kernelvariables.patch
 debian/doc-build-parallel.patch
 debian/r8168.patch
+debian/fw_install.patch
