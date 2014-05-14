@@ -19,7 +19,7 @@ XENO_PATCH_DST = features/all/xenomai/$(XENO_PATCH_FILE)
 
 debian/patches/series-xenomai:
 #	# ensure src patch exists
-	test -e $(XENO_PATCH_SRC)
+	test -e "$(XENO_PATCH_SRC)"
 
 	gzip -cd $(XENO_PATCH_SRC) \
 	    > debian/patches/$(XENO_PATCH_DST)
