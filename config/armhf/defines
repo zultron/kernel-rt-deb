@@ -1,14 +1,14 @@
 [base]
 flavours:
- mx5
  omap
- vexpress
+# mx5
+# vexpress
 kernel-arch: arm
 
 [image]
 suggests: fdutils
 configs:
- armel/config
+# armel/config
  armhf/config
 
 [mx5_build]

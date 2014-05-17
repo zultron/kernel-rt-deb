@@ -1,3 +1,15 @@
+linux (3.8.13-3) unstable; urgency=medium
+
+  * Modify upstream package to build i-pipe RT kernels for x86
+    - Starting from Debian Sid kernel package sources, SVN r20131
+  * Trim down to x86 arch, vanilla kernel only
+    - Remove non-x86 configs and installer files
+    - Remove most Debian patches
+    - Remove 'rt' featureset
+
+ -- John Morris <john@zultron.com>  Sat, 17 May 2014 23:20:59 +0200
+
+
 linux (3.8.13-2) UNRELEASED; urgency=low
 
   * udeb: Fix yet more configuration errors causing FTBFS:
