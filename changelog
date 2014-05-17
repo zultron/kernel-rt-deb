@@ -1,3 +1,11 @@
+linux (3.16.7-1) unstable; urgency=low
+
+  * Modify upstream package to build i-pipe RT kernels for x86
+    - Starting from Debian Sid kernel package sources, SVN r22524
+  * Fix .gitignore
+
+ -- John Morris <john@zultron.com>  Thu, 14 May 2015 22:58:15 -0500
+
 linux (3.16.7-ckt9-3) unstable; urgency=high
 
   [ Ben Hutchings ]

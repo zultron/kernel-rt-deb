@@ -1,4 +1,4 @@
-#
+#							-*-makefile-*-
 # This Makefile executes the unpack/build/binary targets for a single
 # subarch, which is passed in the subarch variable. Empty subarch
 # variable means that we are building for an arch without the subarch.
