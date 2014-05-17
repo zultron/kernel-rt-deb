@@ -18,4 +18,3 @@ hardware-long: PCs with AMD64, Intel 64 or VIA Nano processors
 
 [amd64_image]
 configs:
- kernelarch-x86/config-arch-64

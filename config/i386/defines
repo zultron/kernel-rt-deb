@@ -20,8 +20,6 @@ parts: up
 
 [486_image]
 configs:
- kernelarch-x86/config-arch-32
- i386/config.486
 
 [686-pae_build]
 debug-info: true
@@ -33,8 +31,6 @@ parts: pae
 
 [686-pae_image]
 configs:
- kernelarch-x86/config-arch-32
- i386/config.686-pae
 recommends: libc6-i686
 
 [amd64_description]
@@ -44,5 +40,4 @@ parts: xen
 
 [amd64_image]
 configs:
- kernelarch-x86/config-arch-64
 recommends: libc6-i686
