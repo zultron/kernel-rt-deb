@@ -8,7 +8,8 @@ ignore-changes:
 arches:
  amd64
  i386
-compiler: gcc-4.7
+# Needed by Precise; Wheezy has gcc-4.7
+compiler: gcc-4.6
 featuresets:
  none
 
