@@ -6,3 +6,26 @@ XENO_FEATURESETS += beaglebone
 XENO_ARCH_beaglebone := arm
 
 include debian/rules.featureset-xenomai
+
+# Only evaluate when included from rules.real
+ifneq ($(INCLUDED_FROM_RULES_REAL),)
+
+###################################
+# install am335x-pm-firmware.bin
+
+# The following firmware from RCN's ARM patch repo comes as a binary
+# patch, which Debian packages do not recognize.  The following rule
+# copies the extracted firmware file, added to the package, into
+# place.
+
+BB_FIRMWARE_DIR = debian/patches/features/all/xenomai.beaglebone/firmware
+$(PACKAGE_DIR)/lib/firmware/am335x-pm-firmware.bin:
+	mkdir -p $(dir $@)
+	install -m644 $(BB_FIRMWARE_DIR)/0001-firmware-add-for-beaglebone.bin \
+	    $@
+
+# Hook into the linux-image-xenomai.beaglebone install
+install-image_arm_xenomai.beaglebone_$(FLAVOUR)_plain_image:
+	$(PACKAGE_DIR)/lib/firmware/am335x-pm-firmware.bin
+
+endif # only rules.real
