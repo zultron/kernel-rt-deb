@@ -1,6 +1,7 @@
 [base]
 featuresets:
 # none
+ xenomai.x86
 kernel-arch: x86
 
 [description]
@@ -12,6 +13,7 @@ part-long-pae: This kernel requires PAE (Physical Address Extension).
 [image]
 bootloaders: grub-pc extlinux lilo
 configs:
+ i386/config
 
 [486_description]
 hardware: older PCs

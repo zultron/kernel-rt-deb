@@ -1,0 +1,3 @@
+# x86 arch Xenomai patches					-*-conf-*-
+@IPIPE_PATCH@
+@XENO_PATCH@

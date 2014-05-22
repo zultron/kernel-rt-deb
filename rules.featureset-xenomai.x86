@@ -1,0 +1,8 @@
+#							-*-makefile-*-
+# Rules to build the Xenomai x86 feature set
+
+# Add this featureset to the Xenomai featureset list
+XENO_FEATURESETS += x86
+XENO_ARCH_x86 := x86
+
+include debian/rules.featureset-xenomai
