@@ -1,0 +1,8 @@
+[abi]
+ignore-changes: *
+
+[description]
+part-long-xenomai.x86:
+ This kernel includes the Xenomai realtime patch set for x86 architectures.
+part-short-xenomai.x86: Xenomai x86
+parts: xenomai.x86

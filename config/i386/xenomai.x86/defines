@@ -1,0 +1,6 @@
+[base]
+flavours:
+ 686-pae
+
+[686-pae_image]
+provides:  linux-image-xenomai
