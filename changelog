@@ -15,6 +15,9 @@ linux (3.8.13-3) unstable; urgency=medium
     - Add hooks in debian/rules* for feature set rule inclusion
     - Allow disabling 'none' featureset and irrelevent pkg builds
     - Add special feature set 'Provides:' in image and headers pkgs
+  * Add Xenomai feature set template
+    - Add kernel config and featureset definitions
+    - Add featureset rules
   * Fixes
     - require kernel-wedge >= 2.82 (was 2.84) to build on precise
 

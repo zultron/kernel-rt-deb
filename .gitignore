@@ -28,5 +28,6 @@
 /xen-linux-system-*/
 *.pyc
 
-# Xenomai feature set
-/patches/series-xenomai
+# Xenomai feature sets
+/patches/series-xenomai.*
+!/patches/series-xenomai.*.in

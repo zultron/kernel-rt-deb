@@ -1,0 +1,133 @@
+#							-*-makefile-*-
+# Extra rules to build the Xenomai feature set
+#
+# These rules are generic for a Xenomai featureset, which
+# should include this file from its rules.featureset-xenomai.
+#
+# A Xenomai featureset should be defined for each kernel requiring a
+# different set of patches; e.g. amd64 and i386 share the x86 ipipe
+# patches, and ARM has its own set, plus a set of 3rd-party patches.
+
+ifneq ($(INCLUDED_FROM_RULES),)
+# Only when included from debian/rules
+
+# Evaluate this section for each featureset
+#
+# hook in patch generation as a prereq to debian/control
+debian/control: $(XENO_FEATURESETS:%=debian/patches/series-xenomai.%)
+
+# hook in maintainerclean targets
+maintainerclean: $(XENO_FEATURESETS:%=maintainerclean-xenomai.%)
+
+# Evaluate the following section only once
+ifeq ($(RULES_FEATURESET_XENOMAI_INCLUDED),)
+
+################################################################
+# Ipipe patch functions
+#
+# Directory and file names for a featureset
+XENO_SRCDIR := /usr/src/xenomai-kernel-source
+xeno_patch_srcdir = $(XENO_SRCDIR)/ksrc/arch/$(XENO_ARCH_$(1))/patches
+ipipe_pfx = ipipe-core-$(VERSION_UPSTREAM)-$(XENO_ARCH_$(1))
+ipipe_pfx_board = ipipe-core-$(VERSION_UPSTREAM)-$(1)
+ipipe_pre = $(call ipipe_pfx_board,$(1))-pre.patch
+ipipe_post = $(call ipipe_pfx_board,$(1))-post.patch
+#
+# The patch directory for a featureset
+xeno_patch_subdir = features/all/xenomai.$(1)
+#
+# Patch source locations for a featureset
+ipipe_patch_src = $(wildcard $(call \
+    xeno_patch_srcdir,$(1))/$(call ipipe_pfx,$(1))-*.patch)
+ipipe_pre_patch_src = $(wildcard $(call \
+    xeno_patch_srcdir,$(1))/$(1)/$(call ipipe_pre,$(1)))
+ipipe_post_patch_src = $(wildcard $(call \
+    xeno_patch_srcdir,$(1))/$(1)/$(call ipipe_post,$(1)))
+#
+# Patch destination locations for a featureset
+ipipe_patch_dst = \
+    $(call xeno_patch_subdir,$(1))/$(notdir $(call ipipe_patch_src,$(1)))
+xeno_patch_dst = $(call \
+    xeno_patch_subdir,$(1))/xenomai-$(VERSION_UPSTREAM)-$(XENO_ARCH_$(*)).patch
+ipipe_pre_patch_dst = $(call \
+    xeno_patch_subdir,$(1))/$(notdir $(call ipipe_pre_patch_src,$(1)))
+ipipe_post_patch_dst = $(call \
+    xeno_patch_subdir,$(1))/$(notdir $(call ipipe_post_patch_src,$(1)))
+
+# Where to create the temp linux trees for building the Xenomai patch
+XENO_IPIPE_PATCH_TREE := ../linux-xenomai-ipipe-tmp
+
+# Check if the package containing ipipe patches is installed
+XENO_PATCH_PKG := xenomai-kernel-source
+HAVE_XENO_PATCH_PKG = \
+    $(shell dpkg-query -s $(XENO_PATCH_PKG) >/dev/null 2>&1; echo $$?)
+
+
+################################################################
+# Install ipipe patch
+
+# Copy ipipe patches for all flavors into the patches directory
+$(STAMPS_DIR)/copy_ipipe_patch_%: 
+#	# ensure patch package exists or exit with error message
+ifneq ($(HAVE_XENO_PATCH_PKG),0)
+	echo "Error:  missing ipipe package $(XENO_PATCH_PKG)"
+	exit 1
+endif
+#	# ensure src patch exists and add to series
+	test -e "$(call ipipe_patch_src,$(*))"
+	cp $(call ipipe_patch_src,$(*)) \
+	    debian/patches/$(call ipipe_patch_dst,$(*))
+#	# copy pre- and post- patches if they exist
+	test ! -e "$(call ipipe_pre_patch_src,$(*))" || \
+	    cp $(call ipipe_pre_patch_src,$(*)) \
+	        debian/patches/$(call ipipe_pre_patch_dst,$(*))
+	test ! -e "$(call ipipe_post_patch_src,$(*))" || \
+	    cp $(call ipipe_post_patch_src,$(*)) \
+	        debian/patches/$(call ipipe_post_patch_dst,$(*))
+	mkdir -p $(STAMPS_DIR); touch $@
+
+# Generate Xenomai patches for all flavors in the patches directory
+$(STAMPS_DIR)/generate_xenomai_patch_%: $(STAMPS_DIR)/copy_ipipe_patch_%
+#	# generate (post-ipipe) Xenomai patch: copy source tree, apply
+#	# ipipe patch, run prepare-kernel.sh, clean up
+	rm -rf $(XENO_IPIPE_PATCH_TREE)
+	cp -al . $(XENO_IPIPE_PATCH_TREE)
+	tar xCf $(XENO_IPIPE_PATCH_TREE) \
+	    ../linux_$(VERSION_UPSTREAM).orig.tar.xz \
+	    --strip-components=1
+	patch -p1 -d $(XENO_IPIPE_PATCH_TREE) -s < \
+	    debian/patches/$(call ipipe_patch_dst,$(*))
+	/usr/src/xenomai-kernel-source/scripts/prepare-kernel.sh \
+	    --linux=$(XENO_IPIPE_PATCH_TREE) \
+	    --outpatch=debian/patches/$(call xeno_patch_dst,$(*)) \
+	    --verbose --arch=$(XENO_ARCH_$(*))
+	rm -rf $(XENO_IPIPE_PATCH_TREE)
+	touch $@
+
+# Render debian/patches/series-xenomai.<flavor> templates
+debian/patches/series-xenomai.%: \
+		$(STAMPS_DIR)/generate_xenomai_patch_%
+#	# add ipipe and Xenomai patches to series files
+	sed -e 's,@IPIPE_PATCH@,$(call ipipe_patch_dst,$(*)),' \
+	    -e 's,@XENO_PATCH@,$(call xeno_patch_dst,$(*)),' \
+	    -e 's,@IPIPE_PATCH_PRE@,$(call ipipe_pre_patch_dst,$(*)),' \
+	    -e 's,@IPIPE_PATCH_POST@,$(call ipipe_post_patch_dst,$(*)),' \
+	    $@.in > $@
+
+################################################################
+# Clean up
+
+maintainerclean-xenomai.%:
+	@echo "Cleaning up for featureset xenomai.$(*)"
+	rm -f debian/patches/series-xenomai.$*
+	rm -f debian/patches/$(call ipipe_patch_dst,$*)
+	rm -f debian/patches/$(call xeno_patch_dst,$*)
+ifneq ($(call ipipe_pre_patch_dst,$*),$(call ipipe_post_patch_dst,$*))
+	rm -f debian/patches/$(call ipipe_pre_patch_dst,$*)
+	rm -f debian/patches/$(call ipipe_post_patch_dst,$*)
+endif
+
+RULES_FEATURESET_XENOMAI_INCLUDED := 1
+endif # only include once
+
+endif  # included from rules
