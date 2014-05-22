@@ -1,0 +1,6 @@
+#                                                              -*-conf-*-
+#
+# This belongs with the RCN patches; see
+# patches/series-xenomai.beaglebone.in, originally from
+# 0001-firmware-add-for-beaglebone.patch
+#debian/patches/features/all/xenomai.beaglebone/firmware/0001-firmware-add-for-beaglebone.bin

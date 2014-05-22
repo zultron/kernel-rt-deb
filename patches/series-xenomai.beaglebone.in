@@ -1,0 +1,41 @@
+# Beaglebone Xenomai patches					-*-conf-*-
+#
+# This list is extracted from Charles Steinkuehler's fork of Robert C
+# Nelson's ARM kernel patch and build scripts.
+#
+# https://github.com/cdsteinkuehler/linux-dev
+#
+# (git rev a8e5933000, 2014-05-20)
+#
+# List is generated, with modification to Xenomai patches, from tweaks
+# in the patch.sh script.
+#
+# https://github.com/zultron/linux-dev
+#
+#######################
+# Add pre-Xenomai patches here
+
+#######################
+# Xenomai patches
+3
+# dir: xenomai - ipipe
+#
+# These patches are generated in this kernel package configure step
+# and substituted into the following templates
+#
+# ignore/xenomai/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-pre.patch
+@IPIPE_PATCH_PRE@
+# ignore/xenomai/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-3.patch
+@IPIPE_PATCH@
+@XENO_PATCH@
+# ignore/xenomai/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-post.patch
+@IPIPE_PATCH_POST@
+
+#######################
+# Post-Xenomai patches
+#
+# dir: xenomai - prepare_kernel
+features/all/xenomai.beaglebone/xenomai/0001-Fix-relocation-truncated-to-fit-R_ARM_THM_JUMP19-err.patch
+features/all/xenomai.beaglebone/xenomai/0002-arm-remove-reference-to-mach-timex.h-in-arch-arm-inc.patch
+
+

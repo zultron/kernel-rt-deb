@@ -1,0 +1,22 @@
+[base]
+featuresets:
+# none
+ xenomai.beaglebone
+flavours:
+ omap
+# mx5
+# vexpress
+kernel-arch: arm
+
+[build]
+# Don't build -dbg kernel image
+#debug-info: true
+
+[image]
+configs:
+ armhf/config.omap
+# armhf/xenomai.beaglebone/config
+# armhf/config.omap-freq
+
+[omap_image]
+provides:  linux-image-xenomai

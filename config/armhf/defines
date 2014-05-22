@@ -1,4 +1,6 @@
 [base]
+featuresets:
+ xenomai.beaglebone
 flavours:
  armmp
  armmp-lpae
@@ -9,9 +11,6 @@ image-file: arch/arm/boot/zImage
 
 [image]
 suggests: fdutils
-configs:
- kernelarch-arm/config
- armhf/config
 install-stem: vmlinuz
 
 [relations]

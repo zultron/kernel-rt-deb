@@ -1,0 +1,8 @@
+[abi]
+ignore-changes: *
+
+[description]
+part-long-xenomai.beaglebone:
+ This kernel includes the Xenomai realtime patch set for Beaglebone.
+part-short-xenomai.beaglebone: Xenomai Beaglebone
+parts: xenomai.beaglebone
