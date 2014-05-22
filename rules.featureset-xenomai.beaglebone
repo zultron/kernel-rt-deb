@@ -1,0 +1,8 @@
+#							-*-makefile-*-
+# Rules to build the Xenomai Beaglebone feature set
+
+# Add this featureset to the Xenomai featureset list
+XENO_FEATURESETS += beaglebone
+XENO_ARCH_beaglebone := arm
+
+include debian/rules.featureset-xenomai

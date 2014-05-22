@@ -1,0 +1,5 @@
+# Beaglebone Xenomai patches					-*-conf-*-
+@IPIPE_PATCH_PRE@
+@IPIPE_PATCH@
+@XENO_PATCH@
+@IPIPE_PATCH_POST@

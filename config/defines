@@ -8,13 +8,18 @@ ignore-changes:
 arches:
  amd64
  i386
+ armhf
 # Needed by Precise; Wheezy has gcc-4.7
 compiler: gcc-4.6
 featuresets:
 # none
  xenomai.x86
+ xenomai.beaglebone
 
 [featureset-xenomai.x86_base]
+enabled: true
+
+[featureset-xenomai.beaglebone_base]
 enabled: true
 
 [description]

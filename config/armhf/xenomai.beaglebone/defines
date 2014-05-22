@@ -1,0 +1,16 @@
+[base]
+featuresets:
+# none
+ xenomai.beaglebone
+flavours:
+ omap
+# mx5
+# vexpress
+kernel-arch: arm
+
+[build]
+debug-info: true
+
+[image]
+configs:
+ armhf/config

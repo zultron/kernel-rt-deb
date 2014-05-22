@@ -1,4 +1,6 @@
 [base]
+featuresets:
+ xenomai.beaglebone
 flavours:
  omap
 # mx5
