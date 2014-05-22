@@ -30,8 +30,9 @@
 /xen-linux-system-*/
 *.pyc
 /po/
-# Xenomai feature set
-/patches/series-xenomai
+# Xenomai feature sets
+/patches/series-xenomai.*
+!/patches/series-xenomai.*.in
 
 # OSC
 /.osc/
