@@ -9,7 +9,8 @@ flavours:
 kernel-arch: arm
 
 [build]
-debug-info: true
+# Don't build -dbg kernel image
+#debug-info: true
 
 [image]
 configs:

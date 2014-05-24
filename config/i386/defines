@@ -25,7 +25,8 @@ parts: up
 configs:
 
 [686-pae_build]
-debug-info: true
+# Don't build -dbg kernel image
+#debug-info: true
 
 [686-pae_description]
 hardware: modern PCs

@@ -8,7 +8,8 @@ flavours:
 kernel-arch: x86
 
 [build]
-debug-info: true
+# Don't build -dbg kernel image
+#debug-info: true
 
 [image]
 bootloaders: grub-pc extlinux lilo
