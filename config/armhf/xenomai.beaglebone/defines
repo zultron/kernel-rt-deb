@@ -13,5 +13,4 @@ debug-info: true
 
 [image]
 configs:
- armhf/config.rcn
  armhf/xenomai.beaglebone/config
