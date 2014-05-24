@@ -95,7 +95,9 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
 	$(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)
 # ...but as a dep of build-arch
+ifeq ($(FEATURESET),rtai)
 build-arch: $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build
+endif
 endif  # Included from debian/rules.real
 
 
