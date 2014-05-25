@@ -8,7 +8,7 @@ XENO_ARCH_beaglebone := arm
 include debian/rules.featureset-xenomai
 
 # Only evaluate when included from rules.real
-ifneq ($(INCLUDED_FROM_RULES_REAL),)
+ifdef INCLUDED_FROM_RULES_REAL
 
 ###################################
 # install am335x-pm-firmware.bin
@@ -19,13 +19,10 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 # place.
 
 BB_FIRMWARE_DIR = debian/patches/features/all/xenomai.beaglebone/firmware
-$(PACKAGE_DIR)/lib/firmware/am335x-pm-firmware.bin:
-	mkdir -p $(dir $@)
+# Hook into rules.real $(STAMPS_DIR)/source_xenomai.beaglebone recipe
+define extra_source_cmd_xenomai.beaglebone
 	install -m644 $(BB_FIRMWARE_DIR)/0001-firmware-add-for-beaglebone.bin \
-	    $@
-
-# Hook into the linux-image-xenomai.beaglebone install
-install-image_arm_xenomai.beaglebone_$(FLAVOUR)_plain_image:
-	$(PACKAGE_DIR)/lib/firmware/am335x-pm-firmware.bin
+	    $(DIR)/firmware/am335x-pm-firmware.bin
+endef
 
 endif # only rules.real
