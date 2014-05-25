@@ -132,6 +132,9 @@ $(STAMPS_DIR)/source_%: $(STAMPS_DIR)/source
 	rm -rf '$(DIR)'
 	$(call copy_source,$(DIR))
 	$(call patch_cmd,$*)
+#	# add hook into source build for featuresets
+	$(if $(extra_source_cmd_$(*)),\
+	    $(call extra_source_cmd_$(*),$(DIR)))
 	@$(stamp)
 .PRECIOUS: $(STAMPS_DIR)/source_%
 
