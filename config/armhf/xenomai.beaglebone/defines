@@ -14,5 +14,6 @@ kernel-arch: arm
 
 [image]
 configs:
- armhf/xenomai.beaglebone/config
- armhf/config.omap-freq
+# armhf/xenomai.beaglebone/config
+# armhf/config.omap-freq
+ armhf/xenomai.beaglebone/config.cdsteinkuehler
