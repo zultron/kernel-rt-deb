@@ -9,8 +9,7 @@ arches:
  amd64
  i386
  armhf
-# Needed by Precise; Wheezy has gcc-4.7
-compiler: gcc-4.6
+compiler: gcc-4.7
 featuresets:
 # none
  xenomai.x86
