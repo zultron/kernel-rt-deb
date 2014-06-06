@@ -26,6 +26,9 @@ RTAI_PATCH_SRC = \
 RTAI_PATCH_FILE = $(shell basename $(RTAI_PATCH_SRC) .gz)
 RTAI_PATCH_DST = features/all/rtai/$(RTAI_PATCH_FILE)
 
+# This is installed by the 'rtai-source' package
+RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
+
 debian/patches/series-rtai:
 #	# ensure src patch exists
 	test -e $(RTAI_PATCH_SRC)
@@ -35,8 +38,12 @@ debian/patches/series-rtai:
 	echo $(RTAI_PATCH_DST) \
 	    > debian/patches/series-rtai
 
+../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2:
+	cp --preserve=all $(RTAI_TARBALL) $@
+
 # hook in as a prereq to debian/control
-debian/control: debian/patches/series-rtai
+debian/control: debian/patches/series-rtai \
+	../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2
 
 maintainerclean-rtai:
 	rm -f debian/patches/series-rtai \
@@ -55,20 +62,9 @@ endif # included from 'rules'
 # this kernel.
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
-# This is installed by the 'rtai-source' package
-RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
-
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
-		DIR = $(BUILD_DIR)/rtai-source
+		DIR = $(BUILD_DIR)/component/rtai
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
-#	# Be sure RTAI source tarball exists
-	test -f $(RTAI_TARBALL)
-
-#	# Unpack configured RTAI source tree
-	rm -rf '$(DIR)'; mkdir -p '$(DIR)'
-	tar xjCf '$(DIR)' $(RTAI_TARBALL)
-	mv '$(DIR)'/modules/rtai/* '$(DIR)'
-
 #	# Generate .rtai_config
 	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
 	    '$(DIR)/debian/control.in' > '$(DIR)/debian/control'
