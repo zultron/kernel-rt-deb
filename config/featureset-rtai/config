@@ -1,11 +1,20 @@
 # Kernel config for RTAI 4.0, x86                              -*-conf-*-
 #
+
 # This config should be applied on top of a generic kernel config to,
 # hopefully, create a working configuration for a RTAI-patched
 # kernel.
 #
-# This config is not yet tested on i386 arch on any distro.
+#######################################
 #
+# IPIPE options
+#
+CONFIG_IPIPE=y
+# memleak recommends this; why?
+CONFIG_IPIPE_LEGACY=y
+# CONFIG_IPIPE_DEBUG is not set
+#
+#######################################
 #
 # General problem options; see
 # http://www.xenomai.org/documentation/xenomai-2.6/html/TROUBLESHOOTING/index.html#kconf
