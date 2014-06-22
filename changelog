@@ -1,3 +1,13 @@
+linux (3.8.13-4) unstable; urgency=low
+
+  * Add support for RTAI
+    - Fix RTAI kernel config
+    - Fix RTAI package config rules
+  * Extra debug output
+  * Remove unnecessary extra tarball unpack
+
+ -- John Morris <john@zultron.com>  Sun, 22 Jun 2014 16:13:31 -0500
+
 linux (3.8.13-3) unstable; urgency=medium
 
   * Modify upstream package to build i-pipe RT kernels for x86
@@ -22,7 +32,6 @@ linux (3.8.13-3) unstable; urgency=medium
     - require kernel-wedge >= 2.82 (was 2.84) to build on precise
 
  -- John Morris <john@zultron.com>  Sat, 17 May 2014 23:20:59 +0200
-
 
 linux (3.8.13-2) UNRELEASED; urgency=low
 
