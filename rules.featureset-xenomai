@@ -94,9 +94,6 @@ $(STAMPS_DIR)/generate_xenomai_patch_%: $(STAMPS_DIR)/copy_ipipe_patch_%
 	@echo "****** Generating Xenomai patch for $* architecture ******"
 	rm -rf $(XENO_IPIPE_PATCH_TREE)
 	cp -al . $(XENO_IPIPE_PATCH_TREE)
-	tar xCf $(XENO_IPIPE_PATCH_TREE) \
-	    ../linux_$(VERSION_UPSTREAM).orig.tar.xz \
-	    --strip-components=1
 	patch -p1 -d $(XENO_IPIPE_PATCH_TREE) -s < \
 	    debian/patches/$(call ipipe_patch_dst,$(*))
 	/usr/src/xenomai-kernel-source/scripts/prepare-kernel.sh \
