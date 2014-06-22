@@ -44,8 +44,8 @@ debian/patches/series-rtai:
 	@echo "****** Copying RTAI source as extra upstream tarball ******"
 	cp --preserve=all $(RTAI_TARBALL) $@
 
-# hook in as a prereq to debian/control
-debian/control: debian/patches/series-rtai \
+# hook in as a prereq to debian/control-real
+debian/control-real: debian/patches/series-rtai \
 	../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2
 
 maintainerclean-rtai:
