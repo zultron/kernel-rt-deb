@@ -14,7 +14,7 @@ featuresets:
 # none
  xenomai.x86
  xenomai.beaglebone
-# rtai
+ rtai
 
 [featureset-xenomai.x86_base]
 enabled: true
