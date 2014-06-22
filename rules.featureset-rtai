@@ -66,26 +66,26 @@ endif # included from 'rules'
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
-		DIR = $(BUILD_DIR)/rtai/rtai
+		DIR = $(BUILD_DIR)/source_rtai/rtai/rtai
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
 #	# Generate .rtai_config
 	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
 	    '$(DIR)/debian/control.in' > '$(DIR)/debian/control'
 	cd '$(DIR)' && \
 	    debian/rules \
-		KSRC=$(CURDIR)/$(DIR)/../build_$(ARCH)_rtai_$(FLAVOUR) \
+		KSRC=$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai_$(FLAVOUR) \
 		RTAI_PREFIX=/usr/modules \
 		KVERS=$(ABINAME)$(LOCALVERSION) \
 		HOST_CPU=$(KERNEL_ARCH) \
 		kdist_config
 
 #	# Build modules
-	mkdir -p '$(DIR)/../kpkg-dest-dir'
+	mkdir -p '$(DIR)/../../../kpkg-dest-dir'
 	cd '$(DIR)' && \
 	    debian/rules \
-	    KSRC='$(CURDIR)/$(DIR)/../build_$(ARCH)_rtai_$(FLAVOUR)' \
+	    KSRC='$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai_$(FLAVOUR)' \
 	    ROOT_CMD=fakeroot \
-	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../kpkg-dest-dir' \
+	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../../../kpkg-dest-dir' \
 	    binary-modules
 
 	touch $@
@@ -110,7 +110,7 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install:
 	mkdir -p $(MODULES_DIR)/tmp
-	make -C $(BUILD_DIR)/rtai/rtai \
+	make -C $(BUILD_DIR)/source_rtai/rtai/rtai \
 	    install DESTDIR=$(MODULES_DIR)/tmp
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
