@@ -63,7 +63,7 @@ endif # included from 'rules'
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
-		DIR = $(BUILD_DIR)/component/rtai
+		DIR = $(BUILD_DIR)/rtai/rtai
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
 #	# Generate .rtai_config
 	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
@@ -107,7 +107,7 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install:
 	mkdir -p $(MODULES_DIR)/tmp
-	make -C $(BUILD_DIR)/rtai-source \
+	make -C $(BUILD_DIR)/rtai/rtai \
 	    install DESTDIR=$(MODULES_DIR)/tmp
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
