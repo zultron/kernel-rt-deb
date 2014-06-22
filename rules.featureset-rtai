@@ -30,6 +30,8 @@ RTAI_PATCH_DST = features/all/rtai/$(RTAI_PATCH_FILE)
 RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
 
 debian/patches/series-rtai:
+	@echo "****** Copying RTAI patch for $(RTAI_PATCH_ARCH)" \
+	    "architecture ******"
 #	# ensure src patch exists
 	test -e $(RTAI_PATCH_SRC)
 
@@ -39,6 +41,7 @@ debian/patches/series-rtai:
 	    > debian/patches/series-rtai
 
 ../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2:
+	@echo "****** Copying RTAI source as extra upstream tarball ******"
 	cp --preserve=all $(RTAI_TARBALL) $@
 
 # hook in as a prereq to debian/control

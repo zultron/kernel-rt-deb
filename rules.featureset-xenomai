@@ -68,6 +68,7 @@ HAVE_XENO_PATCH_PKG = \
 
 # Copy ipipe patches for all flavors into the patches directory
 $(STAMPS_DIR)/copy_ipipe_patch_%: 
+	@echo "****** Copying ipipe patch for $* architecture ******"
 #	# ensure patch package exists or exit with error message
 ifneq ($(HAVE_XENO_PATCH_PKG),0)
 	echo "Error:  missing ipipe package $(XENO_PATCH_PKG)"
@@ -90,6 +91,7 @@ endif
 $(STAMPS_DIR)/generate_xenomai_patch_%: $(STAMPS_DIR)/copy_ipipe_patch_%
 #	# generate (post-ipipe) Xenomai patch: copy source tree, apply
 #	# ipipe patch, run prepare-kernel.sh, clean up
+	@echo "****** Generating Xenomai patch for $* architecture ******"
 	rm -rf $(XENO_IPIPE_PATCH_TREE)
 	cp -al . $(XENO_IPIPE_PATCH_TREE)
 	tar xCf $(XENO_IPIPE_PATCH_TREE) \

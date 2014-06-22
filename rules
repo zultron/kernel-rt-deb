@@ -75,6 +75,7 @@ CONTROL_FILES = debian/changelog $(wildcard debian/templates/*.in)
 CONTROL_FILES += debian/config/defines $(wildcard debian/config/*/defines) $(wildcard debian/config/*/*/defines)
 CONTROL_FILES += $(wildcard debian/installer/*/kernel-versions) $(wildcard debian/installer/*/package-list) debian/installer/package-list
 debian/control debian/rules.gen: debian/bin/gencontrol.py $(CONTROL_FILES)
+	@echo "Making $@:  $(if $?,,absent )'$@' $(if $?,for '$?' )"
 ifeq ($(wildcard debian/control.md5sum),)
 	$(MAKE) -f debian/rules debian/control-real
 else ifeq ($(VERSION_BINNMU),)
@@ -86,6 +87,8 @@ else
 endif
 
 debian/control-real: debian/bin/gencontrol.py $(CONTROL_FILES)
+	@echo "Making debian/control-real:"
+	@echo "   $(if $?,,absent )'$@' $(if $?,for '$?' )"
 	$<
 	md5sum $^ > debian/control.md5sum
 ifneq ($(NOFAIL),true)
