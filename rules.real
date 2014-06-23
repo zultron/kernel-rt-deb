@@ -393,7 +393,6 @@ install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain:
 	  DIR='$(DIR)' PACKAGE_DIR='$(PACKAGE_DIR)' INSTALL_DIR='$(INSTALL_DIR)' REAL_VERSION='$(REAL_VERSION)'
 ifeq ($(MODULES),True)
 	+$(MAKE_CLEAN) -C $(DIR) modules_install DEPMOD='$(CURDIR)/debian/bin/no-depmod' INSTALL_MOD_PATH='$(CURDIR)'/$(PACKAGE_DIR) INSTALL_MOD_STRIP=1
-ifeq ($(DEBUG),True)
 #	# Hook for featuresets that want to install their own modules
 	for target in $(FEATURESET_MODULE_INSTALL_TARGETS_$(FEATURESET)); do \
 	    $(MAKE_SELF) \
@@ -405,6 +404,7 @@ ifeq ($(DEBUG),True)
 		MODULES_DIR=$(CURDIR)/$(PACKAGE_DIR)/lib/modules/$(REAL_VERSION) \
 		|| exit 1; \
 	done
+ifeq ($(DEBUG),True)
 	set -o pipefail; \
 	find $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel -name '*.ko' | \
 	    sed 's|$(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/kernel/||' | \
