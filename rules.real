@@ -319,6 +319,21 @@ install-headers_$(ARCH)_$(FEATURESET)_$(FLAVOUR): $(STAMPS_DIR)/build_$(ARCH)_$(
 	  > $(PACKAGE_DIR)/DEBIAN/postinst
 	chmod 755 $(PACKAGE_DIR)/DEBIAN/postinst
 
+#	# Hook for featuresets that want to install into the headers
+#	# package
+	for target in \
+	    $(FEATURESET_HEADERS_INSTALL_TARGETS_$(FEATURESET)); do \
+	    $(MAKE_SELF) \
+		$$target \
+		DIR='$(DIR)' \
+		PACKAGE_DIR='$(PACKAGE_DIR)' \
+		SOURCE_DIR='$(SOURCE_DIR)' \
+		REF_DIR='$(REF_DIR)' \
+		BASE_DIR='$(BASE_DIR)' \
+		REAL_VERSION='$(REAL_VERSION)' \
+		|| exit 1; \
+	done
+
 	+$(MAKE_SELF) install-base
 
 install-libc-dev_$(ARCH): PACKAGE_NAME = linux-libc-dev

@@ -115,9 +115,33 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install:
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
 	rm -rf $(MODULES_DIR)/tmp
+	touch $@
 
 # Add module install target to 
 # install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain target hook
 FEATURESET_MODULE_INSTALL_TARGETS_rtai.x86 = \
 	$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install
 endif  # Included from debian/rules.real
+
+######################################################################
+# Install RTAI configuration script
+#
+# The RTAI configuration script is installed via a hook in
+# 'debian/rules.real' 'install-headers_$(ARCH)_$(FEATURESET)' target.
+ifneq ($(INCLUDED_FROM_RULES_REAL),)
+
+$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
+	mkdir -p $(PACKAGE_DIR)/usr/bin
+	sed $(REF_DIR)/rtai/rtai/base/scripts/rtai-config \
+	    -e 's@^\(RTAI_LINUX_DIR\)=.*@\1=$(BASE_DIR)@' \
+	    -e 's@^\(RTAI_MODULE_DIR\)=.*@\1=/lib/modules/$(REAL_VERSION)/rtai@' \
+	    -e 's@^\(RTAI_LINUX_VERSION\)=.*@\1=$(REAL_VERSION)@' \
+	    > $(PACKAGE_DIR)/usr/bin/rtai-config-$(REAL_VERSION)
+	touch $@
+
+# Add module install target to 
+# install-headers_$(ARCH)_$(FEATURESET)_$(FLAVOUR) target hook
+FEATURESET_HEADERS_INSTALL_TARGETS_rtai.x86 = \
+	$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install
+endif  # Included from debian/rules.real
+
