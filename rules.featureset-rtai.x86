@@ -24,12 +24,12 @@ RTAI_PATCH_SRC = \
 
 # Compute the destination patch name
 RTAI_PATCH_FILE = $(shell basename $(RTAI_PATCH_SRC) .gz)
-RTAI_PATCH_DST = features/all/rtai/$(RTAI_PATCH_FILE)
+RTAI_PATCH_DST = features/all/rtai.x86/$(RTAI_PATCH_FILE)
 
 # This is installed by the 'rtai-source' package
 RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
 
-debian/patches/series-rtai:
+debian/patches/series-rtai.x86:
 	@echo "****** Copying RTAI patch for $(RTAI_PATCH_ARCH)" \
 	    "architecture ******"
 #	# ensure src patch exists
@@ -38,18 +38,18 @@ debian/patches/series-rtai:
 	gzip -cd $(RTAI_PATCH_SRC) \
 	    > debian/patches/$(RTAI_PATCH_DST)
 	echo $(RTAI_PATCH_DST) \
-	    > debian/patches/series-rtai
+	    > debian/patches/series-rtai.x86
 
 ../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2:
 	@echo "****** Copying RTAI source as extra upstream tarball ******"
 	cp --preserve=all $(RTAI_TARBALL) $@
 
 # hook in as a prereq to debian/control-real
-debian/control-real: debian/patches/series-rtai \
+debian/control-real: debian/patches/series-rtai.x86 \
 	../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2
 
 maintainerclean-rtai:
-	rm -f debian/patches/series-rtai \
+	rm -f debian/patches/series-rtai.x86 \
 	    debian/patches/$(RTAI_PATCH_DST)
 
 maintainerclean: maintainerclean-rtai
@@ -65,15 +65,15 @@ endif # included from 'rules'
 # this kernel.
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
-$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
-		DIR = $(BUILD_DIR)/source_rtai/rtai/rtai
-$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
+$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build: \
+		DIR = $(BUILD_DIR)/source_rtai.x86/rtai/rtai
+$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build:
 #	# Generate .rtai_config
 	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
 	    '$(DIR)/debian/control.in' > '$(DIR)/debian/control'
 	cd '$(DIR)' && \
 	    debian/rules \
-		KSRC=$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai_$(FLAVOUR) \
+		KSRC=$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai.x86_$(FLAVOUR) \
 		RTAI_PREFIX=/usr/modules \
 		KVERS=$(ABINAME)$(LOCALVERSION) \
 		HOST_CPU=$(KERNEL_ARCH) \
@@ -83,7 +83,7 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
 	mkdir -p '$(DIR)/../../../kpkg-dest-dir'
 	cd '$(DIR)' && \
 	    debian/rules \
-	    KSRC='$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai_$(FLAVOUR)' \
+	    KSRC='$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai.x86_$(FLAVOUR)' \
 	    ROOT_CMD=fakeroot \
 	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../../../kpkg-dest-dir' \
 	    binary-modules
@@ -91,11 +91,11 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build:
 	touch $@
 
 # Build RTAI modules after kernel build...
-$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build: \
+$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build: \
 	$(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)
 # ...but as a dep of build-arch
-ifeq ($(FEATURESET),rtai)
-build-arch: $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_build
+ifeq ($(FEATURESET),rtai.x86)
+build-arch: $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build
 endif
 endif  # Included from debian/rules.real
 
@@ -108,9 +108,9 @@ endif  # Included from debian/rules.real
 # that recipe right after regular modules are installed.
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
-$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install:
+$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install:
 	mkdir -p $(MODULES_DIR)/tmp
-	make -C $(BUILD_DIR)/source_rtai/rtai/rtai \
+	make -C $(BUILD_DIR)/source_rtai.x86/rtai/rtai \
 	    install DESTDIR=$(MODULES_DIR)/tmp
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
@@ -118,6 +118,6 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install:
 
 # Add module install target to 
 # install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain target hook
-FEATURESET_MODULE_INSTALL_TARGETS_rtai = \
-	$(STAMPS_DIR)/build_$(ARCH)_rtai_$(FLAVOUR)_modules_install
+FEATURESET_MODULE_INSTALL_TARGETS_rtai.x86 = \
+	$(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install
 endif  # Included from debian/rules.real

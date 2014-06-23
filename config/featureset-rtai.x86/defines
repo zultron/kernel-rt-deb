@@ -1,0 +1,7 @@
+[abi]
+ignore-changes: *
+
+[description]
+part-long-rtai.x86: This kernel includes the RTAI realtime patch set.
+part-short-rtai.x86: RTAI
+parts: rtai.x86

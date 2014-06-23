@@ -2,7 +2,7 @@
 featuresets:
 # none
  xenomai.x86
- rtai
+ rtai.x86
 flavours:
  amd64
 kernel-arch: x86
