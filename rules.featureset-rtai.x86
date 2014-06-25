@@ -132,7 +132,7 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
 	mkdir -p $(PACKAGE_DIR)/usr/bin
-	sed $(REF_DIR)/rtai/rtai/base/scripts/rtai-config \
+	sed $(REF_DIR)/rtai/rtai/base/scripts/rtai-config-kernel \
 	    -e 's@^\(RTAI_LINUX_DIR\)=.*@\1=$(BASE_DIR)@' \
 	    -e 's@^\(RTAI_MODULE_DIR\)=.*@\1=/lib/modules/$(REAL_VERSION)/rtai@' \
 	    -e 's@^\(RTAI_LINUX_VERSION\)=.*@\1=$(REAL_VERSION)@' \
