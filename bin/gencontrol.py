@@ -231,7 +231,15 @@ class Gencontrol(Base):
 
         image_fields = {'Description': PackageDescription()}
         for field in 'Depends', 'Provides', 'Suggests', 'Recommends', 'Conflicts', 'Breaks':
-            image_fields[field] = PackageRelation(config_entry_image.get(field.lower(), None), override_arches=(arch,))
+            field_val = config_entry_image.get(field.lower(), None)
+            if isinstance(field_val,basestring):
+                # allow e.g. 'Provides:' values to be templated in
+                # 'definitions' files
+                field_val %= dict(vars.items(),
+                                  flavour=flavour,featureset=featureset)
+            pkg_rel = PackageRelation(field_val,
+                                      override_arches=(arch,))
+            image_fields[field] = pkg_rel
         if featureset and featureset != 'none':
             # Add 'Provides: linux-image-<featureset>'
             image_fields['Provides'].append(
