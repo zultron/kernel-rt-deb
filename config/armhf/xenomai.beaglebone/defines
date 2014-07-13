@@ -17,3 +17,6 @@ configs:
 # armhf/xenomai.beaglebone/config
 # armhf/config.omap-freq
  armhf/xenomai.beaglebone/config.cdsteinkuehler
+
+[omap_image]
+provides:  linux-image-xenomai
