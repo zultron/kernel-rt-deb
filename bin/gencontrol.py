@@ -240,10 +240,6 @@ class Gencontrol(Base):
             pkg_rel = PackageRelation(field_val,
                                       override_arches=(arch,))
             image_fields[field] = pkg_rel
-        if featureset and featureset != 'none':
-            # Add 'Provides: linux-image-<featureset>'
-            image_fields['Provides'].append(
-                'linux-image-%s' % featureset)
         
 
         if config_entry_image.get('initramfs', True):
