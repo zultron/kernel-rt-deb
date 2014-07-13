@@ -72,7 +72,7 @@ class Makefile(object):
 
 class MakeFlags(dict):
     def __repr__(self):
-        repr = super(flags, self).__repr__()
+        repr = super(MakeFlags, self).__repr__()
         return "%s(%s)" % (self.__class__.__name__, repr)
 
     def __str__(self):

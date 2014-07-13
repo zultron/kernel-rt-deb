@@ -360,6 +360,9 @@ class PackageRelationEntry(object):
             ret.extend((u' [', u' '.join(self.arches), u']'))
         return u''.join(ret)
 
+    def __repr__(self):
+        return "<PackageRelationEntry %s>" % str(self.__unicode__())
+
     def parse(self, value):
         match = self._re.match(value)
         if match is None:

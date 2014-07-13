@@ -12,6 +12,7 @@ from debian_linux import config
 from debian_linux.debian import *
 from debian_linux.gencontrol import Gencontrol as Base
 from debian_linux.utils import Templates, read_control
+from pprint import pprint
 
 
 class Gencontrol(Base):
@@ -454,12 +455,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Debian package configurator')
     parser.add_argument('--list-featuresets', action='store_true')
+    parser.add_argument('--dump-config', action='store_true')
     args = parser.parse_args()
 
     g = Gencontrol()
 
     if args.list_featuresets:
         print (' '.join(g.config['base',]['featuresets']))
+        sys.exit(0)
+    elif args.dump_config:
+        pprint(g.__dict__['config'])
         sys.exit(0)
 
     g()
