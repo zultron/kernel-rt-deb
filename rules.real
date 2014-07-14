@@ -71,10 +71,10 @@ ifeq ($(filter none,$(ALL_FEATURESETS)),none)
 binary-indep: install-doc
 binary-indep: install-manual
 binary-indep: install-source
-binary-indep: install-support
 else
-# Don't build -indep pkgs when 'none' featureset unconfigured
-binary-indep:
+# Among -indep pkgs, only build 'linux-support' when 'none' featureset
+# unconfigured
+binary-indep: install-support
 endif
 
 build-arch: $(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE)

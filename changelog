@@ -8,6 +8,7 @@ linux (3.8.13-5) unstable; urgency=low
     - e.g. `Provides: rtai-modules-%(abiname)s-rtai.x86-%(flavour)s`
   * New `bin/gencontrol.py --dump-config` command line argument
     - Handy for debugging
+  * Reenable `linux-support` pkg build for `linux-latest` package
 
  -- John Morris <john@zultron.com>  Mon, 14 Jul 2014 13:08:22 -0500
 
