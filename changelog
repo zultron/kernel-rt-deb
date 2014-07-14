@@ -1,3 +1,16 @@
+linux (3.8.13-5) unstable; urgency=low
+
+  * Add `Provides: linux-image-<xenomai|rtai>` to pkgs
+  * Remove `Provides: linux-image-<featureset>` hard-coded hack
+  * Add `Provides: rtai-modules-...` to RTAI kernel package
+    - For compatibility with LinuxCNC project kernel pkgs
+  * Allow templating package relations
+    - e.g. `Provides: rtai-modules-%(abiname)s-rtai.x86-%(flavour)s`
+  * New `bin/gencontrol.py --dump-config` command line argument
+    - Handy for debugging
+
+ -- John Morris <john@zultron.com>  Mon, 14 Jul 2014 13:08:22 -0500
+
 linux (3.8.13-4) unstable; urgency=low
 
   * Add support for RTAI
