@@ -1,3 +1,9 @@
+linux (3.8.13-6) unstable; urgency=low
+
+  * RTAI:  Move Module.symvers into linux-headers package
+
+ -- John Morris <john@zultron.com>  Wed, 16 Jul 2014 15:29:14 -0500
+
 linux (3.8.13-5) unstable; urgency=low
 
   * Add `Provides: linux-image-<xenomai|rtai>` to pkgs

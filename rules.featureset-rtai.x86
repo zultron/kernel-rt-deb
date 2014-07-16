@@ -114,6 +114,7 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install:
 	    install DESTDIR=$(MODULES_DIR)/tmp
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
+	rm $(MODULES_DIR)/rtai/Module.symvers
 	rm -rf $(MODULES_DIR)/tmp
 	touch $@
 
@@ -124,10 +125,11 @@ FEATURESET_MODULE_INSTALL_TARGETS_rtai.x86 = \
 endif  # Included from debian/rules.real
 
 ######################################################################
-# Install RTAI configuration script
+# Install headers package files
 #
-# The RTAI configuration script is installed via a hook in
-# 'debian/rules.real' 'install-headers_$(ARCH)_$(FEATURESET)' target.
+# The RTAI configuration script and Module.symvers is installed via a
+# hook in 'debian/rules.real' 'install-headers_$(ARCH)_$(FEATURESET)'
+# target.
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
@@ -137,6 +139,12 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
 	    -e 's@^\(RTAI_MODULE_DIR\)=.*@\1=/lib/modules/$(REAL_VERSION)/rtai@' \
 	    -e 's@^\(RTAI_LINUX_VERSION\)=.*@\1=$(REAL_VERSION)@' \
 	    > $(PACKAGE_DIR)/usr/bin/rtai-config-$(REAL_VERSION)
+
+#	# Install the Module.symvers file
+	mkdir -p $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/rtai
+	cp $(REF_DIR)/rtai/rtai/Module.symvers \
+	    $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/rtai
+
 	touch $@
 
 # Add module install target to 
