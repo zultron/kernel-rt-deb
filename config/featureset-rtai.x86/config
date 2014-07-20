@@ -102,3 +102,20 @@ CONFIG_NR_CPUS=8
 # http://permalink.gmane.org/gmane.linux.real-time.xenomai.users/18499
 # https://github.com/zultron/kernel-rt-deb/issues/2
 CONFIG_PREEMPT_NONE=y
+#
+################################################
+# RTAI:  Disable parts of ACPI
+#
+# http://wiki.linuxcnc.org/cgi-bin/wiki.pl?Debian_Lenny_Compile_RTAI#Configuring_the_kernel
+#
+# CONFIG_ACPI_AC is not set
+# CONFIG_ACPI_APEI is not set
+# CONFIG_ACPI_BATTERY is not set
+# CONFIG_ACPI_BGRT is not set
+CONFIG_ACPI_BUTTON=m              
+# CONFIG_ACPI_CONTAINER is not set
+CONFIG_ACPI_DOCK=y
+# CONFIG_ACPI_FAN is not set
+# CONFIG_ACPI_IPMI is not set
+# CONFIG_ACPI_PROC_EVENT is not set
+# CONFIG_X86_PM_TIMER is not set
