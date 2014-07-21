@@ -2,6 +2,7 @@ linux (3.8.13-7) unstable; urgency=low
 
   * RTAI kernel:  Disable parts of ACPI
   * Install dtbs files for ARM architecture
+  * Update `Vcs-*` tags in `changelog`
 
  -- John Morris <john@zultron.com>  Mon, 21 Jul 2014 09:39:30 -0500
 
