@@ -178,6 +178,16 @@ $(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_$(TYPE): $(STAMPS_DIR)/setu
 
 $(STAMPS_DIR)/build_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain:
 	+$(MAKE_CLEAN) -C '$(DIR)' $(BUILD_TARGET)
+
+#	# Hook for featuresets that want to run extra pieces of build
+	for target in \
+	    $(FEATURESET_BUILD_TARGETS_$(FEATURESET)); do \
+	    $(MAKE_SELF) \
+		$$target \
+		DIR='$(DIR)' \
+		|| exit 1; \
+	done
+
 	python debian/bin/buildcheck.py $(DIR) $(ARCH) $(FEATURESET) $(FLAVOUR)
 	@$(stamp)
 
@@ -393,7 +403,7 @@ install-image_$(ARCH)_$(FEATURESET)_$(FLAVOUR)_plain:
 	  DIR='$(DIR)' PACKAGE_DIR='$(PACKAGE_DIR)' INSTALL_DIR='$(INSTALL_DIR)' REAL_VERSION='$(REAL_VERSION)'
 ifeq ($(MODULES),True)
 	+$(MAKE_CLEAN) -C $(DIR) modules_install DEPMOD='$(CURDIR)/debian/bin/no-depmod' INSTALL_MOD_PATH='$(CURDIR)'/$(PACKAGE_DIR) INSTALL_MOD_STRIP=1
-#	# Hook for featuresets that want to install their own modules
+#	# Hook for featuresets into the installation
 	for target in $(FEATURESET_MODULE_INSTALL_TARGETS_$(FEATURESET)); do \
 	    $(MAKE_SELF) \
 		$$target \

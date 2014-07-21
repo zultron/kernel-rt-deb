@@ -11,6 +11,33 @@ include debian/rules.featureset-xenomai
 ifdef INCLUDED_FROM_RULES_REAL
 
 ###################################
+# build ARM dtbs files
+
+# This really belongs in the kernel as a patch, but it'll go away once
+# the kernel is upgraded past v3.14.
+
+# Build ARM dtbs files
+$(STAMPS_DIR)/arm_dtbs_build:
+	$(MAKE_CLEAN) -C $(DIR) dtbs
+	$(stamp)
+# ...and hook into pkg build
+FEATURESET_BUILD_TARGETS_xenomai.beaglebone += \
+		$(STAMPS_DIR)/arm_dtbs_build
+
+# Install ARM dtbs files
+$(STAMPS_DIR)/arm_dtbs_install:
+	mkdir -p "$(INSTALL_DIR)/dtbs/$(REAL_VERSION)"
+	find $(DIR)/arch/arm/boot/ -iname "*.dtb" -exec cp -v '{}' \
+	    "$(INSTALL_DIR)/dtbs/$(REAL_VERSION)" \;
+#	# make dtbs_install seems to add an .old directory
+	rm -rf "$(INSTALL_DIR)/dtbs/$(REAL_VERSION).old"
+	$(stamp)
+# ...and hook into pkg install
+FEATURESET_MODULE_INSTALL_TARGETS_xenomai.beaglebone += \
+		$(STAMPS_DIR)/arm_dtbs_install
+
+
+###################################
 # install am335x-pm-firmware.bin
 
 # The following firmware from RCN's ARM patch repo comes as a binary
