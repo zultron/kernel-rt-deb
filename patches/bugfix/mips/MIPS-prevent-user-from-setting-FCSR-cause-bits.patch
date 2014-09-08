@@ -29,19 +29,17 @@ Signed-off-by: James Hogan <james.hogan@imgtec.com>
  arch/mips/kernel/ptrace.c |    3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/mips/kernel/ptrace.c b/arch/mips/kernel/ptrace.c
-index f639ccd..3a7f7dd 100644
 --- a/arch/mips/kernel/ptrace.c
 +++ b/arch/mips/kernel/ptrace.c
-@@ -170,6 +170,7 @@ int ptrace_setfpregs(struct task_struct
- 		__get_user(fregs[i], i + (__u64 __user *) data);
+@@ -151,6 +151,7 @@ int ptrace_setfpregs(struct task_struct
+ 	}
  
  	__get_user(child->thread.fpu.fcr31, data + 64);
 +	child->thread.fpu.fcr31 &= ~FPU_CSR_ALL_X;
  
  	/* FIR may not be written.  */
  
-@@ -593,7 +594,7 @@ long arch_ptrace(struct task_struct *chi
+@@ -565,7 +566,7 @@ long arch_ptrace(struct task_struct *chi
  			break;
  #endif
  		case FPC_CSR:
@@ -50,6 +48,3 @@ index f639ccd..3a7f7dd 100644
  			break;
  		case DSP_BASE ... DSP_BASE + 5: {
  			dspreg_t *dregs;
--- 
-1.7.10.4
-
