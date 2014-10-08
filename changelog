@@ -1,9 +1,11 @@
 linux (3.8.13-10) unstable; urgency=low
 
   * RTAI kernel:  Update to latest ShabbyX master, rev. 61a8177
+    - Merge with magma
     - Patches accepted upstream
     - Improved rtai-config stub script
     - Other upstream changes since last release
+    - Packaging fixes
 
  -- John Morris <john@zultron.com>  Tue, 30 Sep 2014 13:50:40 -0500
 
