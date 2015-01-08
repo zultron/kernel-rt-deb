@@ -34,3 +34,8 @@
 
 # RTAI feature set
 /patches/series-rtai
+
+# OSC
+/.osc/
+/linux_*.tar.xz
+/linux_*.dsc
