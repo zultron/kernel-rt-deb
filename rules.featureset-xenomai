@@ -96,7 +96,7 @@ $(STAMPS_DIR)/generate_xenomai_patch_%: $(STAMPS_DIR)/copy_ipipe_patch_%
 	cp -al . $(XENO_IPIPE_PATCH_TREE)
 	patch -p1 -f -d $(XENO_IPIPE_PATCH_TREE) -s < \
 	    debian/patches/$(call ipipe_patch_dst,$(*))
-	/usr/src/xenomai-kernel-source/scripts/prepare-kernel.sh \
+	$(XENO_SRCDIR)/scripts/prepare-kernel.sh \
 	    --linux=$(XENO_IPIPE_PATCH_TREE) \
 	    --outpatch=debian/patches/$(call xeno_patch_dst,$(*)) \
 	    --verbose --arch=$(XENO_ARCH_$(*))
