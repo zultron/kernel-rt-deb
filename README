@@ -45,6 +45,17 @@ dpkg-buildpackage -B
 # - Install the RTAI kernel sources:
 apt-get install rtai-source
 
+OSC:
+====
+
+This package produces the `linux-libc-dev` package, but that is also a
+dependency of the build.  OBS is peculiar in that it will not install
+dependencies if they're produced by the build.  To override this, edit
+the `prjconf` and add:
+
+   Keep: linux-libc-dev
+
+
 Methodology:
 ============
 
