@@ -5,3 +5,10 @@ ignore-changes: *
 part-long-rtai.x86: This kernel includes the RTAI realtime patch set.
 part-short-rtai.x86: RTAI
 parts: rtai.x86
+
+[i386_relations]
+build-depends: rtai-source
+
+[amd64_relations]
+build-depends: rtai-source
+

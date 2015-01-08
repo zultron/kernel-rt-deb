@@ -229,6 +229,13 @@ class Gencontrol(Base):
                 item.arches = [arch]
         packages['source']['Build-Depends'].extend(relations_compiler_build_dep)
 
+        relations_build_dep = PackageRelation(
+            config_entry_relations.get('build-depends',{}))
+        for group in relations_build_dep:
+            for item in group:
+                item.arches = [arch]
+        packages['source']['Build-Depends'].extend(relations_build_dep)
+
         image_fields = {'Description': PackageDescription()}
         for field in 'Depends', 'Provides', 'Suggests', 'Recommends', 'Conflicts', 'Breaks':
             field_val = config_entry_image.get(field.lower(), None)
