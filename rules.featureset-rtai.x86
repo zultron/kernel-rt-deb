@@ -2,8 +2,7 @@
 # Extra rules to build the RTAI feature set
 #
 # These rules require the 'rtai-source' package be installed when
-# making the debian/control target.  (The package (re)build does not
-# require this.)
+# making the debian/control target.
 
 ######################################################################
 # Install the RTAI hal-linux patch during source package configuration
@@ -27,9 +26,6 @@ RTAI_PATCH_FILE = $(shell basename $(RTAI_PATCH_SRC) .gz)
 RTAI_PATCH_DST = features/all/rtai.x86/$(RTAI_PATCH_FILE)
 RTAI_PATCH_FILTER = $(if $(findstring .gz,$(RTAI_PATCH_DST)),gzip -cd,cat)
 
-# This is installed by the 'rtai-source' package
-RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
-
 debian/patches/series-rtai.x86:
 	@echo "****** Copying RTAI patch for $(RTAI_PATCH_ARCH)" \
 	    "architecture ******"
@@ -40,11 +36,6 @@ debian/patches/series-rtai.x86:
 	    > debian/patches/$(RTAI_PATCH_DST)
 	echo $(RTAI_PATCH_DST) \
 	    > debian/patches/series-rtai.x86
-
-	@echo "****** Copying RTAI source as extra upstream tarball ******"
-	rm -f ../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2
-	cp --preserve=all $(RTAI_TARBALL) \
-	    ../linux_$(VERSION_UPSTREAM).orig-rtai.tar.bz2
 
 # hook in as a prereq to debian/control-real
 debian/control: debian/patches/series-rtai.x86
@@ -66,27 +57,35 @@ endif # included from 'rules'
 # this kernel.
 ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
+# This is installed by the 'rtai-source' package
+RTAI_TARBALL = /usr/src/rtai-source.tar.bz2
+
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build: \
-		DIR = $(BUILD_DIR)/source_rtai.x86/rtai/rtai
+		DIR = $(BUILD_DIR)/source_rtai.x86/rtai
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_build:
+#	# Unpack RTAI sources
+	mkdir $(BUILD_DIR)/source_rtai.x86/rtai
+	tar xCf $(BUILD_DIR)/source_rtai.x86/rtai $(RTAI_TARBALL) \
+	    --strip-components=2
+
 #	# Generate .rtai_config
 	sed -e 's/$${kpkg\:Kernel\-Version}/$(ABINAME)$(LOCALVERSION)/' \
 	    '$(DIR)/debian/control.in' > '$(DIR)/debian/control'
 	cd '$(DIR)' && \
 	    debian/rules \
-		KSRC=$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai.x86_$(FLAVOUR) \
+		KSRC=$(CURDIR)/$(DIR)/../../build_$(ARCH)_rtai.x86_$(FLAVOUR) \
 		RTAI_PREFIX=/usr/modules \
 		KVERS=$(ABINAME)$(LOCALVERSION) \
 		HOST_CPU=$(KERNEL_ARCH) \
 		kdist_config
 
 #	# Build modules
-	mkdir -p '$(DIR)/../../../kpkg-dest-dir'
+	mkdir -p '$(DIR)/../../kpkg-dest-dir'
 	cd '$(DIR)' && \
 	    debian/rules \
-	    KSRC='$(CURDIR)/$(DIR)/../../../build_$(ARCH)_rtai.x86_$(FLAVOUR)' \
+	    KSRC='$(CURDIR)/$(DIR)/../../build_$(ARCH)_rtai.x86_$(FLAVOUR)' \
 	    ROOT_CMD=fakeroot \
-	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../../../kpkg-dest-dir' \
+	    KPKG_DEST_DIR='$(CURDIR)/$(DIR)/../../kpkg-dest-dir' \
 	    binary-modules
 
 	touch $@
@@ -111,7 +110,7 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_modules_install:
 	mkdir -p $(MODULES_DIR)/tmp
-	make -C $(BUILD_DIR)/source_rtai.x86/rtai/rtai \
+	make -C $(BUILD_DIR)/source_rtai.x86/rtai \
 	    install DESTDIR=$(MODULES_DIR)/tmp
 	mv $(MODULES_DIR)/tmp/lib/modules/$(REAL_VERSION)/rtai \
 	    $(MODULES_DIR)
@@ -135,7 +134,7 @@ ifneq ($(INCLUDED_FROM_RULES_REAL),)
 
 $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
 	mkdir -p $(PACKAGE_DIR)/usr/bin
-	sed $(REF_DIR)/rtai/rtai/base/scripts/rtai-config-kernel \
+	sed $(REF_DIR)/rtai/base/scripts/rtai-config-kernel \
 	    -e 's@^\(RTAI_LINUX_DIR\)=.*@\1=$(BASE_DIR)@' \
 	    -e 's@^\(RTAI_MODULE_DIR\)=.*@\1=/lib/modules/$(REAL_VERSION)/rtai@' \
 	    -e 's@^\(RTAI_LINUX_VERSION\)=.*@\1=$(REAL_VERSION)@' \
@@ -143,7 +142,7 @@ $(STAMPS_DIR)/build_$(ARCH)_rtai.x86_$(FLAVOUR)_headers_install:
 
 #	# Install the Module.symvers file
 	mkdir -p $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/rtai
-	cp $(REF_DIR)/rtai/rtai/Module.symvers \
+	cp $(REF_DIR)/rtai/Module.symvers \
 	    $(PACKAGE_DIR)/lib/modules/$(REAL_VERSION)/rtai
 
 	touch $@
