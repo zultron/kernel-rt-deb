@@ -24,7 +24,7 @@ RTAI_PATCH_SRC = \
 # Compute the destination patch name
 RTAI_PATCH_FILE = $(shell basename $(RTAI_PATCH_SRC) .gz)
 RTAI_PATCH_DST = features/all/rtai.x86/$(RTAI_PATCH_FILE)
-RTAI_PATCH_FILTER = $(if $(findstring .gz,$(RTAI_PATCH_DST)),gzip -cd,cat)
+RTAI_PATCH_FILTER = $(if $(findstring .gz,$(RTAI_PATCH_SRC)),gzip -cd,cat)
 
 debian/patches/series-rtai.x86:
 	@echo "****** Copying RTAI patch for $(RTAI_PATCH_ARCH)" \
