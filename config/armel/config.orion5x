@@ -154,7 +154,6 @@ CONFIG_CRYPTO_DEV_MV_CESA=m
 ##
 CONFIG_DMADEVICES=y
 CONFIG_MV_XOR=y
-# CONFIG_NET_DMA is not set
 
 ##
 ## file: drivers/gpio/Kconfig
@@ -198,6 +197,15 @@ CONFIG_INPUT_JOYSTICK=y
 ## file: drivers/input/keyboard/Kconfig
 ##
 CONFIG_KEYBOARD_GPIO=m
+
+##
+## file: drivers/input/serio/Kconfig
+##
+CONFIG_SERIO=m
+CONFIG_SERIO_SERPORT=m
+# CONFIG_SERIO_PCIPS2 is not set
+CONFIG_SERIO_LIBPS2=m
+# CONFIG_SERIO_RAW is not set
 
 ##
 ## file: drivers/input/touchscreen/Kconfig
@@ -435,7 +443,6 @@ CONFIG_RTC_DRV_S35390A=y
 # CONFIG_SCSI_QLOGIC_1280 is not set
 # CONFIG_SCSI_LPFC is not set
 # CONFIG_SCSI_DC395x is not set
-# CONFIG_SCSI_DC390T is not set
 # CONFIG_SCSI_NSP32 is not set
 
 ##

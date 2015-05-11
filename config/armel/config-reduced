@@ -19,26 +19,12 @@ CONFIG_IOSCHED_DEADLINE=m
 # CONFIG_VGA_ARB is not set
 
 ##
-## file: drivers/input/serio/Kconfig
-##
-CONFIG_SERIO=m
-CONFIG_SERIO_SERPORT=m
-# CONFIG_SERIO_PCIPS2 is not set
-CONFIG_SERIO_LIBPS2=m
-# CONFIG_SERIO_RAW is not set
-
-##
 ## file: init/Kconfig
 ##
-# CONFIG_AUDITSYSCALL is not set
 #. Saves about 7K
 # CONFIG_MEMCG is not set
 # CONFIG_CHECKPOINT_RESTORE is not set
-#. Saves about 5K
-# CONFIG_USER_NS is not set
 CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-#. Saves about 17K, and none of the quirks are likely to be needed
-# CONFIG_PCI_QUIRKS is not set
 # CONFIG_PROFILING is not set
 
 ##
@@ -49,20 +35,11 @@ CONFIG_CC_OPTIMIZE_FOR_SIZE=y
 # CONFIG_PM_RUNTIME is not set
 
 ##
-## file: kernel/trace/Kconfig
-##
-# CONFIG_FTRACE is not set
-
-##
-## file: lib/Kconfig.debug
-##
-# CONFIG_DYNAMIC_DEBUG is not set
-
-##
 ## file: mm/Kconfig
 ##
+#. Saves about 7K
+# CONFIG_COMPACTION is not set
 # CONFIG_KSM is not set
-# CONFIG_FRONTSWAP is not set
 # CONFIG_ZSMALLOC is not set
 
 ##
@@ -87,12 +64,8 @@ CONFIG_IPV6=m
 # CONFIG_NETLINK_MMAP is not set
 
 ##
-## file: security/Kconfig
-##
-# CONFIG_SECURITY is not set
-
-##
 ## file: usr/Kconfig
 ##
 # CONFIG_RD_LZO is not set
 # CONFIG_RD_LZ4 is not set
+

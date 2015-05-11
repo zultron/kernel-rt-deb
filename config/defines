@@ -1,26 +1,5 @@
 [abi]
-abiname: 4
-ignore-changes:
-# Should not be used from OOT
- module:arch/x86/kvm/kvm
- module:drivers/mtd/spi-nor/spi-nor
- module:drivers/net/wireless/iwlwifi/iwlwifi
- module:sound/i2c/other/snd-ak4113
- module:sound/i2c/other/snd-ak4114
- azx_alloc_cmd_io
- azx_free_cmd_io
- azx_get_response
- azx_init_cmd_io
- azx_send_cmd
-# Apparently not used OOT
- __add_pages
- __remove_pages
- of_device_is_stdout_path
- module:sound/soc/*
-# Not needed by modules at all
- clk_divider_ro_ops
- tick_nohz_idle_enter
- tick_nohz_idle_exit
+abiname: 1
 
 [base]
 arches:
@@ -48,7 +27,7 @@ arches:
  sparc
  sparc64
  x32
-compiler: gcc-4.8
+compiler: gcc-4.9
 featuresets:
  none
  rt
@@ -68,10 +47,10 @@ type: plain
 
 [relations]
 # compilers
-gcc-4.4: gcc-4.4
 gcc-4.6: gcc-4.6
 gcc-4.7: gcc-4.7
 gcc-4.8: gcc-4.8
+gcc-4.9: gcc-4.9
 
 # initramfs-generators
 initramfs-fallback: linux-initramfs-tool

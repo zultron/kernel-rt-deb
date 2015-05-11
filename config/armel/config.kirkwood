@@ -1,14 +1,8 @@
 ##
-## file: arch/Kconfig
-##
-# CONFIG_KPROBES is not set
-
-##
 ## file: arch/arm/Kconfig
 ##
-## choice: ARM system type
-CONFIG_ARCH_KIRKWOOD=y
-## end choice
+CONFIG_ARCH_MULTI_V5=y
+# CONFIG_ARCH_MULTI_V7 is not set
 CONFIG_PCI=y
 CONFIG_HIGHMEM=y
 CONFIG_UACCESS_WITH_MEMCPY=y
@@ -26,25 +20,23 @@ CONFIG_FPE_NWFPE=y
 # CONFIG_ARTHUR is not set
 
 ##
+## file: arch/arm/Kconfig.debug
+##
+## choice: Kernel low-level debugging port
+CONFIG_DEBUG_MVEBU_UART_ALTERNATE=y
+## end choice
+
+##
 ## file: arch/arm/mach-imx/Kconfig
 ##
 # CONFIG_ARCH_MXC is not set
 
 ##
-## file: arch/arm/mach-kirkwood/Kconfig
+## file: arch/arm/mach-mvebu/Kconfig
 ##
-CONFIG_MACH_D2NET_V2=y
-CONFIG_MACH_NET2BIG_V2=y
-CONFIG_MACH_NET5BIG_V2=y
-CONFIG_MACH_OPENRD_BASE=y
-CONFIG_MACH_OPENRD_CLIENT=y
-CONFIG_MACH_OPENRD_ULTIMATE=y
-CONFIG_MACH_RD88F6192_NAS=y
-CONFIG_MACH_RD88F6281=y
-CONFIG_MACH_T5325=y
-CONFIG_MACH_TS219=y
-CONFIG_MACH_TS41X=y
-CONFIG_ARCH_KIRKWOOD_DT=y
+CONFIG_ARCH_MVEBU=y
+CONFIG_MACH_KIRKWOOD=y
+CONFIG_MACH_NETXBIG=y
 
 ##
 ## file: arch/arm/mm/Kconfig
@@ -53,11 +45,6 @@ CONFIG_ARM_THUMB=y
 # CONFIG_CPU_ICACHE_DISABLE is not set
 # CONFIG_CPU_DCACHE_DISABLE is not set
 # CONFIG_CPU_DCACHE_WRITETHROUGH is not set
-
-##
-## file: block/Kconfig.iosched
-##
-CONFIG_IOSCHED_DEADLINE=m
 
 ##
 ## file: block/partitions/Kconfig
@@ -82,11 +69,6 @@ CONFIG_LDM_PARTITION=y
 CONFIG_SGI_PARTITION=y
 CONFIG_ULTRIX_PARTITION=y
 CONFIG_SUN_PARTITION=y
-
-##
-## file: crypto/Kconfig
-##
-# CONFIG_CRYPTO_FIPS is not set
 
 ##
 ## file: drivers/ata/Kconfig
@@ -171,7 +153,6 @@ CONFIG_CRYPTO_DEV_MV_CESA=m
 ##
 CONFIG_DMADEVICES=y
 CONFIG_MV_XOR=y
-# CONFIG_NET_DMA is not set
 
 ##
 ## file: drivers/gpio/Kconfig
@@ -182,11 +163,6 @@ CONFIG_GPIO_SYSFS=y
 ## file: drivers/gpu/drm/Kconfig
 ##
 # CONFIG_DRM is not set
-
-##
-## file: drivers/gpu/vga/Kconfig
-##
-# CONFIG_VGA_ARB is not set
 
 ##
 ## file: drivers/hwmon/Kconfig
@@ -472,6 +448,12 @@ CONFIG_POWER_RESET_QNAP=y
 CONFIG_POWER_RESET_RESTART=y
 
 ##
+## file: drivers/regulator/Kconfig
+##
+CONFIG_REGULATOR=y
+CONFIG_REGULATOR_FIXED_VOLTAGE=y
+
+##
 ## file: drivers/rtc/Kconfig
 ##
 CONFIG_RTC_DRV_S35390A=y
@@ -497,7 +479,6 @@ CONFIG_RTC_DRV_MV=y
 # CONFIG_SCSI_QLOGIC_1280 is not set
 # CONFIG_SCSI_LPFC is not set
 # CONFIG_SCSI_DC395x is not set
-# CONFIG_SCSI_DC390T is not set
 # CONFIG_SCSI_NSP32 is not set
 
 ##
@@ -627,18 +608,6 @@ CONFIG_JFFS2_FS=y
 CONFIG_UBIFS_FS=y
 
 ##
-## file: init/Kconfig
-##
-# CONFIG_CHECKPOINT_RESTORE is not set
-CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-# CONFIG_PROFILING is not set
-
-##
-## file: kernel/power/Kconfig
-##
-# CONFIG_SUSPEND is not set
-
-##
 ## file: kernel/trace/Kconfig
 ##
 # CONFIG_FUNCTION_GRAPH_TRACER is not set
@@ -653,14 +622,6 @@ CONFIG_FLATMEM_MANUAL=y
 # CONFIG_DISCONTIGMEM_MANUAL is not set
 # CONFIG_SPARSEMEM_MANUAL is not set
 ## end choice
-# CONFIG_KSM is not set
-# CONFIG_ZSMALLOC is not set
-
-##
-## file: net/Kconfig
-##
-#. Saves about 3K
-# CONFIG_BPF_JIT is not set
 
 ##
 ## file: net/atm/Kconfig
@@ -677,21 +638,6 @@ CONFIG_NETROM=m
 CONFIG_ROSE=m
 
 ##
-## file: net/ipv6/Kconfig
-##
-CONFIG_IPV6=m
-
-##
-## file: net/mpls/Kconfig
-##
-# CONFIG_NET_MPLS_GSO is not set
-
-##
-## file: net/netlink/Kconfig
-##
-# CONFIG_NETLINK_MMAP is not set
-
-##
 ## file: sound/soc/Kconfig
 ##
 CONFIG_SND_SOC=m
@@ -700,16 +646,16 @@ CONFIG_SND_SOC=m
 ## file: sound/soc/codecs/Kconfig
 ##
 # CONFIG_SND_SOC_ALL_CODECS is not set
+CONFIG_SND_SOC_ALC5623=m
+CONFIG_SND_SOC_CS42L51_I2C=m
+
+##
+## file: sound/soc/generic/Kconfig
+##
+CONFIG_SND_SIMPLE_CARD=m
 
 ##
 ## file: sound/soc/kirkwood/Kconfig
 ##
 CONFIG_SND_KIRKWOOD_SOC=m
-CONFIG_SND_KIRKWOOD_SOC_OPENRD=m
-CONFIG_SND_KIRKWOOD_SOC_T5325=m
 
-##
-## file: usr/Kconfig
-##
-# CONFIG_RD_LZO is not set
-# CONFIG_RD_LZ4 is not set
