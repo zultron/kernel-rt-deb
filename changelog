@@ -1,3 +1,9 @@
+linux (3.8.13-12) stable; urgency=low
+
+  * Re-add aufs3 support
+
+ -- John Morris <john@zultron.com>  Thu, 14 May 2015 20:59:09 -0500
+
 linux (3.8.13-11) stable; urgency=low
 
   * Updates for OBS

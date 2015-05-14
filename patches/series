@@ -3,3 +3,15 @@ debian/kernelvariables.patch
 debian/doc-build-parallel.patch
 features/all/Kbuild-kconfig-Verbose-version-of-listnewconfig.patch
 debian/r8168.patch
+
+# Patches and source files from aufs3 repository, imported with
+# debian/patches/features/all/aufs3/gen-patch.
+features/all/aufs3/aufs3-base.patch
+features/all/aufs3/aufs3-standalone.patch
+features/all/aufs3/aufs3-kbuild.patch
+features/all/aufs3/aufs3-add.patch
+# mark as staging/crap
+features/all/aufs3/mark-as-staging.patch
+# hide broken config option
+features/all/aufs3/AUFS_PROC_MAP-is-BROKEN.patch
+
