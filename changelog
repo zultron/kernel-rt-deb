@@ -1,7 +1,28 @@
-linux (3.16.7-1) unstable; urgency=low
+linux (3.16.7-1) stable; urgency=low
 
   * Modify upstream package to build i-pipe RT kernels for x86
     - Starting from Debian Sid kernel package sources, SVN r22524
+  * Fix upstream packaging to be more featureset-friendly
+    - Add hooks in debian/rules* for feature set rule inclusion
+    - Allow disabling 'none' featureset and irrelevent pkg builds
+    - Add special feature set 'Provides:' in image and headers pkgs
+    - Allow templating package relations
+      - e.g. `Provides: rtai-modules-%(abiname)s-rtai.x86-%(flavour)s`
+    - Allow `Build-Depends` in `config/defines`
+  * Add Xenomai feature set template
+    - Add kernel config and featureset definitions
+    - Add featureset rules
+  * Add support for RTAI
+    - Fix RTAI kernel config
+    - Fix RTAI package config rules
+  * Add xenomai.beaglebone featureset
+    - Based on RCN's patch set
+  * Debugging
+    - New `bin/gencontrol.py --dump-config` command line argument
+      - Handy for debugging
+    - Extra debug output
+  * Change release to `stable` to make configure script happy
+  * Remove unnecessary extra tarball unpack
   * Fix .gitignore
 
  -- John Morris <john@zultron.com>  Thu, 14 May 2015 22:58:15 -0500
