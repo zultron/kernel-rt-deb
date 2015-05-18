@@ -13,10 +13,10 @@ CC: Benjamin Herrenschmidt <benh@kernel.crashing.org>
  arch/powerpc/include/asm/asm-compat.h |    4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/arch/powerpc/include/asm/asm-compat.h b/arch/powerpc/include/asm/asm-compat.h
-index 4b237aa..21be8ae 100644
---- a/arch/powerpc/include/asm/asm-compat.h
-+++ b/arch/powerpc/include/asm/asm-compat.h
+Index: tree-jessie/arch/powerpc/include/asm/asm-compat.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/include/asm/asm-compat.h
++++ tree-jessie/arch/powerpc/include/asm/asm-compat.h
 @@ -34,10 +34,14 @@
  #define PPC_MIN_STKFRM	112
  
@@ -32,6 +32,3 @@ index 4b237aa..21be8ae 100644
  #define STDX_BE	stringify_in_c(stdbrx)
  #endif
  
--- 
-1.7.10.4
-

@@ -21,11 +21,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/xgene_enet_main.c |    7 +++++--
  1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index af7c40a..e1a8f4e 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-@@ -581,7 +581,11 @@ static struct xgene_enet_desc_ring *xgene_enet_create_desc_ring(
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+@@ -581,7 +581,11 @@ static struct xgene_enet_desc_ring *xgen
  	struct xgene_enet_desc_ring *ring;
  	struct xgene_enet_pdata *pdata = netdev_priv(ndev);
  	struct device *dev = ndev_to_dev(ndev);
@@ -38,7 +38,7 @@ index af7c40a..e1a8f4e 100644
  
  	ring = devm_kzalloc(dev, sizeof(struct xgene_enet_desc_ring),
  			    GFP_KERNEL);
-@@ -593,7 +597,6 @@ static struct xgene_enet_desc_ring *xgene_enet_create_desc_ring(
+@@ -593,7 +597,6 @@ static struct xgene_enet_desc_ring *xgen
  	ring->cfgsize = cfgsize;
  	ring->id = ring_id;
  
@@ -46,6 +46,3 @@ index af7c40a..e1a8f4e 100644
  	ring->desc_addr = dma_zalloc_coherent(dev, size, &ring->dma,
  					      GFP_KERNEL);
  	if (!ring->desc_addr) {
--- 
-1.7.10.4
-

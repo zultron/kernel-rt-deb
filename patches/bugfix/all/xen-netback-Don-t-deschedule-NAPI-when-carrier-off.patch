@@ -20,11 +20,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/interface.c |    6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index b41ddbf..04696fc 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -78,12 +78,8 @@ int xenvif_poll(struct napi_struct *napi, int budget)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -78,12 +78,8 @@ int xenvif_poll(struct napi_struct *napi
  	/* This vif is rogue, we pretend we've there is nothing to do
  	 * for this vif to deschedule it from NAPI. But this interface
  	 * will be turned off in thread context later.
@@ -38,6 +38,3 @@ index b41ddbf..04696fc 100644
  		napi_complete(napi);
  		return 0;
  	}
--- 
-1.7.10.4
-

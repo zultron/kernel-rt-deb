@@ -13,10 +13,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  arch/arm64/boot/dts/apm-storm.dtsi  | 24 ++++++++++++++++++++++++
  2 files changed, 28 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/apm-mustang.dts b/arch/arm64/boot/dts/apm-mustang.dts
-index 2ae782b..71a1489 100644
---- a/arch/arm64/boot/dts/apm-mustang.dts
-+++ b/arch/arm64/boot/dts/apm-mustang.dts
+Index: tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-mustang.dts
++++ tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
 @@ -33,6 +33,10 @@
  	status = "ok";
  };
@@ -28,10 +28,10 @@ index 2ae782b..71a1489 100644
  &xgenet {
  	status = "ok";
  };
-diff --git a/arch/arm64/boot/dts/apm-storm.dtsi b/arch/arm64/boot/dts/apm-storm.dtsi
-index d16cc03..f45bbfe 100644
---- a/arch/arm64/boot/dts/apm-storm.dtsi
-+++ b/arch/arm64/boot/dts/apm-storm.dtsi
+Index: tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-storm.dtsi
++++ tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
 @@ -176,6 +176,16 @@
  				clock-output-names = "menetclk";
  			};
@@ -49,7 +49,7 @@ index d16cc03..f45bbfe 100644
  			xge0clk: xge0clk@1f61c000 {
  				compatible = "apm,xgene-device-clock";
  				#clock-cells = <1>;
-@@ -446,6 +456,20 @@
+@@ -438,6 +448,20 @@
  			};
  		};
  
@@ -70,6 +70,3 @@ index d16cc03..f45bbfe 100644
  		xgenet: ethernet@1f610000 {
  			compatible = "apm,xgene-enet";
  			status = "disabled";
--- 
-2.1.0
-

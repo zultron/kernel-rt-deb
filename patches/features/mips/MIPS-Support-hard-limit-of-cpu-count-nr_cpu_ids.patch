@@ -22,10 +22,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  arch/mips/kernel/setup.c |   20 ++++++++++++++++++++
  1 file changed, 20 insertions(+)
 
-diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-index a842154..2f01201 100644
---- a/arch/mips/kernel/setup.c
-+++ b/arch/mips/kernel/setup.c
+Index: tree-jessie/arch/mips/kernel/setup.c
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/setup.c
++++ tree-jessie/arch/mips/kernel/setup.c
 @@ -729,6 +729,25 @@ static void __init resource_init(void)
  	}
  }
@@ -60,6 +60,3 @@ index a842154..2f01201 100644
  
  	cpu_cache_init();
  }
--- 
-1.7.10.4
-

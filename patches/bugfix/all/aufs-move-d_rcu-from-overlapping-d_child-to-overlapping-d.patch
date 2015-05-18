@@ -7,8 +7,10 @@ Apply the renaming from commit 946e51f2bf37f1656916eb75bd0742ba33983c28
 upstream to aufs.
 
 ---
---- a/fs/aufs/dcsub.c
-+++ b/fs/aufs/dcsub.c
+Index: tree-jessie/fs/aufs/dcsub.c
+===================================================================
+--- tree-jessie.orig/fs/aufs/dcsub.c
++++ tree-jessie/fs/aufs/dcsub.c
 @@ -134,7 +134,7 @@ resume:
  	while (next != &this_parent->d_subdirs) {
  		struct list_head *tmp = next;
@@ -27,8 +29,10 @@ upstream to aufs.
  		goto resume;
  	}
  
---- a/fs/aufs/debug.c
-+++ b/fs/aufs/debug.c
+Index: tree-jessie/fs/aufs/debug.c
+===================================================================
+--- tree-jessie.orig/fs/aufs/debug.c
++++ tree-jessie/fs/aufs/debug.c
 @@ -169,7 +169,7 @@ void au_dpri_dalias(struct inode *inode)
  	struct dentry *d;
  
@@ -38,8 +42,10 @@ upstream to aufs.
  		au_dpri_dentry(d);
  	spin_unlock(&inode->i_lock);
  }
---- a/fs/aufs/export.c
-+++ b/fs/aufs/export.c
+Index: tree-jessie/fs/aufs/export.c
+===================================================================
+--- tree-jessie.orig/fs/aufs/export.c
++++ tree-jessie/fs/aufs/export.c
 @@ -243,7 +243,7 @@ static struct dentry *decode_by_ino(stru
  		dentry = d_find_alias(inode);
  	else {
@@ -49,8 +55,10 @@ upstream to aufs.
  			spin_lock(&d->d_lock);
  			if (!au_test_anon(d)
  			    && d->d_parent->d_inode->i_ino == dir_ino) {
---- a/fs/aufs/hnotify.c
-+++ b/fs/aufs/hnotify.c
+Index: tree-jessie/fs/aufs/hnotify.c
+===================================================================
+--- tree-jessie.orig/fs/aufs/hnotify.c
++++ tree-jessie/fs/aufs/hnotify.c
 @@ -211,7 +211,7 @@ static int hn_gen_by_inode(char *name, u
  		AuDebugOn(!name);
  		au_iigen_dec(inode);

@@ -16,8 +16,10 @@ tell why.)
 
 Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
 ---
---- a/drivers/base/firmware_class.c
-+++ b/drivers/base/firmware_class.c
+Index: tree-jessie/drivers/base/firmware_class.c
+===================================================================
+--- tree-jessie.orig/drivers/base/firmware_class.c
++++ tree-jessie/drivers/base/firmware_class.c
 @@ -283,12 +283,15 @@ MODULE_PARM_DESC(path, "customized firmw
  static noinline_for_stack int fw_file_size(struct file *file)
  {
@@ -69,7 +71,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  		rc = fw_read_file_contents(file, buf);
  		fput(file);
  		if (rc)
-@@ -950,13 +957,6 @@ static void kill_requests_without_uevent
+@@ -955,13 +962,6 @@ static void kill_requests_without_uevent
  #endif
  
  #else /* CONFIG_FW_LOADER_USER_HELPER */
@@ -83,7 +85,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  
  /* No abort during direct loading */
  #define is_fw_load_aborted(buf) false
-@@ -1105,6 +1105,7 @@ _request_firmware(const struct firmware
+@@ -1113,6 +1113,7 @@ _request_firmware(const struct firmware
  	}
  
  	ret = fw_get_filesystem_firmware(device, fw->priv);
@@ -91,7 +93,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  	if (ret) {
  		if (opt_flags & FW_OPT_FALLBACK) {
  			dev_warn(device,
-@@ -1115,6 +1116,7 @@ _request_firmware(const struct firmware
+@@ -1123,6 +1124,7 @@ _request_firmware(const struct firmware
  						       opt_flags, timeout);
  		}
  	}

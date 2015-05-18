@@ -20,10 +20,10 @@ Signed-off-by: Christian Borntraeger <borntraeger@de.ibm.com>
  include/uapi/linux/kvm.h          |    3 ++-
  2 files changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/virtual/kvm/api.txt b/Documentation/virtual/kvm/api.txt
-index 0fe3649..904c61c 100644
---- a/Documentation/virtual/kvm/api.txt
-+++ b/Documentation/virtual/kvm/api.txt
+Index: tree-jessie/Documentation/virtual/kvm/api.txt
+===================================================================
+--- tree-jessie.orig/Documentation/virtual/kvm/api.txt
++++ tree-jessie/Documentation/virtual/kvm/api.txt
 @@ -988,18 +988,20 @@ uniprocessor guests).
  
  Possible values are:
@@ -64,10 +64,10 @@ index 0fe3649..904c61c 100644
  
  
  4.40 KVM_SET_IDENTITY_MAP_ADDR
-diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-index e11d8f1..37d4ec6 100644
---- a/include/uapi/linux/kvm.h
-+++ b/include/uapi/linux/kvm.h
+Index: tree-jessie/include/uapi/linux/kvm.h
+===================================================================
+--- tree-jessie.orig/include/uapi/linux/kvm.h
++++ tree-jessie/include/uapi/linux/kvm.h
 @@ -399,8 +399,9 @@ struct kvm_vapic_addr {
  	__u64 vapic_addr;
  };
@@ -79,6 +79,3 @@ index e11d8f1..37d4ec6 100644
  #define KVM_MP_STATE_RUNNABLE          0
  #define KVM_MP_STATE_UNINITIALIZED     1
  #define KVM_MP_STATE_INIT_RECEIVED     2
--- 
-1.7.10.4
-

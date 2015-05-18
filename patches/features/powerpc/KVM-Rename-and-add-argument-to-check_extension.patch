@@ -21,11 +21,11 @@ Acked-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/kvm_main.c        |    6 +++---
  8 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/kvm/arm.c b/arch/arm/kvm/arm.c
-index 3c82b37..cb77f999 100644
---- a/arch/arm/kvm/arm.c
-+++ b/arch/arm/kvm/arm.c
-@@ -184,7 +184,7 @@ void kvm_arch_destroy_vm(struct kvm *kvm)
+Index: tree-jessie/arch/arm/kvm/arm.c
+===================================================================
+--- tree-jessie.orig/arch/arm/kvm/arm.c
++++ tree-jessie/arch/arm/kvm/arm.c
+@@ -184,7 +184,7 @@ void kvm_arch_destroy_vm(struct kvm *kvm
  	}
  }
  
@@ -34,11 +34,11 @@ index 3c82b37..cb77f999 100644
  {
  	int r;
  	switch (ext) {
-diff --git a/arch/ia64/kvm/kvm-ia64.c b/arch/ia64/kvm/kvm-ia64.c
-index 6a4309b..0729ba6 100644
---- a/arch/ia64/kvm/kvm-ia64.c
-+++ b/arch/ia64/kvm/kvm-ia64.c
-@@ -190,7 +190,7 @@ void kvm_arch_check_processor_compat(void *rtn)
+Index: tree-jessie/arch/ia64/kvm/kvm-ia64.c
+===================================================================
+--- tree-jessie.orig/arch/ia64/kvm/kvm-ia64.c
++++ tree-jessie/arch/ia64/kvm/kvm-ia64.c
+@@ -190,7 +190,7 @@ void kvm_arch_check_processor_compat(voi
  	*(int *)rtn = 0;
  }
  
@@ -47,11 +47,11 @@ index 6a4309b..0729ba6 100644
  {
  
  	int r;
-diff --git a/arch/mips/kvm/kvm_mips.c b/arch/mips/kvm/kvm_mips.c
-index d687c6e..3ca79aa 100644
---- a/arch/mips/kvm/kvm_mips.c
-+++ b/arch/mips/kvm/kvm_mips.c
-@@ -885,7 +885,7 @@ int kvm_arch_vcpu_fault(struct kvm_vcpu *vcpu, struct vm_fault *vmf)
+Index: tree-jessie/arch/mips/kvm/kvm_mips.c
+===================================================================
+--- tree-jessie.orig/arch/mips/kvm/kvm_mips.c
++++ tree-jessie/arch/mips/kvm/kvm_mips.c
+@@ -892,7 +892,7 @@ int kvm_arch_vcpu_fault(struct kvm_vcpu
  	return VM_FAULT_SIGBUS;
  }
  
@@ -60,11 +60,11 @@ index d687c6e..3ca79aa 100644
  {
  	int r;
  
-diff --git a/arch/powerpc/kvm/powerpc.c b/arch/powerpc/kvm/powerpc.c
-index 8e03568..d870bac 100644
---- a/arch/powerpc/kvm/powerpc.c
-+++ b/arch/powerpc/kvm/powerpc.c
-@@ -391,7 +391,7 @@ void kvm_arch_sync_events(struct kvm *kvm)
+Index: tree-jessie/arch/powerpc/kvm/powerpc.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/powerpc.c
++++ tree-jessie/arch/powerpc/kvm/powerpc.c
+@@ -366,7 +366,7 @@ void kvm_arch_sync_events(struct kvm *kv
  {
  }
  
@@ -73,11 +73,11 @@ index 8e03568..d870bac 100644
  {
  	int r;
  	/* FIXME!!
-diff --git a/arch/s390/kvm/kvm-s390.c b/arch/s390/kvm/kvm-s390.c
-index 2f3e14f..00268ca 100644
---- a/arch/s390/kvm/kvm-s390.c
-+++ b/arch/s390/kvm/kvm-s390.c
-@@ -146,7 +146,7 @@ long kvm_arch_dev_ioctl(struct file *filp,
+Index: tree-jessie/arch/s390/kvm/kvm-s390.c
+===================================================================
+--- tree-jessie.orig/arch/s390/kvm/kvm-s390.c
++++ tree-jessie/arch/s390/kvm/kvm-s390.c
+@@ -146,7 +146,7 @@ long kvm_arch_dev_ioctl(struct file *fil
  	return -EINVAL;
  }
  
@@ -86,10 +86,10 @@ index 2f3e14f..00268ca 100644
  {
  	int r;
  
-diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
-index 5a8691b..5a62d91 100644
---- a/arch/x86/kvm/x86.c
-+++ b/arch/x86/kvm/x86.c
+Index: tree-jessie/arch/x86/kvm/x86.c
+===================================================================
+--- tree-jessie.orig/arch/x86/kvm/x86.c
++++ tree-jessie/arch/x86/kvm/x86.c
 @@ -2616,7 +2616,7 @@ out:
  	return r;
  }
@@ -99,11 +99,11 @@ index 5a8691b..5a62d91 100644
  {
  	int r;
  
-diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
-index ec4e3bd..5065b95 100644
---- a/include/linux/kvm_host.h
-+++ b/include/linux/kvm_host.h
-@@ -602,7 +602,7 @@ long kvm_arch_vcpu_ioctl(struct file *filp,
+Index: tree-jessie/include/linux/kvm_host.h
+===================================================================
+--- tree-jessie.orig/include/linux/kvm_host.h
++++ tree-jessie/include/linux/kvm_host.h
+@@ -602,7 +602,7 @@ long kvm_arch_vcpu_ioctl(struct file *fi
  			 unsigned int ioctl, unsigned long arg);
  int kvm_arch_vcpu_fault(struct kvm_vcpu *vcpu, struct vm_fault *vmf);
  
@@ -112,11 +112,11 @@ index ec4e3bd..5065b95 100644
  
  int kvm_get_dirty_log(struct kvm *kvm,
  			struct kvm_dirty_log *log, int *is_dirty);
-diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-index 4b6c01b..e28f3ca 100644
---- a/virt/kvm/kvm_main.c
-+++ b/virt/kvm/kvm_main.c
-@@ -2571,7 +2571,7 @@ static int kvm_dev_ioctl_create_vm(unsigned long type)
+Index: tree-jessie/virt/kvm/kvm_main.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/kvm_main.c
++++ tree-jessie/virt/kvm/kvm_main.c
+@@ -2591,7 +2591,7 @@ static int kvm_dev_ioctl_create_vm(unsig
  	return r;
  }
  
@@ -125,7 +125,7 @@ index 4b6c01b..e28f3ca 100644
  {
  	switch (arg) {
  	case KVM_CAP_USER_MEMORY:
-@@ -2595,7 +2595,7 @@ static long kvm_dev_ioctl_check_extension_generic(long arg)
+@@ -2615,7 +2615,7 @@ static long kvm_dev_ioctl_check_extensio
  	default:
  		break;
  	}
@@ -134,7 +134,7 @@ index 4b6c01b..e28f3ca 100644
  }
  
  static long kvm_dev_ioctl(struct file *filp,
-@@ -2614,7 +2614,7 @@ static long kvm_dev_ioctl(struct file *filp,
+@@ -2634,7 +2634,7 @@ static long kvm_dev_ioctl(struct file *f
  		r = kvm_dev_ioctl_create_vm(arg);
  		break;
  	case KVM_CHECK_EXTENSION:
@@ -143,6 +143,3 @@ index 4b6c01b..e28f3ca 100644
  		break;
  	case KVM_GET_VCPU_MMAP_SIZE:
  		r = -EINVAL;
--- 
-1.7.10.4
-

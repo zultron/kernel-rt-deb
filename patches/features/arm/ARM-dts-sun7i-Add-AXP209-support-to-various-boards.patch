@@ -24,10 +24,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts | 10 ++++++++++
  4 files changed, 46 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts b/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
-index a5ad945..d4648cf 100644
---- a/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
 @@ -76,6 +76,16 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -45,10 +45,10 @@ index a5ad945..d4648cf 100644
  		};
  
  		i2c1: i2c@01c2b000 {
-diff --git a/arch/arm/boot/dts/sun7i-a20-cubietruck.dts b/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
-index b87fea9..96aee60 100644
---- a/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-cubietruck.dts
 @@ -110,6 +110,16 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -66,10 +66,10 @@ index b87fea9..96aee60 100644
  		};
  
  		i2c1: i2c@01c2b000 {
-diff --git a/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts b/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
-index b77308e..cba1567 100644
---- a/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts
 @@ -100,6 +100,22 @@
  			status = "okay";
  		};
@@ -93,10 +93,10 @@ index b77308e..cba1567 100644
  		gmac: ethernet@01c50000 {
  			pinctrl-names = "default";
  			pinctrl-0 = <&gmac_pins_mii_a>;
-diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
-index b759630..9d669cdf 100644
---- a/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-olinuxino-micro.dts
 @@ -122,6 +122,16 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -114,6 +114,3 @@ index b759630..9d669cdf 100644
  		};
  
  		i2c1: i2c@01c2b000 {
--- 
-2.1.4
-

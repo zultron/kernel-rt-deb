@@ -24,9 +24,11 @@ Cc: Namjae Jeon <namjae.jeon@samsung.com>
  fs/ext4/extents.c | 21 ++++++++++++++-------
  1 file changed, 14 insertions(+), 7 deletions(-)
 
---- a/fs/ext4/extents.c
-+++ b/fs/ext4/extents.c
-@@ -4796,7 +4796,8 @@ static long ext4_zero_range(struct file
+Index: tree-jessie/fs/ext4/extents.c
+===================================================================
+--- tree-jessie.orig/fs/ext4/extents.c
++++ tree-jessie/fs/ext4/extents.c
+@@ -4798,7 +4798,8 @@ static long ext4_zero_range(struct file
  		max_blocks -= lblk;
  
  	flags = EXT4_GET_BLOCKS_CREATE_UNWRIT_EXT |
@@ -36,7 +38,7 @@ Cc: Namjae Jeon <namjae.jeon@samsung.com>
  	if (mode & FALLOC_FL_KEEP_SIZE)
  		flags |= EXT4_GET_BLOCKS_KEEP_SIZE;
  
-@@ -4834,15 +4835,21 @@ static long ext4_zero_range(struct file
+@@ -4836,15 +4837,21 @@ static long ext4_zero_range(struct file
  		ext4_inode_block_unlocked_dio(inode);
  		inode_dio_wait(inode);
  

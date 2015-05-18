@@ -14,10 +14,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  arch/arm64/boot/dts/apm-storm.dtsi  |   30 +++++++++++++++++++++++++++---
  2 files changed, 31 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/apm-mustang.dts b/arch/arm64/boot/dts/apm-mustang.dts
-index 6541962..b2f5622 100644
---- a/arch/arm64/boot/dts/apm-mustang.dts
-+++ b/arch/arm64/boot/dts/apm-mustang.dts
+Index: tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-mustang.dts
++++ tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
 @@ -28,3 +28,7 @@
  &serial0 {
  	status = "ok";
@@ -26,10 +26,10 @@ index 6541962..b2f5622 100644
 +&menet {
 +	status = "ok";
 +};
-diff --git a/arch/arm64/boot/dts/apm-storm.dtsi b/arch/arm64/boot/dts/apm-storm.dtsi
-index 40aa96c..c0aceef 100644
---- a/arch/arm64/boot/dts/apm-storm.dtsi
-+++ b/arch/arm64/boot/dts/apm-storm.dtsi
+Index: tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-storm.dtsi
++++ tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
 @@ -167,14 +167,13 @@
  				clock-output-names = "ethclk";
  			};
@@ -47,7 +47,7 @@ index 40aa96c..c0aceef 100644
  			};
  
  			sataphy1clk: sataphy1clk@1f21c000 {
-@@ -397,5 +396,30 @@
+@@ -402,5 +401,30 @@
  			#clock-cells = <1>;
  			clocks = <&rtcclk 0>;
  		};
@@ -78,6 +78,3 @@ index 40aa96c..c0aceef 100644
 +		};
  	};
  };
--- 
-1.7.10.4
-

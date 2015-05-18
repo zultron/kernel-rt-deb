@@ -12,10 +12,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun4i-a10.dtsi | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
-index d96e179..8aa412f 100644
---- a/arch/arm/boot/dts/sun4i-a10.dtsi
-+++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
 @@ -27,6 +27,18 @@
  		serial7 = &uart7;
  	};
@@ -35,6 +35,3 @@ index d96e179..8aa412f 100644
  	cpus {
  		#address-cells = <1>;
  		#size-cells = <0>;
--- 
-2.1.4
-

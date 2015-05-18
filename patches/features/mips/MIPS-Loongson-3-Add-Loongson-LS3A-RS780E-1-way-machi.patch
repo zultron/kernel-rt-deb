@@ -14,10 +14,10 @@ Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
  arch/mips/loongson/common/uart_base.c | 1 +
  4 files changed, 4 insertions(+)
 
-diff --git a/arch/mips/include/asm/bootinfo.h b/arch/mips/include/asm/bootinfo.h
-index 1f7ca8b..c3efea0 100644
---- a/arch/mips/include/asm/bootinfo.h
-+++ b/arch/mips/include/asm/bootinfo.h
+Index: tree-jessie/arch/mips/include/asm/bootinfo.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/bootinfo.h
++++ tree-jessie/arch/mips/include/asm/bootinfo.h
 @@ -74,6 +74,7 @@ enum loongson_machine_type {
  	MACH_LEMOTE_A1101,
  	MACH_LEMOTE_A1201,
@@ -26,10 +26,10 @@ index 1f7ca8b..c3efea0 100644
  	MACH_LOONGSON_END
  };
  
-diff --git a/arch/mips/loongson/common/machtype.c b/arch/mips/loongson/common/machtype.c
-index 1a47979..3b88f88 100644
---- a/arch/mips/loongson/common/machtype.c
-+++ b/arch/mips/loongson/common/machtype.c
+Index: tree-jessie/arch/mips/loongson/common/machtype.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/machtype.c
++++ tree-jessie/arch/mips/loongson/common/machtype.c
 @@ -31,6 +31,7 @@ static const char *system_types[] = {
  	[MACH_LEMOTE_A1101]		"lemote-3a-itx-a1101",
  	[MACH_LEMOTE_A1201]		"lemote-2gq-notebook-a1201",
@@ -38,11 +38,11 @@ index 1a47979..3b88f88 100644
  	[MACH_LOONGSON_END]		NULL,
  };
  
-diff --git a/arch/mips/loongson/common/serial.c b/arch/mips/loongson/common/serial.c
-index bd2b709..f1cc859 100644
---- a/arch/mips/loongson/common/serial.c
-+++ b/arch/mips/loongson/common/serial.c
-@@ -51,6 +51,7 @@ static struct plat_serial8250_port uart8250_data[][2] = {
+Index: tree-jessie/arch/mips/loongson/common/serial.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/serial.c
++++ tree-jessie/arch/mips/loongson/common/serial.c
+@@ -51,6 +51,7 @@ static struct plat_serial8250_port uart8
  	[MACH_LEMOTE_A1101]             {PORT_M(2, 25000000), {} },
  	[MACH_LEMOTE_A1201]             {PORT_M(2, 25000000), {} },
  	[MACH_LEMOTE_A1205]             {PORT_M(2, 25000000), {} },
@@ -50,10 +50,10 @@ index bd2b709..f1cc859 100644
  	[MACH_LOONGSON_END]		{},
  };
  
-diff --git a/arch/mips/loongson/common/uart_base.c b/arch/mips/loongson/common/uart_base.c
-index 1e1eeea..406cb24 100644
---- a/arch/mips/loongson/common/uart_base.c
-+++ b/arch/mips/loongson/common/uart_base.c
+Index: tree-jessie/arch/mips/loongson/common/uart_base.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/uart_base.c
++++ tree-jessie/arch/mips/loongson/common/uart_base.c
 @@ -42,6 +42,7 @@ void prom_init_loongson_uart_base(void)
  	case MACH_LEMOTE_A1101:
  	case MACH_LEMOTE_A1201:
@@ -62,6 +62,3 @@ index 1e1eeea..406cb24 100644
  		/* The CPU provided serial port (CPU) */
  		loongson_uart_base = LOONGSON_REG_BASE + 0x1e0;
  		break;
--- 
-2.0.0
-

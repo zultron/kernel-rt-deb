@@ -26,11 +26,11 @@ Signed-off-by: Emmanuel Grumbach <emmanuel.grumbach@intel.com>
  drivers/net/wireless/iwlwifi/pcie/trans.c        | 125 ++++++++++++++++++++++-
  6 files changed, 158 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/iwlwifi/iwl-drv.c b/drivers/net/wireless/iwlwifi/iwl-drv.c
-index 2967fce..32e334a 100644
---- a/drivers/net/wireless/iwlwifi/iwl-drv.c
-+++ b/drivers/net/wireless/iwlwifi/iwl-drv.c
-@@ -1396,3 +1396,7 @@ module_param_named(power_level, iwlwifi_mod_params.power_level,
+Index: tree-jessie/drivers/net/wireless/iwlwifi/iwl-drv.c
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/iwl-drv.c
++++ tree-jessie/drivers/net/wireless/iwlwifi/iwl-drv.c
+@@ -1391,3 +1391,7 @@ module_param_named(power_level, iwlwifi_
  		int, S_IRUGO);
  MODULE_PARM_DESC(power_level,
  		 "default power save level (range from 1 - 5, default: 1)");
@@ -38,10 +38,10 @@ index 2967fce..32e334a 100644
 +module_param_named(fw_monitor, iwlwifi_mod_params.fw_monitor, bool, S_IRUGO);
 +MODULE_PARM_DESC(fw_monitor,
 +		 "firmware monitor - to debug FW (default: false - needs lots of memory)");
-diff --git a/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h b/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
-index 3584a75..ced5ba9 100644
---- a/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
-+++ b/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
+Index: tree-jessie/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
++++ tree-jessie/drivers/net/wireless/iwlwifi/iwl-fw-error-dump.h
 @@ -76,6 +76,7 @@
   *	&struct iwl_fw_error_dump_txcmd packets
   * @IWL_FW_ERROR_DUMP_DEV_FW_INFO:  struct %iwl_fw_error_dump_info
@@ -81,10 +81,10 @@ index 3584a75..ced5ba9 100644
   * iwl_fw_error_next_data - advance fw error dump data pointer
   * @data: previous data block
   * Returns: next data block
-diff --git a/drivers/net/wireless/iwlwifi/iwl-modparams.h b/drivers/net/wireless/iwlwifi/iwl-modparams.h
-index d051857..f2d39cb 100644
---- a/drivers/net/wireless/iwlwifi/iwl-modparams.h
-+++ b/drivers/net/wireless/iwlwifi/iwl-modparams.h
+Index: tree-jessie/drivers/net/wireless/iwlwifi/iwl-modparams.h
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/iwl-modparams.h
++++ tree-jessie/drivers/net/wireless/iwlwifi/iwl-modparams.h
 @@ -103,6 +103,7 @@ enum iwl_disable_11n {
   * @power_level: power level, default = 1
   * @debug_level: levels are IWL_DL_*
@@ -101,10 +101,10 @@ index d051857..f2d39cb 100644
  };
  
  #endif /* #__iwl_modparams_h__ */
-diff --git a/drivers/net/wireless/iwlwifi/iwl-prph.h b/drivers/net/wireless/iwlwifi/iwl-prph.h
-index 4997e27..47033a3 100644
---- a/drivers/net/wireless/iwlwifi/iwl-prph.h
-+++ b/drivers/net/wireless/iwlwifi/iwl-prph.h
+Index: tree-jessie/drivers/net/wireless/iwlwifi/iwl-prph.h
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/iwl-prph.h
++++ tree-jessie/drivers/net/wireless/iwlwifi/iwl-prph.h
 @@ -359,4 +359,10 @@ enum secure_load_status_reg {
  #define RXF_LD_FENCE_OFFSET_ADDR	(0xa00c10)
  #define RXF_FIFO_RD_FENCE_ADDR		(0xa00c0c)
@@ -116,11 +116,11 @@ index 4997e27..47033a3 100644
 +#define MON_BUFF_CYCLE_CNT		(0xa03c48)
 +
  #endif				/* __iwl_prph_h__ */
-diff --git a/drivers/net/wireless/iwlwifi/pcie/internal.h b/drivers/net/wireless/iwlwifi/pcie/internal.h
-index 6c22b23..78f72c3 100644
---- a/drivers/net/wireless/iwlwifi/pcie/internal.h
-+++ b/drivers/net/wireless/iwlwifi/pcie/internal.h
-@@ -260,6 +260,9 @@ iwl_pcie_get_scratchbuf_dma(struct iwl_txq *txq, int idx)
+Index: tree-jessie/drivers/net/wireless/iwlwifi/pcie/internal.h
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/pcie/internal.h
++++ tree-jessie/drivers/net/wireless/iwlwifi/pcie/internal.h
+@@ -260,6 +260,9 @@ iwl_pcie_get_scratchbuf_dma(struct iwl_t
   * @wd_timeout: queue watchdog timeout (jiffies)
   * @reg_lock: protect hw register access
   * @cmd_in_flight: true when we have a host command in flight
@@ -141,10 +141,10 @@ index 6c22b23..78f72c3 100644
  };
  
  #define IWL_TRANS_GET_PCIE_TRANS(_iwl_trans) \
-diff --git a/drivers/net/wireless/iwlwifi/pcie/trans.c b/drivers/net/wireless/iwlwifi/pcie/trans.c
-index 788085b..3ffac48 100644
---- a/drivers/net/wireless/iwlwifi/pcie/trans.c
-+++ b/drivers/net/wireless/iwlwifi/pcie/trans.c
+Index: tree-jessie/drivers/net/wireless/iwlwifi/pcie/trans.c
+===================================================================
+--- tree-jessie.orig/drivers/net/wireless/iwlwifi/pcie/trans.c
++++ tree-jessie/drivers/net/wireless/iwlwifi/pcie/trans.c
 @@ -76,6 +76,68 @@
  #include "iwl-fw-error-dump.h"
  #include "internal.h"
@@ -214,7 +214,7 @@ index 788085b..3ffac48 100644
  static u32 iwl_trans_pcie_read_shr(struct iwl_trans *trans, u32 reg)
  {
  	iwl_write32(trans, HEEP_CTRL_WRD_PCIEX_CTRL_REG,
-@@ -675,6 +737,7 @@ static int iwl_pcie_load_cpu_sections(struct iwl_trans *trans,
+@@ -675,6 +737,7 @@ static int iwl_pcie_load_cpu_sections(st
  static int iwl_pcie_load_given_ucode(struct iwl_trans *trans,
  				const struct fw_img *image)
  {
@@ -222,7 +222,7 @@ index 788085b..3ffac48 100644
  	int ret = 0;
  	int first_ucode_section;
  
-@@ -733,6 +796,20 @@ static int iwl_pcie_load_given_ucode(struct iwl_trans *trans,
+@@ -733,6 +796,20 @@ static int iwl_pcie_load_given_ucode(str
  			return ret;
  	}
  
@@ -243,7 +243,7 @@ index 788085b..3ffac48 100644
  	/* release CPU reset */
  	if (trans->cfg->device_family == IWL_DEVICE_FAMILY_8000)
  		iwl_write_prph(trans, RELEASE_CPU_RESET, RELEASE_CPU_RESET_BIT);
-@@ -1126,6 +1203,8 @@ void iwl_trans_pcie_free(struct iwl_trans *trans)
+@@ -1126,6 +1203,8 @@ void iwl_trans_pcie_free(struct iwl_tran
  	if (trans_pcie->napi.poll)
  		netif_napi_del(&trans_pcie->napi);
  
@@ -252,7 +252,7 @@ index 788085b..3ffac48 100644
  	kfree(trans);
  }
  
-@@ -1698,10 +1777,15 @@ static u32 iwl_trans_pcie_dump_data(struct iwl_trans *trans,
+@@ -1698,10 +1777,15 @@ static u32 iwl_trans_pcie_dump_data(stru
  	u32 len;
  	int i, ptr;
  
@@ -271,7 +271,7 @@ index 788085b..3ffac48 100644
  
  	len = 0;
  	data = buf;
-@@ -1729,7 +1813,40 @@ static u32 iwl_trans_pcie_dump_data(struct iwl_trans *trans,
+@@ -1729,7 +1813,40 @@ static u32 iwl_trans_pcie_dump_data(stru
  	spin_unlock_bh(&cmdq->lock);
  
  	data->len = cpu_to_le32(len);

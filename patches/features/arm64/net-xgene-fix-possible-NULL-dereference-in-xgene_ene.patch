@@ -18,11 +18,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/xgene_enet_main.c |   20 +++++++++++++-------
  1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index e1a8f4e..e4222af 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-@@ -563,15 +563,21 @@ static void xgene_enet_free_desc_rings(struct xgene_enet_pdata *pdata)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+@@ -563,15 +563,21 @@ static void xgene_enet_free_desc_rings(s
  	struct xgene_enet_desc_ring *ring;
  
  	ring = pdata->tx_ring;
@@ -51,6 +51,3 @@ index e1a8f4e..e4222af 100644
  }
  
  static struct xgene_enet_desc_ring *xgene_enet_create_desc_ring(
--- 
-1.7.10.4
-

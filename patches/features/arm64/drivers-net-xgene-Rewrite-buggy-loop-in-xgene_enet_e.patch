@@ -17,11 +17,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c | 16 +++++++---------
  1 file changed, 7 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
-index e6d24c2..c22f326 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
-@@ -124,20 +124,18 @@ static int xgene_enet_ecc_init(struct xgene_enet_pdata *p)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
+@@ -124,20 +124,18 @@ static int xgene_enet_ecc_init(struct xg
  {
  	struct net_device *ndev = p->ndev;
  	u32 data;
@@ -49,6 +49,3 @@ index e6d24c2..c22f326 100644
  }
  
  static void xgene_enet_config_ring_if_assoc(struct xgene_enet_pdata *p)
--- 
-2.1.0
-

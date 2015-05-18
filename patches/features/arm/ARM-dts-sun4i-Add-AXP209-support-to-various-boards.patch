@@ -27,10 +27,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun4i-a10-pcduino.dts        |  9 +++++++++
  7 files changed, 87 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10-a1000.dts b/arch/arm/boot/dts/sun4i-a10-a1000.dts
-index 0b97c07..55d9510 100644
---- a/arch/arm/boot/dts/sun4i-a10-a1000.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-a1000.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-a1000.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-a1000.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-a1000.dts
 @@ -98,6 +98,15 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -47,10 +47,10 @@ index 0b97c07..55d9510 100644
  		};
  	};
  
-diff --git a/arch/arm/boot/dts/sun4i-a10-cubieboard.dts b/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
-index c200eac..539b693 100644
---- a/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
 @@ -90,6 +90,15 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -67,10 +67,10 @@ index c200eac..539b693 100644
  		};
  
  		i2c1: i2c@01c2b000 {
-diff --git a/arch/arm/boot/dts/sun4i-a10-hackberry.dts b/arch/arm/boot/dts/sun4i-a10-hackberry.dts
-index 547fadc..21df4e3 100644
---- a/arch/arm/boot/dts/sun4i-a10-hackberry.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-hackberry.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-hackberry.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-hackberry.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-hackberry.dts
 @@ -92,6 +92,21 @@
  			pinctrl-0 = <&uart0_pins_a>;
  			status = "okay";
@@ -93,10 +93,10 @@ index 547fadc..21df4e3 100644
  	};
  
  	reg_emac_3v3: emac-3v3 {
-diff --git a/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts b/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
-index f13723e..6b0c378 100644
---- a/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-inet97fv2.dts
 @@ -40,12 +40,6 @@
  			status = "okay";
  		};
@@ -132,10 +132,10 @@ index f13723e..6b0c378 100644
  	};
  
  	reg_usb1_vbus: usb1-vbus {
-diff --git a/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts b/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
-index c01cea5..387770d 100644
---- a/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-mini-xplus.dts
 @@ -57,6 +57,21 @@
  			pinctrl-0 = <&uart0_pins_a>;
  			status = "okay";
@@ -158,10 +158,10 @@ index c01cea5..387770d 100644
  	};
  
  	reg_usb1_vbus: usb1-vbus {
-diff --git a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
-index d46a7db..d046d56 100644
---- a/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts
 @@ -91,6 +91,21 @@
  			pinctrl-0 = <&uart0_pins_a>;
  			status = "okay";
@@ -184,10 +184,10 @@ index d46a7db..d046d56 100644
  	};
  
  	leds {
-diff --git a/arch/arm/boot/dts/sun4i-a10-pcduino.dts b/arch/arm/boot/dts/sun4i-a10-pcduino.dts
-index fb03bcc..6675bcd 100644
---- a/arch/arm/boot/dts/sun4i-a10-pcduino.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-pcduino.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-pcduino.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-pcduino.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-pcduino.dts
 @@ -76,6 +76,15 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -204,6 +204,3 @@ index fb03bcc..6675bcd 100644
  		};
  	};
  
--- 
-2.1.4
-

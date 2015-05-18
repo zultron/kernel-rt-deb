@@ -31,11 +31,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/netback.c   |   97 ++++++++++++++++++++++++++++++-----
  3 files changed, 123 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/net/xen-netback/common.h b/drivers/net/xen-netback/common.h
-index 4a92fc1..ef3026f 100644
---- a/drivers/net/xen-netback/common.h
-+++ b/drivers/net/xen-netback/common.h
-@@ -176,9 +176,9 @@ struct xenvif_queue { /* Per-queue data for xenvif */
+Index: tree-jessie/drivers/net/xen-netback/common.h
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/common.h
++++ tree-jessie/drivers/net/xen-netback/common.h
+@@ -176,9 +176,9 @@ struct xenvif_queue { /* Per-queue data
  	struct xen_netif_rx_back_ring rx;
  	struct sk_buff_head rx_queue;
  	RING_IDX rx_last_skb_slots;
@@ -47,7 +47,7 @@ index 4a92fc1..ef3026f 100644
  
  	struct gnttab_copy grant_copy_op[MAX_GRANT_COPY_OPS];
  
-@@ -200,7 +200,16 @@ struct xenvif_queue { /* Per-queue data for xenvif */
+@@ -200,7 +200,16 @@ struct xenvif_queue { /* Per-queue data
  
  enum state_bit_shift {
  	/* This bit marks that the vif is connected */
@@ -65,11 +65,11 @@ index 4a92fc1..ef3026f 100644
  };
  
  struct xenvif {
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 67ebe35..b41ddbf 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -78,8 +78,12 @@ int xenvif_poll(struct napi_struct *napi, int budget)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -78,8 +78,12 @@ int xenvif_poll(struct napi_struct *napi
  	/* This vif is rogue, we pretend we've there is nothing to do
  	 * for this vif to deschedule it from NAPI. But this interface
  	 * will be turned off in thread context later.
@@ -83,7 +83,7 @@ index 67ebe35..b41ddbf 100644
  		napi_complete(napi);
  		return 0;
  	}
-@@ -97,7 +101,16 @@ int xenvif_poll(struct napi_struct *napi, int budget)
+@@ -97,7 +101,16 @@ int xenvif_poll(struct napi_struct *napi
  static irqreturn_t xenvif_rx_interrupt(int irq, void *dev_id)
  {
  	struct xenvif_queue *queue = dev_id;
@@ -100,7 +100,7 @@ index 67ebe35..b41ddbf 100644
  	xenvif_kick_thread(queue);
  
  	return IRQ_HANDLED;
-@@ -125,16 +138,14 @@ void xenvif_wake_queue(struct xenvif_queue *queue)
+@@ -125,16 +138,14 @@ void xenvif_wake_queue(struct xenvif_que
  	netif_tx_wake_queue(netdev_get_tx_queue(dev, id));
  }
  
@@ -120,7 +120,7 @@ index 67ebe35..b41ddbf 100644
  	}
  }
  
-@@ -183,11 +194,11 @@ static int xenvif_start_xmit(struct sk_buff *skb, struct net_device *dev)
+@@ -183,11 +194,11 @@ static int xenvif_start_xmit(struct sk_b
  	 * drain.
  	 */
  	if (!xenvif_rx_ring_slots_available(queue, min_slots_needed)) {
@@ -136,7 +136,7 @@ index 67ebe35..b41ddbf 100644
  	}
  
  	skb_queue_tail(&queue->rx_queue, skb);
-@@ -515,7 +526,7 @@ int xenvif_init_queue(struct xenvif_queue *queue)
+@@ -515,7 +526,7 @@ int xenvif_init_queue(struct xenvif_queu
  		queue->grant_tx_handle[i] = NETBACK_INVALID_HANDLE;
  	}
  
@@ -145,7 +145,7 @@ index 67ebe35..b41ddbf 100644
  
  	netif_napi_add(queue->vif->dev, &queue->napi, xenvif_poll,
  			XENVIF_NAPI_WEIGHT);
-@@ -666,7 +677,7 @@ void xenvif_disconnect(struct xenvif *vif)
+@@ -666,7 +677,7 @@ void xenvif_disconnect(struct xenvif *vi
  		queue = &vif->queues[queue_index];
  
  		if (queue->task) {
@@ -176,11 +176,11 @@ index 67ebe35..b41ddbf 100644
  
  	unregister_netdev(vif->dev);
  
-diff --git a/drivers/net/xen-netback/netback.c b/drivers/net/xen-netback/netback.c
-index 6c4cc0f..aa20933 100644
---- a/drivers/net/xen-netback/netback.c
-+++ b/drivers/net/xen-netback/netback.c
-@@ -1869,8 +1869,7 @@ void xenvif_idx_unmap(struct xenvif_queue *queue, u16 pending_idx)
+Index: tree-jessie/drivers/net/xen-netback/netback.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/netback.c
++++ tree-jessie/drivers/net/xen-netback/netback.c
+@@ -1869,8 +1869,7 @@ void xenvif_idx_unmap(struct xenvif_queu
  static inline int rx_work_todo(struct xenvif_queue *queue)
  {
  	return (!skb_queue_empty(&queue->rx_queue) &&
@@ -190,7 +190,7 @@ index 6c4cc0f..aa20933 100644
  }
  
  static inline int tx_work_todo(struct xenvif_queue *queue)
-@@ -1935,6 +1934,75 @@ static void xenvif_start_queue(struct xenvif_queue *queue)
+@@ -1935,6 +1934,75 @@ static void xenvif_start_queue(struct xe
  		xenvif_wake_queue(queue);
  }
  
@@ -313,6 +313,3 @@ index 6c4cc0f..aa20933 100644
  		cond_resched();
  	}
  
--- 
-1.7.10.4
-

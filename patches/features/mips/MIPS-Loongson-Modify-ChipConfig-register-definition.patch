@@ -25,10 +25,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  drivers/cpufreq/loongson2_cpufreq.c            |    6 +++---
  7 files changed, 28 insertions(+), 14 deletions(-)
 
-diff --git a/arch/mips/include/asm/mach-loongson/loongson.h b/arch/mips/include/asm/mach-loongson/loongson.h
-index f3fd1eb..a1c76ca 100644
---- a/arch/mips/include/asm/mach-loongson/loongson.h
-+++ b/arch/mips/include/asm/mach-loongson/loongson.h
+Index: tree-jessie/arch/mips/include/asm/mach-loongson/loongson.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/mach-loongson/loongson.h
++++ tree-jessie/arch/mips/include/asm/mach-loongson/loongson.h
 @@ -249,8 +249,11 @@ static inline void do_perfcnt_IRQ(void)
  #define LOONGSON_PXARB_CFG		LOONGSON_REG(LOONGSON_REGBASE + 0x68)
  #define LOONGSON_PXARB_STATUS		LOONGSON_REG(LOONGSON_REGBASE + 0x6c)
@@ -43,10 +43,10 @@ index f3fd1eb..a1c76ca 100644
  
  /* pcimap */
  
-diff --git a/arch/mips/loongson/common/env.c b/arch/mips/loongson/common/env.c
-index 0c543ea..dc59241 100644
---- a/arch/mips/loongson/common/env.c
-+++ b/arch/mips/loongson/common/env.c
+Index: tree-jessie/arch/mips/loongson/common/env.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/env.c
++++ tree-jessie/arch/mips/loongson/common/env.c
 @@ -27,6 +27,8 @@ EXPORT_SYMBOL(cpu_clock_freq);
  struct efi_memory_map_loongson *loongson_memmap;
  struct loongson_system_configuration loongson_sysconf;
@@ -72,10 +72,10 @@ index 0c543ea..dc59241 100644
  	loongson_sysconf.nr_cpus = ecpu->nr_cpus;
  	if (ecpu->nr_cpus > NR_CPUS || ecpu->nr_cpus == 0)
  		loongson_sysconf.nr_cpus = NR_CPUS;
-diff --git a/arch/mips/loongson/common/pm.c b/arch/mips/loongson/common/pm.c
-index f55e07a..a6b67cc 100644
---- a/arch/mips/loongson/common/pm.c
-+++ b/arch/mips/loongson/common/pm.c
+Index: tree-jessie/arch/mips/loongson/common/pm.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/pm.c
++++ tree-jessie/arch/mips/loongson/common/pm.c
 @@ -79,7 +79,7 @@ int __weak wakeup_loongson(void)
  static void wait_for_wakeup_events(void)
  {
@@ -104,11 +104,11 @@ index f55e07a..a6b67cc 100644
  	mmiowb();
  }
  
-diff --git a/arch/mips/loongson/lemote-2f/clock.c b/arch/mips/loongson/lemote-2f/clock.c
-index 1eed38e..a217061 100644
---- a/arch/mips/loongson/lemote-2f/clock.c
-+++ b/arch/mips/loongson/lemote-2f/clock.c
-@@ -114,9 +114,9 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
+Index: tree-jessie/arch/mips/loongson/lemote-2f/clock.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/lemote-2f/clock.c
++++ tree-jessie/arch/mips/loongson/lemote-2f/clock.c
+@@ -114,9 +114,9 @@ int clk_set_rate(struct clk *clk, unsign
  
  	clk->rate = rate;
  
@@ -120,10 +120,10 @@ index 1eed38e..a217061 100644
  
  	return ret;
  }
-diff --git a/arch/mips/loongson/lemote-2f/reset.c b/arch/mips/loongson/lemote-2f/reset.c
-index 90962a3..79ac694 100644
---- a/arch/mips/loongson/lemote-2f/reset.c
-+++ b/arch/mips/loongson/lemote-2f/reset.c
+Index: tree-jessie/arch/mips/loongson/lemote-2f/reset.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/lemote-2f/reset.c
++++ tree-jessie/arch/mips/loongson/lemote-2f/reset.c
 @@ -28,7 +28,7 @@ static void reset_cpu(void)
  	 * reset cpu to full speed, this is needed when enabling cpu frequency
  	 * scalling
@@ -133,11 +133,11 @@ index 90962a3..79ac694 100644
  }
  
  /* reset support for fuloong2f */
-diff --git a/arch/mips/loongson/loongson-3/smp.c b/arch/mips/loongson/loongson-3/smp.c
-index 1e88940..3c320e7 100644
---- a/arch/mips/loongson/loongson-3/smp.c
-+++ b/arch/mips/loongson/loongson-3/smp.c
-@@ -399,12 +399,12 @@ static int loongson3_cpu_callback(struct notifier_block *nfb,
+Index: tree-jessie/arch/mips/loongson/loongson-3/smp.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/loongson-3/smp.c
++++ tree-jessie/arch/mips/loongson/loongson-3/smp.c
+@@ -399,12 +399,12 @@ static int loongson3_cpu_callback(struct
  	case CPU_POST_DEAD:
  	case CPU_POST_DEAD_FROZEN:
  		pr_info("Disable clock for CPU#%d\n", cpu);
@@ -152,10 +152,10 @@ index 1e88940..3c320e7 100644
  		break;
  	}
  
-diff --git a/drivers/cpufreq/loongson2_cpufreq.c b/drivers/cpufreq/loongson2_cpufreq.c
-index d4add86..9fa1772 100644
---- a/drivers/cpufreq/loongson2_cpufreq.c
-+++ b/drivers/cpufreq/loongson2_cpufreq.c
+Index: tree-jessie/drivers/cpufreq/loongson2_cpufreq.c
+===================================================================
+--- tree-jessie.orig/drivers/cpufreq/loongson2_cpufreq.c
++++ tree-jessie/drivers/cpufreq/loongson2_cpufreq.c
 @@ -148,9 +148,9 @@ static void loongson2_cpu_wait(void)
  	u32 cpu_freq;
  
@@ -169,6 +169,3 @@ index d4add86..9fa1772 100644
  	spin_unlock_irqrestore(&loongson2_wait_lock, flags);
  	local_irq_enable();
  }
--- 
-1.7.10.4
-

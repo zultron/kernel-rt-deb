@@ -37,11 +37,11 @@ Cc: <stable at vger.kernel.org> v3.16..v3.18
  arch/arm/mach-mvebu/coherency.c | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/mach-mvebu/coherency.c b/arch/arm/mach-mvebu/coherency.c
-index 2ffccd4..01efe13 100644
---- a/arch/arm/mach-mvebu/coherency.c
-+++ b/arch/arm/mach-mvebu/coherency.c
-@@ -448,8 +448,9 @@ static int __init coherency_late_init(void)
+Index: tree-jessie/arch/arm/mach-mvebu/coherency.c
+===================================================================
+--- tree-jessie.orig/arch/arm/mach-mvebu/coherency.c
++++ tree-jessie/arch/arm/mach-mvebu/coherency.c
+@@ -418,8 +418,9 @@ static int __init coherency_late_init(vo
  			armada_375_coherency_init_wa();
  	}
  
@@ -53,5 +53,3 @@ index 2ffccd4..01efe13 100644
  
  	return 0;
  }
--- 
-2.1.0

@@ -24,11 +24,11 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
  drivers/gpu/drm/i915/i915_gem_userptr.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_userptr.c b/drivers/gpu/drm/i915/i915_gem_userptr.c
-index 21ea928..b41614d 100644
---- a/drivers/gpu/drm/i915/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/i915_gem_userptr.c
-@@ -150,7 +150,7 @@ i915_mmu_notifier_get(struct drm_device *dev, struct mm_struct *mm)
+Index: tree-jessie/drivers/gpu/drm/i915/i915_gem_userptr.c
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/i915/i915_gem_userptr.c
++++ tree-jessie/drivers/gpu/drm/i915/i915_gem_userptr.c
+@@ -150,7 +150,7 @@ i915_mmu_notifier_get(struct drm_device
  	mmu->mm = mm;
  	mmu->objects = RB_ROOT;
  	mmu->count = 0;

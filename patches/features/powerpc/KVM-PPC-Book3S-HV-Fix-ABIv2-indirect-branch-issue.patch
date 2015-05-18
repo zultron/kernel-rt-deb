@@ -12,10 +12,10 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_rmhandlers.S |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv_rmhandlers.S b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-index 868347e..da1cac5 100644
---- a/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-+++ b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rmhandlers.S
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
 @@ -1913,8 +1913,8 @@ hcall_try_real_mode:
  	lwax	r3,r3,r4
  	cmpwi	r3,0
@@ -27,6 +27,3 @@ index 868347e..da1cac5 100644
  	mr	r3,r9		/* get vcpu pointer */
  	ld	r4,VCPU_GPR(R4)(r9)
  	bctrl
--- 
-1.7.10.4
-

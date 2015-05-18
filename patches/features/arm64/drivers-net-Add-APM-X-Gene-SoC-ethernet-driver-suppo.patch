@@ -35,11 +35,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_main.c
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 
-diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
-index edb7186..dc7406c 100644
---- a/drivers/net/ethernet/Kconfig
-+++ b/drivers/net/ethernet/Kconfig
-@@ -24,6 +24,7 @@ source "drivers/net/ethernet/allwinner/Kconfig"
+Index: tree-jessie/drivers/net/ethernet/Kconfig
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/Kconfig
++++ tree-jessie/drivers/net/ethernet/Kconfig
+@@ -24,6 +24,7 @@ source "drivers/net/ethernet/allwinner/K
  source "drivers/net/ethernet/alteon/Kconfig"
  source "drivers/net/ethernet/altera/Kconfig"
  source "drivers/net/ethernet/amd/Kconfig"
@@ -47,11 +47,11 @@ index edb7186..dc7406c 100644
  source "drivers/net/ethernet/apple/Kconfig"
  source "drivers/net/ethernet/arc/Kconfig"
  source "drivers/net/ethernet/atheros/Kconfig"
-diff --git a/drivers/net/ethernet/Makefile b/drivers/net/ethernet/Makefile
-index 58de333..224a018 100644
---- a/drivers/net/ethernet/Makefile
-+++ b/drivers/net/ethernet/Makefile
-@@ -10,6 +10,7 @@ obj-$(CONFIG_NET_VENDOR_ALLWINNER) += allwinner/
+Index: tree-jessie/drivers/net/ethernet/Makefile
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/Makefile
++++ tree-jessie/drivers/net/ethernet/Makefile
+@@ -10,6 +10,7 @@ obj-$(CONFIG_NET_VENDOR_ALLWINNER) += al
  obj-$(CONFIG_NET_VENDOR_ALTEON) += alteon/
  obj-$(CONFIG_ALTERA_TSE) += altera/
  obj-$(CONFIG_NET_VENDOR_AMD) += amd/
@@ -59,29 +59,26 @@ index 58de333..224a018 100644
  obj-$(CONFIG_NET_VENDOR_APPLE) += apple/
  obj-$(CONFIG_NET_VENDOR_ARC) += arc/
  obj-$(CONFIG_NET_VENDOR_ATHEROS) += atheros/
-diff --git a/drivers/net/ethernet/apm/Kconfig b/drivers/net/ethernet/apm/Kconfig
-new file mode 100644
-index 0000000..ec63d70
+Index: tree-jessie/drivers/net/ethernet/apm/Kconfig
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/Kconfig
++++ tree-jessie/drivers/net/ethernet/apm/Kconfig
 @@ -0,0 +1 @@
 +source "drivers/net/ethernet/apm/xgene/Kconfig"
-diff --git a/drivers/net/ethernet/apm/Makefile b/drivers/net/ethernet/apm/Makefile
-new file mode 100644
-index 0000000..65ce32a
+Index: tree-jessie/drivers/net/ethernet/apm/Makefile
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/Makefile
++++ tree-jessie/drivers/net/ethernet/apm/Makefile
 @@ -0,0 +1,5 @@
 +#
 +# Makefile for APM X-GENE Ethernet driver.
 +#
 +
 +obj-$(CONFIG_NET_XGENE) += xgene/
-diff --git a/drivers/net/ethernet/apm/xgene/Kconfig b/drivers/net/ethernet/apm/xgene/Kconfig
-new file mode 100644
-index 0000000..616dff6
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/Kconfig
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/Kconfig
++++ tree-jessie/drivers/net/ethernet/apm/xgene/Kconfig
 @@ -0,0 +1,9 @@
 +config NET_XGENE
 +	tristate "APM X-Gene SoC Ethernet Driver"
@@ -92,11 +89,10 @@ index 0000000..616dff6
 +
 +	  To compile this driver as a module, choose M here. This module will
 +	  be called xgene_enet.
-diff --git a/drivers/net/ethernet/apm/xgene/Makefile b/drivers/net/ethernet/apm/xgene/Makefile
-new file mode 100644
-index 0000000..c643e8a
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/Makefile
++++ tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
 @@ -0,0 +1,6 @@
 +#
 +# Makefile for APM X-Gene Ethernet Driver.
@@ -104,11 +100,10 @@ index 0000000..c643e8a
 +
 +xgene-enet-objs := xgene_enet_hw.o xgene_enet_main.o xgene_enet_ethtool.o
 +obj-$(CONFIG_NET_XGENE) += xgene-enet.o
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-new file mode 100644
-index 0000000..63f2aa5
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
 @@ -0,0 +1,125 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -235,11 +230,10 @@ index 0000000..63f2aa5
 +{
 +	ndev->ethtool_ops = &xgene_ethtool_ops;
 +}
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
-new file mode 100644
-index 0000000..812d8d6
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
 @@ -0,0 +1,728 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -969,11 +963,10 @@ index 0000000..812d8d6
 +	mdiobus_free(pdata->mdio_bus);
 +	pdata->mdio_bus = NULL;
 +}
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-new file mode 100644
-index 0000000..371e7a5
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
 @@ -0,0 +1,337 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -1312,11 +1305,10 @@ index 0000000..371e7a5
 +void xgene_enet_mdio_remove(struct xgene_enet_pdata *pdata);
 +
 +#endif /* __XGENE_ENET_HW_H__ */
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-new file mode 100644
-index 0000000..af7c40a
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
 @@ -0,0 +1,951 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -2269,11 +2261,10 @@ index 0000000..af7c40a
 +MODULE_VERSION(XGENE_DRV_VERSION);
 +MODULE_AUTHOR("Keyur Chudgar <kchudgar@apm.com>");
 +MODULE_LICENSE("GPL");
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-new file mode 100644
-index 0000000..0815866
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 @@ -0,0 +1,135 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -2410,6 +2401,3 @@ index 0000000..0815866
 +void xgene_enet_set_ethtool_ops(struct net_device *netdev);
 +
 +#endif /* __XGENE_ENET_MAIN_H__ */
--- 
-1.7.10.4
-

@@ -33,11 +33,11 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/irqchip.c        |   42 ++++++++++++++++++++++++++++++++++--------
  6 files changed, 57 insertions(+), 30 deletions(-)
 
-diff --git a/arch/powerpc/kvm/mpic.c b/arch/powerpc/kvm/mpic.c
-index b68d0dc..39b3a8f 100644
---- a/arch/powerpc/kvm/mpic.c
-+++ b/arch/powerpc/kvm/mpic.c
-@@ -1826,8 +1826,7 @@ int kvm_set_msi(struct kvm_kernel_irq_routing_entry *e,
+Index: tree-jessie/arch/powerpc/kvm/mpic.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/mpic.c
++++ tree-jessie/arch/powerpc/kvm/mpic.c
+@@ -1826,8 +1826,7 @@ int kvm_set_msi(struct kvm_kernel_irq_ro
  	return 0;
  }
  
@@ -47,7 +47,7 @@ index b68d0dc..39b3a8f 100644
  			  const struct kvm_irq_routing_entry *ue)
  {
  	int r = -EINVAL;
-@@ -1839,7 +1838,6 @@ int kvm_set_routing_entry(struct kvm_irq_routing_table *rt,
+@@ -1839,7 +1838,6 @@ int kvm_set_routing_entry(struct kvm_irq
  		e->irqchip.pin = ue->u.irqchip.pin;
  		if (e->irqchip.pin >= KVM_IRQCHIP_NUM_PINS)
  			goto out;
@@ -55,11 +55,11 @@ index b68d0dc..39b3a8f 100644
  		break;
  	case KVM_IRQ_ROUTING_MSI:
  		e->set = kvm_set_msi;
-diff --git a/arch/s390/kvm/interrupt.c b/arch/s390/kvm/interrupt.c
-index 92528a0..f4c819b 100644
---- a/arch/s390/kvm/interrupt.c
-+++ b/arch/s390/kvm/interrupt.c
-@@ -1556,8 +1556,7 @@ static int set_adapter_int(struct kvm_kernel_irq_routing_entry *e,
+Index: tree-jessie/arch/s390/kvm/interrupt.c
+===================================================================
+--- tree-jessie.orig/arch/s390/kvm/interrupt.c
++++ tree-jessie/arch/s390/kvm/interrupt.c
+@@ -1590,8 +1590,7 @@ static int set_adapter_int(struct kvm_ke
  	return ret;
  }
  
@@ -69,11 +69,11 @@ index 92528a0..f4c819b 100644
  			  const struct kvm_irq_routing_entry *ue)
  {
  	int ret;
-diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
-index 5065b95..4956149 100644
---- a/include/linux/kvm_host.h
-+++ b/include/linux/kvm_host.h
-@@ -752,6 +752,11 @@ void kvm_unregister_irq_mask_notifier(struct kvm *kvm, int irq,
+Index: tree-jessie/include/linux/kvm_host.h
+===================================================================
+--- tree-jessie.orig/include/linux/kvm_host.h
++++ tree-jessie/include/linux/kvm_host.h
+@@ -752,6 +752,11 @@ void kvm_unregister_irq_mask_notifier(st
  void kvm_fire_mask_notifiers(struct kvm *kvm, unsigned irqchip, unsigned pin,
  			     bool mask);
  
@@ -95,11 +95,11 @@ index 5065b95..4956149 100644
  			  const struct kvm_irq_routing_entry *ue);
  void kvm_free_irq_routing(struct kvm *kvm);
  
-diff --git a/virt/kvm/eventfd.c b/virt/kvm/eventfd.c
-index bae593a..15fa948 100644
---- a/virt/kvm/eventfd.c
-+++ b/virt/kvm/eventfd.c
-@@ -282,20 +282,22 @@ static void irqfd_update(struct kvm *kvm, struct _irqfd *irqfd,
+Index: tree-jessie/virt/kvm/eventfd.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/eventfd.c
++++ tree-jessie/virt/kvm/eventfd.c
+@@ -282,20 +282,22 @@ static void irqfd_update(struct kvm *kvm
  			 struct kvm_irq_routing_table *irq_rt)
  {
  	struct kvm_kernel_irq_routing_entry *e;
@@ -126,11 +126,11 @@ index bae593a..15fa948 100644
  	write_seqcount_end(&irqfd->irq_entry_sc);
  }
  
-diff --git a/virt/kvm/irq_comm.c b/virt/kvm/irq_comm.c
-index a228ee8..1758445 100644
---- a/virt/kvm/irq_comm.c
-+++ b/virt/kvm/irq_comm.c
-@@ -160,6 +160,7 @@ static int kvm_set_msi_inatomic(struct kvm_kernel_irq_routing_entry *e,
+Index: tree-jessie/virt/kvm/irq_comm.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/irq_comm.c
++++ tree-jessie/virt/kvm/irq_comm.c
+@@ -160,6 +160,7 @@ static int kvm_set_msi_inatomic(struct k
   */
  int kvm_set_irq_inatomic(struct kvm *kvm, int irq_source_id, u32 irq, int level)
  {
@@ -138,7 +138,7 @@ index a228ee8..1758445 100644
  	struct kvm_kernel_irq_routing_entry *e;
  	int ret = -EINVAL;
  	struct kvm_irq_routing_table *irq_rt;
-@@ -177,14 +178,13 @@ int kvm_set_irq_inatomic(struct kvm *kvm, int irq_source_id, u32 irq, int level)
+@@ -177,14 +178,13 @@ int kvm_set_irq_inatomic(struct kvm *kvm
  	 */
  	idx = srcu_read_lock(&kvm->irq_srcu);
  	irq_rt = srcu_dereference(kvm->irq_routing, &kvm->irq_srcu);
@@ -160,7 +160,7 @@ index a228ee8..1758445 100644
  	srcu_read_unlock(&kvm->irq_srcu, idx);
  	return ret;
  }
-@@ -272,8 +272,7 @@ void kvm_fire_mask_notifiers(struct kvm *kvm, unsigned irqchip, unsigned pin,
+@@ -272,8 +272,7 @@ void kvm_fire_mask_notifiers(struct kvm
  	srcu_read_unlock(&kvm->irq_srcu, idx);
  }
  
@@ -170,7 +170,7 @@ index a228ee8..1758445 100644
  			  const struct kvm_irq_routing_entry *ue)
  {
  	int r = -EINVAL;
-@@ -304,7 +303,6 @@ int kvm_set_routing_entry(struct kvm_irq_routing_table *rt,
+@@ -304,7 +303,6 @@ int kvm_set_routing_entry(struct kvm_irq
  		e->irqchip.pin = ue->u.irqchip.pin + delta;
  		if (e->irqchip.pin >= max_pin)
  			goto out;
@@ -178,10 +178,10 @@ index a228ee8..1758445 100644
  		break;
  	case KVM_IRQ_ROUTING_MSI:
  		e->set = kvm_set_msi;
-diff --git a/virt/kvm/irqchip.c b/virt/kvm/irqchip.c
-index b43c275..f4648dd 100644
---- a/virt/kvm/irqchip.c
-+++ b/virt/kvm/irqchip.c
+Index: tree-jessie/virt/kvm/irqchip.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/irqchip.c
++++ tree-jessie/virt/kvm/irqchip.c
 @@ -31,13 +31,37 @@
  #include <trace/events/kvm.h>
  #include "irq.h"
@@ -238,7 +238,7 @@ index b43c275..f4648dd 100644
  	if (gsi != -1)
  		hlist_for_each_entry_rcu(kian, &kvm->irq_ack_notifier_list,
  					 link)
-@@ -115,8 +141,8 @@ int kvm_send_userspace_msi(struct kvm *kvm, struct kvm_msi *msi)
+@@ -115,8 +141,8 @@ int kvm_send_userspace_msi(struct kvm *k
  int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
  		bool line_status)
  {
@@ -249,7 +249,7 @@ index b43c275..f4648dd 100644
  	struct kvm_irq_routing_table *irq_rt;
  
  	trace_kvm_set_irq(irq, level, irq_source_id);
-@@ -127,9 +153,7 @@ int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
+@@ -127,9 +153,7 @@ int kvm_set_irq(struct kvm *kvm, int irq
  	 */
  	idx = srcu_read_lock(&kvm->irq_srcu);
  	irq_rt = srcu_dereference(kvm->irq_routing, &kvm->irq_srcu);
@@ -260,7 +260,7 @@ index b43c275..f4648dd 100644
  	srcu_read_unlock(&kvm->irq_srcu, idx);
  
  	while(i--) {
-@@ -171,9 +195,11 @@ static int setup_routing_entry(struct kvm_irq_routing_table *rt,
+@@ -171,9 +195,11 @@ static int setup_routing_entry(struct kv
  
  	e->gsi = ue->gsi;
  	e->type = ue->type;
@@ -273,6 +273,3 @@ index b43c275..f4648dd 100644
  
  	hlist_add_head(&e->link, &rt->map[e->gsi]);
  	r = 0;
--- 
-1.7.10.4
-

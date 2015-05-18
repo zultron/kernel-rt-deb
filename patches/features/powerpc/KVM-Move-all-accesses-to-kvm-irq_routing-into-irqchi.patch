@@ -29,10 +29,10 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/irqchip.c       |   39 +++++++++++++++++++++++++--------------
  4 files changed, 43 insertions(+), 59 deletions(-)
 
-diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
-index 4956149..ddd33e1 100644
---- a/include/linux/kvm_host.h
-+++ b/include/linux/kvm_host.h
+Index: tree-jessie/include/linux/kvm_host.h
+===================================================================
+--- tree-jessie.orig/include/linux/kvm_host.h
++++ tree-jessie/include/linux/kvm_host.h
 @@ -325,24 +325,7 @@ struct kvm_kernel_irq_routing_entry {
  	struct hlist_node link;
  };
@@ -69,7 +69,7 @@ index 4956149..ddd33e1 100644
  	 */
  	struct kvm_irq_routing_table __rcu *irq_routing;
  	struct hlist_head mask_notifier_list;
-@@ -752,10 +734,9 @@ void kvm_unregister_irq_mask_notifier(struct kvm *kvm, int irq,
+@@ -752,10 +734,9 @@ void kvm_unregister_irq_mask_notifier(st
  void kvm_fire_mask_notifiers(struct kvm *kvm, unsigned irqchip, unsigned pin,
  			     bool mask);
  
@@ -83,7 +83,7 @@ index 4956149..ddd33e1 100644
  
  int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
  		bool line_status);
-@@ -967,7 +948,7 @@ int kvm_ioeventfd(struct kvm *kvm, struct kvm_ioeventfd *args);
+@@ -967,7 +948,7 @@ int kvm_ioeventfd(struct kvm *kvm, struc
  #ifdef CONFIG_HAVE_KVM_IRQCHIP
  int kvm_irqfd(struct kvm *kvm, struct kvm_irqfd *args);
  void kvm_irqfd_release(struct kvm *kvm);
@@ -92,7 +92,7 @@ index 4956149..ddd33e1 100644
  #else
  static inline int kvm_irqfd(struct kvm *kvm, struct kvm_irqfd *args)
  {
-@@ -989,10 +970,8 @@ static inline int kvm_irqfd(struct kvm *kvm, struct kvm_irqfd *args)
+@@ -989,10 +970,8 @@ static inline int kvm_irqfd(struct kvm *
  static inline void kvm_irqfd_release(struct kvm *kvm) {}
  
  #ifdef CONFIG_HAVE_KVM_IRQCHIP
@@ -104,11 +104,11 @@ index 4956149..ddd33e1 100644
  }
  #endif
  
-diff --git a/virt/kvm/eventfd.c b/virt/kvm/eventfd.c
-index 15fa948..f0075ff 100644
---- a/virt/kvm/eventfd.c
-+++ b/virt/kvm/eventfd.c
-@@ -278,14 +278,13 @@ irqfd_ptable_queue_proc(struct file *file, wait_queue_head_t *wqh,
+Index: tree-jessie/virt/kvm/eventfd.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/eventfd.c
++++ tree-jessie/virt/kvm/eventfd.c
+@@ -278,14 +278,13 @@ irqfd_ptable_queue_proc(struct file *fil
  }
  
  /* Must be called under irqfds.lock */
@@ -125,7 +125,7 @@ index 15fa948..f0075ff 100644
  
  	write_seqcount_begin(&irqfd->irq_entry_sc);
  
-@@ -304,12 +303,12 @@ static void irqfd_update(struct kvm *kvm, struct _irqfd *irqfd,
+@@ -304,12 +303,12 @@ static void irqfd_update(struct kvm *kvm
  static int
  kvm_irqfd_assign(struct kvm *kvm, struct kvm_irqfd *args)
  {
@@ -139,7 +139,7 @@ index 15fa948..f0075ff 100644
  
  	irqfd = kzalloc(sizeof(*irqfd), GFP_KERNEL);
  	if (!irqfd)
-@@ -403,9 +402,9 @@ kvm_irqfd_assign(struct kvm *kvm, struct kvm_irqfd *args)
+@@ -403,9 +402,9 @@ kvm_irqfd_assign(struct kvm *kvm, struct
  		goto fail;
  	}
  
@@ -176,11 +176,11 @@ index 15fa948..f0075ff 100644
  
  	spin_unlock_irq(&kvm->irqfds.lock);
  }
-diff --git a/virt/kvm/irq_comm.c b/virt/kvm/irq_comm.c
-index 1758445..963b899 100644
---- a/virt/kvm/irq_comm.c
-+++ b/virt/kvm/irq_comm.c
-@@ -163,7 +163,6 @@ int kvm_set_irq_inatomic(struct kvm *kvm, int irq_source_id, u32 irq, int level)
+Index: tree-jessie/virt/kvm/irq_comm.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/irq_comm.c
++++ tree-jessie/virt/kvm/irq_comm.c
+@@ -163,7 +163,6 @@ int kvm_set_irq_inatomic(struct kvm *kvm
  	struct kvm_kernel_irq_routing_entry entries[KVM_NR_IRQCHIPS];
  	struct kvm_kernel_irq_routing_entry *e;
  	int ret = -EINVAL;
@@ -188,7 +188,7 @@ index 1758445..963b899 100644
  	int idx;
  
  	trace_kvm_set_irq(irq, level, irq_source_id);
-@@ -177,8 +176,7 @@ int kvm_set_irq_inatomic(struct kvm *kvm, int irq_source_id, u32 irq, int level)
+@@ -177,8 +176,7 @@ int kvm_set_irq_inatomic(struct kvm *kvm
  	 * which is limited to 1:1 GSI mapping.
  	 */
  	idx = srcu_read_lock(&kvm->irq_srcu);
@@ -198,7 +198,7 @@ index 1758445..963b899 100644
  		e = &entries[0];
  		if (likely(e->type == KVM_IRQ_ROUTING_MSI))
  			ret = kvm_set_msi_inatomic(e, kvm);
-@@ -264,7 +262,7 @@ void kvm_fire_mask_notifiers(struct kvm *kvm, unsigned irqchip, unsigned pin,
+@@ -264,7 +262,7 @@ void kvm_fire_mask_notifiers(struct kvm
  	int idx, gsi;
  
  	idx = srcu_read_lock(&kvm->irq_srcu);
@@ -207,10 +207,10 @@ index 1758445..963b899 100644
  	if (gsi != -1)
  		hlist_for_each_entry_rcu(kimn, &kvm->mask_notifier_list, link)
  			if (kimn->irq == gsi)
-diff --git a/virt/kvm/irqchip.c b/virt/kvm/irqchip.c
-index f4648dd..04faac5 100644
---- a/virt/kvm/irqchip.c
-+++ b/virt/kvm/irqchip.c
+Index: tree-jessie/virt/kvm/irqchip.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/irqchip.c
++++ tree-jessie/virt/kvm/irqchip.c
 @@ -31,12 +31,26 @@
  #include <trace/events/kvm.h>
  #include "irq.h"
@@ -240,7 +240,7 @@ index f4648dd..04faac5 100644
  	if (gsi < irq_rt->nr_rt_entries) {
  		hlist_for_each_entry(e, &irq_rt->map[gsi], link) {
  			entries[n] = *e;
-@@ -47,21 +61,21 @@ int kvm_irq_map_gsi(struct kvm_kernel_irq_routing_entry *entries,
+@@ -47,21 +61,21 @@ int kvm_irq_map_gsi(struct kvm_kernel_ir
  	return n;
  }
  
@@ -284,7 +284,7 @@ index f4648dd..04faac5 100644
  	if (gsi != -1)
  		hlist_for_each_entry_rcu(kian, &kvm->irq_ack_notifier_list,
  					 link)
-@@ -143,7 +155,6 @@ int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
+@@ -143,7 +155,6 @@ int kvm_set_irq(struct kvm *kvm, int irq
  {
  	struct kvm_kernel_irq_routing_entry irq_set[KVM_NR_IRQCHIPS];
  	int ret = -1, i, idx;
@@ -292,7 +292,7 @@ index f4648dd..04faac5 100644
  
  	trace_kvm_set_irq(irq, level, irq_source_id);
  
-@@ -152,8 +163,7 @@ int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
+@@ -152,8 +163,7 @@ int kvm_set_irq(struct kvm *kvm, int irq
  	 * writes to the unused one.
  	 */
  	idx = srcu_read_lock(&kvm->irq_srcu);
@@ -312,6 +312,3 @@ index f4648dd..04faac5 100644
  	mutex_unlock(&kvm->irq_lock);
  
  	synchronize_srcu_expedited(&kvm->irq_srcu);
--- 
-1.7.10.4
-

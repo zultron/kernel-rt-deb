@@ -26,10 +26,12 @@ Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
  drivers/acpi/video.c | 9 +++++++++
  1 file changed, 9 insertions(+)
 
---- a/drivers/acpi/video.c
-+++ b/drivers/acpi/video.c
-@@ -729,6 +729,15 @@ static struct dmi_system_id video_dmi_ta
- 		DMI_MATCH(DMI_PRODUCT_NAME, "730U3E/740U3E"),
+Index: tree-jessie/drivers/acpi/video.c
+===================================================================
+--- tree-jessie.orig/drivers/acpi/video.c
++++ tree-jessie/drivers/acpi/video.c
+@@ -683,6 +683,15 @@ static struct dmi_system_id video_dmi_ta
+ 		DMI_MATCH(DMI_PRODUCT_VERSION, "ThinkPad X201s"),
  		},
  	},
 +	{
@@ -42,5 +44,5 @@ Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 +		},
 +	},
  
+ 	/* The native backlight controls do not work on some older machines */
  	{
- 	 /* https://bugzilla.redhat.com/show_bug.cgi?id=1163574 */

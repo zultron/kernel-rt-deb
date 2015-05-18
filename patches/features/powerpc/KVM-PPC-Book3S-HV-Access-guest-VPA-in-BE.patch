@@ -15,11 +15,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_ras.c |    6 +++---
  2 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv.c b/arch/powerpc/kvm/book3s_hv.c
-index 7db9df2..f1281c4 100644
---- a/arch/powerpc/kvm/book3s_hv.c
-+++ b/arch/powerpc/kvm/book3s_hv.c
-@@ -272,7 +272,7 @@ struct kvm_vcpu *kvmppc_find_vcpu(struct kvm *kvm, int id)
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv.c
++++ tree-jessie/arch/powerpc/kvm/book3s_hv.c
+@@ -272,7 +272,7 @@ struct kvm_vcpu *kvmppc_find_vcpu(struct
  static void init_vpa(struct kvm_vcpu *vcpu, struct lppaca *vpa)
  {
  	vpa->__old_status |= LPPACA_OLD_SHARED_PROC;
@@ -28,7 +28,7 @@ index 7db9df2..f1281c4 100644
  }
  
  static int set_vpa(struct kvm_vcpu *vcpu, struct kvmppc_vpa *v,
-@@ -295,8 +295,8 @@ static int set_vpa(struct kvm_vcpu *vcpu, struct kvmppc_vpa *v,
+@@ -295,8 +295,8 @@ static int set_vpa(struct kvm_vcpu *vcpu
  struct reg_vpa {
  	u32 dummy;
  	union {
@@ -39,7 +39,7 @@ index 7db9df2..f1281c4 100644
  	} length;
  };
  
-@@ -335,9 +335,9 @@ static unsigned long do_h_register_vpa(struct kvm_vcpu *vcpu,
+@@ -335,9 +335,9 @@ static unsigned long do_h_register_vpa(s
  		if (va == NULL)
  			return H_PARAMETER;
  		if (subfunc == H_VPA_REG_VPA)
@@ -51,7 +51,7 @@ index 7db9df2..f1281c4 100644
  		kvmppc_unpin_guest_page(kvm, va, vpa, false);
  
  		/* Check length */
-@@ -542,18 +542,18 @@ static void kvmppc_create_dtl_entry(struct kvm_vcpu *vcpu,
+@@ -542,18 +542,18 @@ static void kvmppc_create_dtl_entry(stru
  		return;
  	memset(dt, 0, sizeof(struct dtl_entry));
  	dt->dispatch_reason = 7;
@@ -76,11 +76,11 @@ index 7db9df2..f1281c4 100644
  	vcpu->arch.dtl.dirty = true;
  }
  
-diff --git a/arch/powerpc/kvm/book3s_hv_ras.c b/arch/powerpc/kvm/book3s_hv_ras.c
-index 3a5c568..d562c8e 100644
---- a/arch/powerpc/kvm/book3s_hv_ras.c
-+++ b/arch/powerpc/kvm/book3s_hv_ras.c
-@@ -45,14 +45,14 @@ static void reload_slb(struct kvm_vcpu *vcpu)
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_ras.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_ras.c
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_ras.c
+@@ -45,14 +45,14 @@ static void reload_slb(struct kvm_vcpu *
  		return;
  
  	/* Sanity check */
@@ -98,6 +98,3 @@ index 3a5c568..d562c8e 100644
  
  		rb = (rb & ~0xFFFul) | i;	/* insert entry number */
  		asm volatile("slbmte %0,%1" : : "r" (rs), "r" (rb));
--- 
-1.7.10.4
-

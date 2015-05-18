@@ -12,11 +12,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  .../net/ethernet/apm/xgene/xgene_enet_ethtool.c    | 25 +++++++++++++++-------
  1 file changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-index c1c997b..416d6eb 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-@@ -64,16 +64,25 @@ static int xgene_get_settings(struct net_device *ndev, struct ethtool_cmd *cmd)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
+@@ -64,16 +64,25 @@ static int xgene_get_settings(struct net
  			return -ENODEV;
  
  		return phy_ethtool_gset(phydev, cmd);
@@ -50,6 +50,3 @@ index c1c997b..416d6eb 100644
  	return 0;
  }
  
--- 
-2.1.0
-

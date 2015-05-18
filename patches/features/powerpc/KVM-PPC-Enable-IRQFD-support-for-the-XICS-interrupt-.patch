@@ -32,11 +32,11 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  arch/powerpc/kvm/book3s_xics.h       |    2 ++
  4 files changed, 55 insertions(+), 9 deletions(-)
 
-diff --git a/arch/powerpc/kvm/Kconfig b/arch/powerpc/kvm/Kconfig
-index d4741db..602eb51 100644
---- a/arch/powerpc/kvm/Kconfig
-+++ b/arch/powerpc/kvm/Kconfig
-@@ -170,6 +170,8 @@ config KVM_MPIC
+Index: tree-jessie/arch/powerpc/kvm/Kconfig
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/Kconfig
++++ tree-jessie/arch/powerpc/kvm/Kconfig
+@@ -184,6 +184,8 @@ config KVM_MPIC
  config KVM_XICS
  	bool "KVM in-kernel XICS emulation"
  	depends on KVM_BOOK3S_64 && !KVM_MPIC
@@ -45,11 +45,11 @@ index d4741db..602eb51 100644
  	---help---
  	  Include support for the XICS (eXternal Interrupt Controller
  	  Specification) interrupt controller architecture used on
-diff --git a/arch/powerpc/kvm/book3s_hv_rm_xics.c b/arch/powerpc/kvm/book3s_hv_rm_xics.c
-index b4b0082..3ee38e6 100644
---- a/arch/powerpc/kvm/book3s_hv_rm_xics.c
-+++ b/arch/powerpc/kvm/book3s_hv_rm_xics.c
-@@ -401,6 +401,11 @@ int kvmppc_rm_h_eoi(struct kvm_vcpu *vcpu, unsigned long xirr)
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rm_xics.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rm_xics.c
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rm_xics.c
+@@ -401,6 +401,11 @@ int kvmppc_rm_h_eoi(struct kvm_vcpu *vcp
  		icp->rm_action |= XICS_RM_REJECT;
  		icp->rm_reject = irq;
  	}
@@ -61,10 +61,10 @@ index b4b0082..3ee38e6 100644
   bail:
  	return check_too_hard(xics, icp);
  }
-diff --git a/arch/powerpc/kvm/book3s_xics.c b/arch/powerpc/kvm/book3s_xics.c
-index d1acd32..eaeb780 100644
---- a/arch/powerpc/kvm/book3s_xics.c
-+++ b/arch/powerpc/kvm/book3s_xics.c
+Index: tree-jessie/arch/powerpc/kvm/book3s_xics.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_xics.c
++++ tree-jessie/arch/powerpc/kvm/book3s_xics.c
 @@ -64,8 +64,12 @@
  static void icp_deliver_irq(struct kvmppc_xics *xics, struct kvmppc_icp *icp,
  			    u32 new_irq);
@@ -80,7 +80,7 @@ index d1acd32..eaeb780 100644
  {
  	struct ics_irq_state *state;
  	struct kvmppc_ics *ics;
-@@ -82,17 +86,14 @@ static int ics_deliver_irq(struct kvmppc_xics *xics, u32 irq, u32 level,
+@@ -82,17 +86,14 @@ static int ics_deliver_irq(struct kvmppc
  	if (!state->exists)
  		return -EINVAL;
  
@@ -100,7 +100,7 @@ index d1acd32..eaeb780 100644
  		state->asserted = 0;
  		return 0;
  	}
-@@ -100,7 +101,7 @@ static int ics_deliver_irq(struct kvmppc_xics *xics, u32 irq, u32 level,
+@@ -100,7 +101,7 @@ static int ics_deliver_irq(struct kvmppc
  	/* Attempt delivery */
  	icp_deliver_irq(xics, NULL, irq);
  
@@ -109,7 +109,7 @@ index d1acd32..eaeb780 100644
  }
  
  static void ics_check_resend(struct kvmppc_xics *xics, struct kvmppc_ics *ics,
-@@ -772,6 +773,8 @@ static noinline int kvmppc_h_eoi(struct kvm_vcpu *vcpu, unsigned long xirr)
+@@ -772,6 +773,8 @@ static noinline int kvmppc_h_eoi(struct
  	if (state->asserted)
  		icp_deliver_irq(xics, icp, irq);
  
@@ -118,7 +118,7 @@ index d1acd32..eaeb780 100644
  	return H_SUCCESS;
  }
  
-@@ -789,6 +792,8 @@ static noinline int kvmppc_xics_rm_complete(struct kvm_vcpu *vcpu, u32 hcall)
+@@ -789,6 +792,8 @@ static noinline int kvmppc_xics_rm_compl
  		icp_check_resend(xics, icp);
  	if (icp->rm_action & XICS_RM_REJECT)
  		icp_deliver_irq(xics, icp, icp->rm_reject);
@@ -127,7 +127,7 @@ index d1acd32..eaeb780 100644
  
  	icp->rm_action = 0;
  
-@@ -1170,7 +1175,16 @@ int kvm_set_irq(struct kvm *kvm, int irq_source_id, u32 irq, int level,
+@@ -1170,7 +1175,16 @@ int kvm_set_irq(struct kvm *kvm, int irq
  {
  	struct kvmppc_xics *xics = kvm->arch.xics;
  
@@ -145,7 +145,7 @@ index d1acd32..eaeb780 100644
  }
  
  static int xics_set_attr(struct kvm_device *dev, struct kvm_device_attr *attr)
-@@ -1301,3 +1315,26 @@ void kvmppc_xics_free_icp(struct kvm_vcpu *vcpu)
+@@ -1301,3 +1315,26 @@ void kvmppc_xics_free_icp(struct kvm_vcp
  	vcpu->arch.icp = NULL;
  	vcpu->arch.irq_type = KVMPPC_IRQ_DEFAULT;
  }
@@ -172,10 +172,10 @@ index d1acd32..eaeb780 100644
 +{
 +	return pin;
 +}
-diff --git a/arch/powerpc/kvm/book3s_xics.h b/arch/powerpc/kvm/book3s_xics.h
-index dd9326c..e8aaa7a 100644
---- a/arch/powerpc/kvm/book3s_xics.h
-+++ b/arch/powerpc/kvm/book3s_xics.h
+Index: tree-jessie/arch/powerpc/kvm/book3s_xics.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_xics.h
++++ tree-jessie/arch/powerpc/kvm/book3s_xics.h
 @@ -71,9 +71,11 @@ struct kvmppc_icp {
  #define XICS_RM_KICK_VCPU	0x1
  #define XICS_RM_CHECK_RESEND	0x2
@@ -188,6 +188,3 @@ index dd9326c..e8aaa7a 100644
  
  	/* Debug stuff for real mode */
  	union kvmppc_icp_state rm_dbgstate;
--- 
-1.7.10.4
-

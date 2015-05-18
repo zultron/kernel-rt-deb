@@ -26,8 +26,10 @@ Therefore, perform a basic check for the existence of
 missing, except for the pre-R600 KMS case.
 
 ---
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
+Index: tree-jessie/drivers/gpu/drm/radeon/radeon_drv.c
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/radeon/radeon_drv.c
++++ tree-jessie/drivers/gpu/drm/radeon/radeon_drv.c
 @@ -39,6 +39,9 @@
  #include <linux/pm_runtime.h>
  #include <linux/vga_switcheroo.h>
@@ -94,7 +96,7 @@ missing, except for the pre-R600 KMS case.
  	/* Get rid of things like offb */
  	ret = radeon_kick_out_firmware_fb(pdev);
  	if (ret)
-@@ -586,6 +631,7 @@ static struct pci_driver *pdriver;
+@@ -587,6 +632,7 @@ static struct pci_driver *pdriver;
  static struct pci_driver radeon_pci_driver = {
  	.name = DRIVER_NAME,
  	.id_table = pciidlist,

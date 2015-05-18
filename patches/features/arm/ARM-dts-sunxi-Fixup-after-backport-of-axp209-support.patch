@@ -17,10 +17,10 @@ Signed-off-by: Ian Campbell <ijc@debian.org>
  arch/arm/boot/dts/sun7i-a20.dtsi | 2 +-
  3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
-index eae8bfd..ad2ef45 100644
---- a/arch/arm/boot/dts/sun4i-a10.dtsi
-+++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
 @@ -70,7 +70,7 @@
  	cpus {
  		#address-cells = <1>;
@@ -30,10 +30,10 @@ index eae8bfd..ad2ef45 100644
  			device_type = "cpu";
  			compatible = "arm,cortex-a8";
  			reg = <0x0>;
-diff --git a/arch/arm/boot/dts/sun5i-a13.dtsi b/arch/arm/boot/dts/sun5i-a13.dtsi
-index a194c1e..23bfb8f 100644
---- a/arch/arm/boot/dts/sun5i-a13.dtsi
-+++ b/arch/arm/boot/dts/sun5i-a13.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun5i-a13.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun5i-a13.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun5i-a13.dtsi
 @@ -38,7 +38,7 @@
  	cpus {
  		#address-cells = <1>;
@@ -43,10 +43,10 @@ index a194c1e..23bfb8f 100644
  			device_type = "cpu";
  			compatible = "arm,cortex-a8";
  			reg = <0x0>;
-diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
-index 7d47914..648051c 100644
---- a/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ b/arch/arm/boot/dts/sun7i-a20.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
 @@ -63,7 +63,7 @@
  		#address-cells = <1>;
  		#size-cells = <0>;
@@ -56,6 +56,3 @@ index 7d47914..648051c 100644
  			compatible = "arm,cortex-a7";
  			device_type = "cpu";
  			reg = <0>;
--- 
-2.1.4
-

@@ -7,8 +7,10 @@ as code in drivers/staging.
 
 Also note in the MAINTAINERS file that it's not upstream.
 
---- a/fs/aufs/module.c
-+++ b/fs/aufs/module.c
+Index: tree-jessie/fs/aufs/module.c
+===================================================================
+--- tree-jessie.orig/fs/aufs/module.c
++++ tree-jessie/fs/aufs/module.c
 @@ -103,6 +103,7 @@ MODULE_DESCRIPTION(AUFS_NAME
  	" -- Advanced multi layered unification filesystem");
  MODULE_VERSION(AUFS_VERSION);
@@ -17,8 +19,10 @@ Also note in the MAINTAINERS file that it's not upstream.
  
  /* this module parameter has no meaning when SYSFS is disabled */
  int sysaufs_brs = 1;
---- a/MAINTAINERS
-+++ b/MAINTAINERS
+Index: tree-jessie/MAINTAINERS
+===================================================================
+--- tree-jessie.orig/MAINTAINERS
++++ tree-jessie/MAINTAINERS
 @@ -1705,7 +1705,7 @@ L:	aufs-users@lists.sourceforge.net (mem
  W:	http://aufs.sourceforge.net
  T:	git://git.code.sf.net/p/aufs/aufs3-linux

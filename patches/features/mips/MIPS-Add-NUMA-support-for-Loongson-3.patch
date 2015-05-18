@@ -48,10 +48,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  create mode 100644 arch/mips/include/asm/mach-loongson/topology.h
  create mode 100644 arch/mips/loongson/loongson-3/numa.c
 
-diff --git a/arch/mips/include/asm/addrspace.h b/arch/mips/include/asm/addrspace.h
-index 3f74545..3b0e51d 100644
---- a/arch/mips/include/asm/addrspace.h
-+++ b/arch/mips/include/asm/addrspace.h
+Index: tree-jessie/arch/mips/include/asm/addrspace.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/addrspace.h
++++ tree-jessie/arch/mips/include/asm/addrspace.h
 @@ -52,7 +52,7 @@
   */
  #define CPHYSADDR(a)		((_ACAST32_(a)) & 0x1fffffff)
@@ -61,10 +61,10 @@ index 3f74545..3b0e51d 100644
  
  #ifdef CONFIG_64BIT
  
-diff --git a/arch/mips/include/asm/mach-loongson/boot_param.h b/arch/mips/include/asm/mach-loongson/boot_param.h
-index 829a7ec..8b06c96 100644
---- a/arch/mips/include/asm/mach-loongson/boot_param.h
-+++ b/arch/mips/include/asm/mach-loongson/boot_param.h
+Index: tree-jessie/arch/mips/include/asm/mach-loongson/boot_param.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/mach-loongson/boot_param.h
++++ tree-jessie/arch/mips/include/asm/mach-loongson/boot_param.h
 @@ -146,6 +146,9 @@ struct boot_params {
  
  struct loongson_system_configuration {
@@ -75,11 +75,10 @@ index 829a7ec..8b06c96 100644
  	enum loongson_cpu_type cputype;
  	u64 ht_control_base;
  	u64 pci_mem_start_addr;
-diff --git a/arch/mips/include/asm/mach-loongson/kernel-entry-init.h b/arch/mips/include/asm/mach-loongson/kernel-entry-init.h
-new file mode 100644
-index 0000000..df5fca8
+Index: tree-jessie/arch/mips/include/asm/mach-loongson/kernel-entry-init.h
+===================================================================
 --- /dev/null
-+++ b/arch/mips/include/asm/mach-loongson/kernel-entry-init.h
++++ tree-jessie/arch/mips/include/asm/mach-loongson/kernel-entry-init.h
 @@ -0,0 +1,52 @@
 +/*
 + * This file is subject to the terms and conditions of the GNU General Public
@@ -133,11 +132,10 @@ index 0000000..df5fca8
 +	.endm
 +
 +#endif /* __ASM_MACH_LOONGSON_KERNEL_ENTRY_H */
-diff --git a/arch/mips/include/asm/mach-loongson/mmzone.h b/arch/mips/include/asm/mach-loongson/mmzone.h
-new file mode 100644
-index 0000000..37c08a2
+Index: tree-jessie/arch/mips/include/asm/mach-loongson/mmzone.h
+===================================================================
 --- /dev/null
-+++ b/arch/mips/include/asm/mach-loongson/mmzone.h
++++ tree-jessie/arch/mips/include/asm/mach-loongson/mmzone.h
 @@ -0,0 +1,53 @@
 +/*
 + * Copyright (C) 2010 Loongson Inc. & Lemote Inc. &
@@ -192,11 +190,10 @@ index 0000000..37c08a2
 +extern void __init prom_init_numa_memory(void);
 +
 +#endif /* _ASM_MACH_MMZONE_H */
-diff --git a/arch/mips/include/asm/mach-loongson/topology.h b/arch/mips/include/asm/mach-loongson/topology.h
-new file mode 100644
-index 0000000..5598ba7
+Index: tree-jessie/arch/mips/include/asm/mach-loongson/topology.h
+===================================================================
 --- /dev/null
-+++ b/arch/mips/include/asm/mach-loongson/topology.h
++++ tree-jessie/arch/mips/include/asm/mach-loongson/topology.h
 @@ -0,0 +1,23 @@
 +#ifndef _ASM_MACH_TOPOLOGY_H
 +#define _ASM_MACH_TOPOLOGY_H
@@ -221,10 +218,10 @@ index 0000000..5598ba7
 +#include <asm-generic/topology.h>
 +
 +#endif /* _ASM_MACH_TOPOLOGY_H */
-diff --git a/arch/mips/include/asm/sparsemem.h b/arch/mips/include/asm/sparsemem.h
-index d2da53c..b1071c1 100644
---- a/arch/mips/include/asm/sparsemem.h
-+++ b/arch/mips/include/asm/sparsemem.h
+Index: tree-jessie/arch/mips/include/asm/sparsemem.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/sparsemem.h
++++ tree-jessie/arch/mips/include/asm/sparsemem.h
 @@ -11,7 +11,7 @@
  #else
  # define SECTION_SIZE_BITS	28
@@ -234,11 +231,11 @@ index d2da53c..b1071c1 100644
  
  #endif /* CONFIG_SPARSEMEM */
  #endif /* _MIPS_SPARSEMEM_H */
-diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-index 2f01201..7c1fe2b 100644
---- a/arch/mips/kernel/setup.c
-+++ b/arch/mips/kernel/setup.c
-@@ -282,7 +282,7 @@ static unsigned long __init init_initrd(void)
+Index: tree-jessie/arch/mips/kernel/setup.c
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/setup.c
++++ tree-jessie/arch/mips/kernel/setup.c
+@@ -282,7 +282,7 @@ static unsigned long __init init_initrd(
   * Initialize the bootmem allocator. It also setup initrd related data
   * if needed.
   */
@@ -247,10 +244,10 @@ index 2f01201..7c1fe2b 100644
  
  static void __init bootmem_init(void)
  {
-diff --git a/arch/mips/loongson/Kconfig b/arch/mips/loongson/Kconfig
-index e6a86cc..a14a50d 100644
---- a/arch/mips/loongson/Kconfig
-+++ b/arch/mips/loongson/Kconfig
+Index: tree-jessie/arch/mips/loongson/Kconfig
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/Kconfig
++++ tree-jessie/arch/mips/loongson/Kconfig
 @@ -79,6 +79,7 @@ config LEMOTE_MACH3A
  	select SYS_HAS_EARLY_PRINTK
  	select SYS_SUPPORTS_SMP
@@ -259,10 +256,10 @@ index e6a86cc..a14a50d 100644
  	select SYS_SUPPORTS_64BIT_KERNEL
  	select SYS_SUPPORTS_HIGHMEM
  	select SYS_SUPPORTS_LITTLE_ENDIAN
-diff --git a/arch/mips/loongson/common/env.c b/arch/mips/loongson/common/env.c
-index dc59241..33a13b9 100644
---- a/arch/mips/loongson/common/env.c
-+++ b/arch/mips/loongson/common/env.c
+Index: tree-jessie/arch/mips/loongson/common/env.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/env.c
++++ tree-jessie/arch/mips/loongson/common/env.c
 @@ -80,17 +80,24 @@ void __init prom_init_env(void)
  	cpu_clock_freq = ecpu->cpu_clock_freq;
  	loongson_sysconf.cputype = ecpu->cputype;
@@ -288,10 +285,10 @@ index dc59241..33a13b9 100644
  
  	loongson_sysconf.pci_mem_start_addr = eirq_source->pci_mem_start_addr;
  	loongson_sysconf.pci_mem_end_addr = eirq_source->pci_mem_end_addr;
-diff --git a/arch/mips/loongson/common/init.c b/arch/mips/loongson/common/init.c
-index f37fe54..f6af3ab 100644
---- a/arch/mips/loongson/common/init.c
-+++ b/arch/mips/loongson/common/init.c
+Index: tree-jessie/arch/mips/loongson/common/init.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/common/init.c
++++ tree-jessie/arch/mips/loongson/common/init.c
 @@ -30,7 +30,11 @@ void __init prom_init(void)
  	set_io_port_base((unsigned long)
  		ioremap(LOONGSON_PCIIO_BASE, LOONGSON_PCIIO_SIZE));
@@ -304,21 +301,20 @@ index f37fe54..f6af3ab 100644
  
  	/*init the uart base address */
  	prom_init_uart_base();
-diff --git a/arch/mips/loongson/loongson-3/Makefile b/arch/mips/loongson/loongson-3/Makefile
-index 70152b2..471b0f2a 100644
---- a/arch/mips/loongson/loongson-3/Makefile
-+++ b/arch/mips/loongson/loongson-3/Makefile
+Index: tree-jessie/arch/mips/loongson/loongson-3/Makefile
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/loongson-3/Makefile
++++ tree-jessie/arch/mips/loongson/loongson-3/Makefile
 @@ -4,3 +4,5 @@
  obj-y			+= irq.o
  
  obj-$(CONFIG_SMP)	+= smp.o
 +
 +obj-$(CONFIG_NUMA)	+= numa.o
-diff --git a/arch/mips/loongson/loongson-3/numa.c b/arch/mips/loongson/loongson-3/numa.c
-new file mode 100644
-index 0000000..ca025a6
+Index: tree-jessie/arch/mips/loongson/loongson-3/numa.c
+===================================================================
 --- /dev/null
-+++ b/arch/mips/loongson/loongson-3/numa.c
++++ tree-jessie/arch/mips/loongson/loongson-3/numa.c
 @@ -0,0 +1,291 @@
 +/*
 + * Copyright (C) 2010 Loongson Inc. & Lemote Inc. &
@@ -611,11 +607,11 @@ index 0000000..ca025a6
 +	prom_meminit();
 +}
 +EXPORT_SYMBOL(prom_init_numa_memory);
-diff --git a/arch/mips/loongson/loongson-3/smp.c b/arch/mips/loongson/loongson-3/smp.c
-index 3c320e7..ed0e2d0 100644
---- a/arch/mips/loongson/loongson-3/smp.c
-+++ b/arch/mips/loongson/loongson-3/smp.c
-@@ -203,6 +203,8 @@ static void loongson3_init_secondary(void)
+Index: tree-jessie/arch/mips/loongson/loongson-3/smp.c
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/loongson-3/smp.c
++++ tree-jessie/arch/mips/loongson/loongson-3/smp.c
+@@ -203,6 +203,8 @@ static void loongson3_init_secondary(voi
  	for (i = 0; i < loongson_sysconf.nr_cpus; i++)
  		loongson3_ipi_write32(0xffffffff, ipi_en0_regs[i]);
  
@@ -624,7 +620,7 @@ index 3c320e7..ed0e2d0 100644
  	per_cpu(cpu_state, cpu) = CPU_ONLINE;
  
  	i = 0;
-@@ -394,17 +396,19 @@ static int loongson3_cpu_callback(struct notifier_block *nfb,
+@@ -394,17 +396,19 @@ static int loongson3_cpu_callback(struct
  	unsigned long action, void *hcpu)
  {
  	unsigned int cpu = (unsigned long)hcpu;
@@ -646,6 +642,3 @@ index 3c320e7..ed0e2d0 100644
  		break;
  	}
  
--- 
-1.7.10.4
-

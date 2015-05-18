@@ -24,9 +24,11 @@ Cc: linux-mm@kvack.org
 Acked-by: Paul E. McKenney <paulmck@linux.vnet.ibm.com>
 [bwh: Backported to 3.16: drop inapplicable changes]
 ---
---- a/mm/rmap.c
-+++ b/mm/rmap.c
-@@ -623,7 +623,8 @@ pmd_t *mm_find_pmd(struct mm_struct *mm,
+Index: tree-jessie/mm/rmap.c
+===================================================================
+--- tree-jessie.orig/mm/rmap.c
++++ tree-jessie/mm/rmap.c
+@@ -581,7 +581,8 @@ pmd_t *mm_find_pmd(struct mm_struct *mm,
  	 * without holding anon_vma lock for write.  So when looking for a
  	 * genuine pmde (in which to find pte), test present and !THP together.
  	 */

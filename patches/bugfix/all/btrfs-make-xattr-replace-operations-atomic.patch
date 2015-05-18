@@ -34,9 +34,11 @@ Signed-off-by: Chris Mason <clm@fb.com>
  fs/btrfs/xattr.c    | 150 ++++++++++++++++++++++++++++++++--------------------
  4 files changed, 102 insertions(+), 65 deletions(-)
 
---- a/fs/btrfs/ctree.c
-+++ b/fs/btrfs/ctree.c
-@@ -2929,7 +2929,7 @@ done:
+Index: tree-jessie/fs/btrfs/ctree.c
+===================================================================
+--- tree-jessie.orig/fs/btrfs/ctree.c
++++ tree-jessie/fs/btrfs/ctree.c
+@@ -2948,7 +2948,7 @@ done:
  	 */
  	if (!p->leave_spinning)
  		btrfs_set_path_blocking(p);
@@ -45,8 +47,10 @@ Signed-off-by: Chris Mason <clm@fb.com>
  		btrfs_release_path(p);
  	return ret;
  }
---- a/fs/btrfs/ctree.h
-+++ b/fs/btrfs/ctree.h
+Index: tree-jessie/fs/btrfs/ctree.h
+===================================================================
+--- tree-jessie.orig/fs/btrfs/ctree.h
++++ tree-jessie/fs/btrfs/ctree.h
 @@ -611,6 +611,7 @@ struct btrfs_path {
  	unsigned int leave_spinning:1;
  	unsigned int search_commit_root:1;
@@ -66,8 +70,10 @@ Signed-off-by: Chris Mason <clm@fb.com>
  
  /* orphan.c */
  int btrfs_insert_orphan_item(struct btrfs_trans_handle *trans,
---- a/fs/btrfs/dir-item.c
-+++ b/fs/btrfs/dir-item.c
+Index: tree-jessie/fs/btrfs/dir-item.c
+===================================================================
+--- tree-jessie.orig/fs/btrfs/dir-item.c
++++ tree-jessie/fs/btrfs/dir-item.c
 @@ -21,10 +21,6 @@
  #include "hash.h"
  #include "transaction.h"
@@ -92,8 +98,10 @@ Signed-off-by: Chris Mason <clm@fb.com>
  {
  	struct btrfs_dir_item *dir_item;
  	unsigned long name_ptr;
---- a/fs/btrfs/xattr.c
-+++ b/fs/btrfs/xattr.c
+Index: tree-jessie/fs/btrfs/xattr.c
+===================================================================
+--- tree-jessie.orig/fs/btrfs/xattr.c
++++ tree-jessie/fs/btrfs/xattr.c
 @@ -29,6 +29,7 @@
  #include "xattr.h"
  #include "disk-io.h"

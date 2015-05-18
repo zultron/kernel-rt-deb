@@ -7,8 +7,10 @@ xserver-xorg-video-qxl, so do not enable it by default.  It should be
 enabled by a modprobe configuration file installed by
 xserver-xorg-video-qxl in jessie.
 
---- a/drivers/gpu/drm/qxl/qxl_drv.c
-+++ b/drivers/gpu/drm/qxl/qxl_drv.c
+Index: tree-jessie/drivers/gpu/drm/qxl/qxl_drv.c
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/qxl/qxl_drv.c
++++ tree-jessie/drivers/gpu/drm/qxl/qxl_drv.c
 @@ -47,7 +47,7 @@ static DEFINE_PCI_DEVICE_TABLE(pciidlist
  };
  MODULE_DEVICE_TABLE(pci, pciidlist);

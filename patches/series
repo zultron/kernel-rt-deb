@@ -9,7 +9,7 @@ debian/powerpcspe-omit-uimage.patch
 features/all/Kbuild-kconfig-Verbose-version-of-listnewconfig.patch
 
 # Fixes/improvements to firmware loading
-features/all/drivers-media-dvb-usb-af9005-request_firmware.patch
+#features/all/drivers-media-dvb-usb-af9005-request_firmware.patch
 debian/iwlwifi-do-not-request-unreleased-firmware.patch
 bugfix/all/firmware_class-return-specific-errors-from-file-read.patch
 bugfix/all/firmware_class-log-every-success-and-failure.patch
@@ -59,7 +59,7 @@ bugfix/arm64/arm64-add-missing-dts-entry-for-X-Gene-platform.patch
 bugfix/arm64/arm64-removed-using-of-the-mask-attribute-in-the-dts.patch
 bugfix/x86/acpi-video-run-_bcl-before-deciding-registering-back.patch
 bugfix/x86/x86-hpet-force-enable-for-e6xx-based-systems.patch
-bugfix/x86/acpi-video-add-disable_native_backlight-quirk-for-samsung-510r.patch
+#bugfix/x86/acpi-video-add-disable_native_backlight-quirk-for-samsung-510r.patch
 bugfix/x86/acpi-video-disable-native-backlight-on-samsung-series-9.patch
 bugfix/x86/drm-i915-quietly-reject-attempts-to-create-non-pagealigned-stolen-objects.patch
 bugfix/arm/mvebu-do-not-register-custom-DMA-operations-when-coherency-is-disabled.patch
@@ -105,7 +105,7 @@ features/powerpc/KVM-PPC-Enable-IRQFD-support-for-the-XICS-interrupt-.patch
 features/powerpc/KVM-Move-more-code-under-CONFIG_HAVE_KVM_IRQFD.patch
 features/powerpc/deb-pkg-add-support-for-powerpc-little-endian.patch
 features/x86/x86-memtest-WARN-if-bad-RAM-found.patch
-features/x86/x86-make-x32-syscall-support-conditional.patch
+#features/x86/x86-make-x32-syscall-support-conditional.patch
 features/arm/deb-pkg-add-automatic-support-for-armhf-architecture.patch
 features/arm/dts-sunxi-Add-pins-for-IR-controller-on-A20-to-dtsi.patch
 features/arm/dts-sun7i-Add-spi0_pins_a-pinctrl-setting.patch
@@ -486,39 +486,39 @@ features/all/r8723au/0248-staging-rtl8723au-usb_dvobj_init-Remove-unused-varia.p
 features/all/r8723au/0249-staging-rtl8723au-Fix-static-symbol-sparse-warning.patch
 
 # Add Apple Thunderbolt driver from 3.17
-features/x86/apple-tb/0001-thunderbolt-Add-initial-cactus-ridge-NHI-support.patch
-features/x86/apple-tb/0002-thunderbolt-Add-control-channel-interface.patch
-features/x86/apple-tb/0003-thunderbolt-Setup-control-channel.patch
-features/x86/apple-tb/0004-thunderbolt-Add-tb_regs.h.patch
-features/x86/apple-tb/0005-thunderbolt-Initialize-root-switch-and-ports.patch
-features/x86/apple-tb/0006-thunderbolt-Add-thunderbolt-capability-handling.patch
-features/x86/apple-tb/0007-thunderbolt-Enable-plug-events.patch
-features/x86/apple-tb/0008-thunderbolt-Scan-for-downstream-switches.patch
-features/x86/apple-tb/0009-thunderbolt-Handle-hotplug-events.patch
-features/x86/apple-tb/0010-thunderbolt-Add-path-setup-code.patch
-features/x86/apple-tb/0011-thunderbolt-Add-support-for-simple-pci-tunnels.patch
-features/x86/apple-tb/0012-thunderbolt-Read-switch-uid-from-EEPROM.patch
-features/x86/apple-tb/0013-thunderbolt-Add-suspend-hibernate-support.patch
-features/x86/apple-tb/0014-thunderbolt-Read-port-configuration-from-eeprom.patch
-features/x86/apple-tb/0015-thunderbolt-Fix-nontrivial-endpoint-devices.patch
-features/x86/apple-tb/0016-thunderbolt-Fix-build-error-in-eeprom.c.patch
-features/x86/apple-tb/0017-thunderbolt-Fix-build-error-in-switch.c.patch
-features/x86/apple-tb/0018-thunderbolt-Use-NULL-instead-of-0-in-switch.c.patch
-features/x86/apple-tb/0019-thunderbolt-Use-NULL-instead-of-0-in-ctl.c.patch
-features/x86/apple-tb/0020-thunderbolt-Use-NULL-instead-of-0-in-nhi.c.patch
-features/x86/apple-tb/0021-thunderbolt-Staticize-nhi_ids.patch
-features/x86/apple-tb/0022-thunderbolt-add-PCI-dependency.patch
-features/x86/apple-tb/0023-thunderbolt-fix-format-string-for-size_t.patch
-features/x86/apple-tb/0024-thunderbolt-Add-casts-to-prevent-endianness-warnings.patch
-features/x86/apple-tb/0025-thunderbolt-Fix-header-declaration-of-tb_find_cap.patch
-features/x86/apple-tb/0026-thunderbolt-Make-enum-tb_drom_entry_type-unsigned.patch
-features/x86/apple-tb/0027-thunderbolt-Make-tb_eeprom_get_drom_offset-static.patch
-features/x86/apple-tb/0028-thunderbolt-select-CRC32-in-Kconfig.patch
-features/x86/apple-tb/0029-thunderbolt-Correct-the-size-argument-to-devm_kzallo.patch
-features/x86/apple-tb/0030-thunderbolt-Use-kcalloc.patch
-features/x86/apple-tb/0031-thunderbolt-Clear-hops-before-overwriting.patch
-features/x86/apple-tb/pci-add-pci_fixup_suspend_late-quirk-pass.patch
-features/x86/apple-tb/pci-suspend-resume-quirks-for-apple-thunderbolt.patch
+#features/x86/apple-tb/0001-thunderbolt-Add-initial-cactus-ridge-NHI-support.patch
+#features/x86/apple-tb/0002-thunderbolt-Add-control-channel-interface.patch
+#features/x86/apple-tb/0003-thunderbolt-Setup-control-channel.patch
+#features/x86/apple-tb/0004-thunderbolt-Add-tb_regs.h.patch
+#features/x86/apple-tb/0005-thunderbolt-Initialize-root-switch-and-ports.patch
+#features/x86/apple-tb/0006-thunderbolt-Add-thunderbolt-capability-handling.patch
+#features/x86/apple-tb/0007-thunderbolt-Enable-plug-events.patch
+# features/x86/apple-tb/0008-thunderbolt-Scan-for-downstream-switches.patch
+# features/x86/apple-tb/0009-thunderbolt-Handle-hotplug-events.patch
+# features/x86/apple-tb/0010-thunderbolt-Add-path-setup-code.patch
+# features/x86/apple-tb/0011-thunderbolt-Add-support-for-simple-pci-tunnels.patch
+# features/x86/apple-tb/0012-thunderbolt-Read-switch-uid-from-EEPROM.patch
+# features/x86/apple-tb/0013-thunderbolt-Add-suspend-hibernate-support.patch
+# features/x86/apple-tb/0014-thunderbolt-Read-port-configuration-from-eeprom.patch
+# features/x86/apple-tb/0015-thunderbolt-Fix-nontrivial-endpoint-devices.patch
+# features/x86/apple-tb/0016-thunderbolt-Fix-build-error-in-eeprom.c.patch
+# features/x86/apple-tb/0017-thunderbolt-Fix-build-error-in-switch.c.patch
+# features/x86/apple-tb/0018-thunderbolt-Use-NULL-instead-of-0-in-switch.c.patch
+# features/x86/apple-tb/0019-thunderbolt-Use-NULL-instead-of-0-in-ctl.c.patch
+# features/x86/apple-tb/0020-thunderbolt-Use-NULL-instead-of-0-in-nhi.c.patch
+# features/x86/apple-tb/0021-thunderbolt-Staticize-nhi_ids.patch
+# features/x86/apple-tb/0022-thunderbolt-add-PCI-dependency.patch
+# features/x86/apple-tb/0023-thunderbolt-fix-format-string-for-size_t.patch
+# features/x86/apple-tb/0024-thunderbolt-Add-casts-to-prevent-endianness-warnings.patch
+# features/x86/apple-tb/0025-thunderbolt-Fix-header-declaration-of-tb_find_cap.patch
+# features/x86/apple-tb/0026-thunderbolt-Make-enum-tb_drom_entry_type-unsigned.patch
+# features/x86/apple-tb/0027-thunderbolt-Make-tb_eeprom_get_drom_offset-static.patch
+# features/x86/apple-tb/0028-thunderbolt-select-CRC32-in-Kconfig.patch
+# features/x86/apple-tb/0029-thunderbolt-Correct-the-size-argument-to-devm_kzallo.patch
+# features/x86/apple-tb/0030-thunderbolt-Use-kcalloc.patch
+# features/x86/apple-tb/0031-thunderbolt-Clear-hops-before-overwriting.patch
+# features/x86/apple-tb/pci-add-pci_fixup_suspend_late-quirk-pass.patch
+# features/x86/apple-tb/pci-suspend-resume-quirks-for-apple-thunderbolt.patch
 
 # Add iwlwifi firmware monitor from 3.17
 features/all/iwlwifi-debug/iwlwifi-add-device-firmware-to-fw-error-dump-file.patch
@@ -561,27 +561,27 @@ features/all/psmouse/input-psmouse-disable-changing-resolution-rate-scale.patch
 features/all/psmouse/input-psmouse-disable-palm-detection-in-the-focaltec.patch
 
 # Fix ABI changes
-debian/of-fix-abi-changes.patch
-debian/iovec-fix-abi-change-in-3.16.7-ckt1.patch
-debian/truncate-fix-abi-change-in-3.16.7-ckt1.patch
-debian/perf-fix-abi-change-in-3.16.7-ckt2.patch
-debian/arm-thread_info-fix-abi-change-in-3.16.7-ckt3.patch
-debian/pci-fix-abi-change-in-3.16.7-ckt3.patch
-debian/vfs-avoid-abi-change-for-dentry-union-changes.patch
-debian/userns-fix-abi-change-in-3.16.7-ckt4.patch
-debian/revert-quota-store-maximum-space-limit-in-bytes.patch
-debian/revert-quota-switch-get_dqblk-and-set_dqblk-to-use-b.patch
-debian/rmap-fix-abi-change-in-3.16.7-ckt5.patch
-debian/perf-fix-abi-change-in-3.16.7-ckt6.patch
-debian/mm-fix-pagecache_get_page-abi-change-in-3.16.7-ckt6.patch
-debian/tcp-fix-abi-change-in-3.16.7-ckt7.patch
-debian/usb-avoid-abi-change-in-3.16.7-ckt8.patch
-debian/procfs-avoid-abi-change-in-3.16.7-ckt8.patch
+#debian/of-fix-abi-changes.patch
+#debian/iovec-fix-abi-change-in-3.16.7-ckt1.patch
+#debian/truncate-fix-abi-change-in-3.16.7-ckt1.patch
+#debian/perf-fix-abi-change-in-3.16.7-ckt2.patch
+#debian/arm-thread_info-fix-abi-change-in-3.16.7-ckt3.patch
+#debian/pci-fix-abi-change-in-3.16.7-ckt3.patch
+#debian/vfs-avoid-abi-change-for-dentry-union-changes.patch
+#debian/userns-fix-abi-change-in-3.16.7-ckt4.patch
+#debian/revert-quota-store-maximum-space-limit-in-bytes.patch
+#debian/revert-quota-switch-get_dqblk-and-set_dqblk-to-use-b.patch
+#debian/rmap-fix-abi-change-in-3.16.7-ckt5.patch
+#debian/perf-fix-abi-change-in-3.16.7-ckt6.patch
+#debian/mm-fix-pagecache_get_page-abi-change-in-3.16.7-ckt6.patch
+#debian/tcp-fix-abi-change-in-3.16.7-ckt7.patch
+#debian/usb-avoid-abi-change-in-3.16.7-ckt8.patch
+#debian/procfs-avoid-abi-change-in-3.16.7-ckt8.patch
 
-bugfix/all/btrfs-simplify-insert_orphan_item.patch
+#bugfix/all/btrfs-simplify-insert_orphan_item.patch
 
 bugfix/x86/crypto-aesni-fix-memory-usage-in-GCM-decryption.patch
-bugfix/all/tcp-fix-crash-in-tcp-fast-open.patch
+#bugfix/all/tcp-fix-crash-in-tcp-fast-open.patch
 
 # Introduce READ_ONCE and WRITE_ONCE; replace misuse of ACCESS_ONCE.
 # Needed for backports of other fixes.

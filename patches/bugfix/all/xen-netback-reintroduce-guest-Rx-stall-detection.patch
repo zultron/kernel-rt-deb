@@ -29,11 +29,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/xenbus.c    |    1 +
  4 files changed, 86 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/xen-netback/common.h b/drivers/net/xen-netback/common.h
-index c264240..083ecc9 100644
---- a/drivers/net/xen-netback/common.h
-+++ b/drivers/net/xen-netback/common.h
-@@ -179,6 +179,8 @@ struct xenvif_queue { /* Per-queue data for xenvif */
+Index: tree-jessie/drivers/net/xen-netback/common.h
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/common.h
++++ tree-jessie/drivers/net/xen-netback/common.h
+@@ -179,6 +179,8 @@ struct xenvif_queue { /* Per-queue data
  
  	unsigned int rx_queue_max;
  	unsigned int rx_queue_len;
@@ -52,11 +52,11 @@ index c264240..083ecc9 100644
  
  #ifdef CONFIG_DEBUG_FS
  	struct dentry *xenvif_dbg_root;
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 9e8af0b..21d8db8 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -419,6 +419,8 @@ struct xenvif *xenvif_alloc(struct device *parent, domid_t domid,
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -419,6 +419,8 @@ struct xenvif *xenvif_alloc(struct devic
  	vif->queues = NULL;
  	vif->num_queues = 0;
  
@@ -65,7 +65,7 @@ index 9e8af0b..21d8db8 100644
  	dev->netdev_ops	= &xenvif_netdev_ops;
  	dev->hw_features = NETIF_F_SG |
  		NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM |
-@@ -505,7 +507,6 @@ void xenvif_carrier_on(struct xenvif *vif)
+@@ -505,7 +507,6 @@ void xenvif_carrier_on(struct xenvif *vi
  		dev_set_mtu(vif->dev, ETH_DATA_LEN);
  	netdev_update_features(vif->dev);
  	set_bit(VIF_STATUS_CONNECTED, &vif->status);
@@ -73,7 +73,7 @@ index 9e8af0b..21d8db8 100644
  	if (netif_running(vif->dev))
  		xenvif_up(vif);
  	rtnl_unlock();
-@@ -565,6 +566,8 @@ int xenvif_connect(struct xenvif_queue *queue, unsigned long tx_ring_ref,
+@@ -565,6 +566,8 @@ int xenvif_connect(struct xenvif_queue *
  		disable_irq(queue->rx_irq);
  	}
  
@@ -82,11 +82,11 @@ index 9e8af0b..21d8db8 100644
  	task = kthread_create(xenvif_kthread_guest_rx,
  			      (void *)queue, "%s-guest-rx", queue->name);
  	if (IS_ERR(task)) {
-diff --git a/drivers/net/xen-netback/netback.c b/drivers/net/xen-netback/netback.c
-index 57aa3b5..6563f07 100644
---- a/drivers/net/xen-netback/netback.c
-+++ b/drivers/net/xen-netback/netback.c
-@@ -62,6 +62,13 @@ unsigned int rx_drain_timeout_msecs = 10000;
+Index: tree-jessie/drivers/net/xen-netback/netback.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/netback.c
++++ tree-jessie/drivers/net/xen-netback/netback.c
+@@ -62,6 +62,13 @@ unsigned int rx_drain_timeout_msecs = 10
  module_param(rx_drain_timeout_msecs, uint, 0444);
  unsigned int rx_drain_timeout_jiffies;
  
@@ -100,7 +100,7 @@ index 57aa3b5..6563f07 100644
  unsigned int xenvif_max_queues;
  module_param_named(max_queues, xenvif_max_queues, uint, 0644);
  MODULE_PARM_DESC(max_queues,
-@@ -649,6 +656,8 @@ static void xenvif_rx_action(struct xenvif_queue *queue)
+@@ -649,6 +656,8 @@ static void xenvif_rx_action(struct xenv
  		RING_IDX ring_slots_used;
  		int i;
  
@@ -201,11 +201,11 @@ index 57aa3b5..6563f07 100644
  
  #ifdef CONFIG_DEBUG_FS
  	xen_netback_dbg_root = debugfs_create_dir("xen-netback", NULL);
-diff --git a/drivers/net/xen-netback/xenbus.c b/drivers/net/xen-netback/xenbus.c
-index 54b5f24..396b3d9 100644
---- a/drivers/net/xen-netback/xenbus.c
-+++ b/drivers/net/xen-netback/xenbus.c
-@@ -711,6 +711,7 @@ static void connect(struct backend_info *be)
+Index: tree-jessie/drivers/net/xen-netback/xenbus.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/xenbus.c
++++ tree-jessie/drivers/net/xen-netback/xenbus.c
+@@ -711,6 +711,7 @@ static void connect(struct backend_info
  	be->vif->queues = vzalloc(requested_num_queues *
  				  sizeof(struct xenvif_queue));
  	be->vif->num_queues = requested_num_queues;
@@ -213,6 +213,3 @@ index 54b5f24..396b3d9 100644
  
  	for (queue_index = 0; queue_index < requested_num_queues; ++queue_index) {
  		queue = &be->vif->queues[queue_index];
--- 
-1.7.10.4
-

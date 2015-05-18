@@ -19,10 +19,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h
 
-diff --git a/drivers/net/ethernet/apm/xgene/Makefile b/drivers/net/ethernet/apm/xgene/Makefile
-index 589b352..68be5655 100644
---- a/drivers/net/ethernet/apm/xgene/Makefile
-+++ b/drivers/net/ethernet/apm/xgene/Makefile
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/Makefile
++++ tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
 @@ -2,6 +2,6 @@
  # Makefile for APM X-Gene Ethernet Driver.
  #
@@ -31,11 +31,11 @@ index 589b352..68be5655 100644
 +xgene-enet-objs := xgene_enet_hw.o xgene_enet_sgmac.o xgene_enet_xgmac.o \
  		   xgene_enet_main.o xgene_enet_ethtool.o
  obj-$(CONFIG_NET_XGENE) += xgene-enet.o
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-index 2efc4d9..3855858 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-@@ -44,6 +44,7 @@ static inline u32 xgene_get_bits(u32 val, u32 start, u32 end)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+@@ -44,6 +44,7 @@ static inline u32 xgene_get_bits(u32 val
  
  enum xgene_enet_rm {
  	RM0,
@@ -52,10 +52,10 @@ index 2efc4d9..3855858 100644
  #define ICM_CONFIG0_REG_0_ADDR		0x0400
  #define ICM_CONFIG2_REG_0_ADDR		0x0410
  #define RX_DV_GATE_REG_0_ADDR		0x05fc
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index 9e251ec..3c208cc 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
 @@ -21,6 +21,7 @@
  
  #include "xgene_enet_main.h"
@@ -64,7 +64,7 @@ index 9e251ec..3c208cc 100644
  #include "xgene_enet_xgmac.h"
  
  static void xgene_enet_init_bufpool(struct xgene_enet_desc_ring *buf_pool)
-@@ -813,6 +814,7 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
+@@ -813,6 +814,7 @@ static int xgene_enet_get_resources(stru
  		return pdata->phy_mode;
  	}
  	if (pdata->phy_mode != PHY_INTERFACE_MODE_RGMII &&
@@ -72,7 +72,7 @@ index 9e251ec..3c208cc 100644
  	    pdata->phy_mode != PHY_INTERFACE_MODE_XGMII) {
  		dev_err(dev, "Incorrect phy-connection-type specified\n");
  		return -ENODEV;
-@@ -830,7 +832,8 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
+@@ -830,7 +832,8 @@ static int xgene_enet_get_resources(stru
  	pdata->eth_csr_addr = base_addr + BLOCK_ETH_CSR_OFFSET;
  	pdata->eth_ring_if_addr = base_addr + BLOCK_ETH_RING_IF_OFFSET;
  	pdata->eth_diag_csr_addr = base_addr + BLOCK_ETH_DIAG_CSR_OFFSET;
@@ -82,7 +82,7 @@ index 9e251ec..3c208cc 100644
  		pdata->mcx_mac_addr = base_addr + BLOCK_ETH_MAC_OFFSET;
  		pdata->mcx_mac_csr_addr = base_addr + BLOCK_ETH_MAC_CSR_OFFSET;
  	} else {
-@@ -881,6 +884,11 @@ static void xgene_enet_setup_ops(struct xgene_enet_pdata *pdata)
+@@ -881,6 +884,11 @@ static void xgene_enet_setup_ops(struct
  		pdata->port_ops = &xgene_gport_ops;
  		pdata->rm = RM3;
  		break;
@@ -94,10 +94,10 @@ index 9e251ec..3c208cc 100644
  	default:
  		pdata->mac_ops = &xgene_xgmac_ops;
  		pdata->port_ops = &xgene_xgport_ops;
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-index 10b03a1..874e5a0 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 @@ -39,6 +39,9 @@
  #define NUM_PKT_BUF	64
  #define NUM_BUFPOOL	32
@@ -122,11 +122,10 @@ index 10b03a1..874e5a0 100644
  /* Set the specified value into a bit-field defined by its starting position
   * and length within a single u64.
   */
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
-new file mode 100644
-index 0000000..e6d24c2
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.c
 @@ -0,0 +1,389 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -517,11 +516,10 @@ index 0000000..e6d24c2
 +	.cle_bypass	= xgene_enet_cle_bypass,
 +	.shutdown	= xgene_enet_shutdown
 +};
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h
-new file mode 100644
-index 0000000..de43246
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_sgmac.h
 @@ -0,0 +1,41 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -564,10 +562,10 @@ index 0000000..de43246
 +extern struct xgene_port_ops xgene_sgport_ops;
 +
 +#endif  /* __XGENE_ENET_SGMAC_H__ */
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
-index dcb2087..5a5296a 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
 @@ -47,9 +47,6 @@
  #define XG_ENET_SPARE_CFG_REG_1_ADDR	0x0410
  #define XGENET_RX_DV_GATE_REG_0_ADDR	0x0804
@@ -578,6 +576,3 @@ index dcb2087..5a5296a 100644
  extern struct xgene_mac_ops xgene_xgmac_ops;
  extern struct xgene_port_ops xgene_xgport_ops;
  
--- 
-2.1.0
-

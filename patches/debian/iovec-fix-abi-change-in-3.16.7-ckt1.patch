@@ -7,9 +7,11 @@ I got confused and tried to fix an ABI change from upstream changes
 that we already had.  Thanks to #773233 this wasn't spotted before
 upload.  Keep the extra function around.
 
---- a/mm/iov_iter.c
-+++ b/mm/iov_iter.c
-@@ -725,6 +725,15 @@ ssize_t iov_iter_get_pages(struct iov_it
+Index: tree-jessie/mm/iov_iter.c
+===================================================================
+--- tree-jessie.orig/mm/iov_iter.c
++++ tree-jessie/mm/iov_iter.c
+@@ -722,6 +722,15 @@ ssize_t iov_iter_get_pages(struct iov_it
  }
  EXPORT_SYMBOL(iov_iter_get_pages);
  

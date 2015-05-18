@@ -27,10 +27,10 @@ Conflicts:
  arch/arm/boot/dts/sun7i-a20-cubieboard2.dts | 35 +++++++++++++++++++++++++----
  1 file changed, 31 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts b/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
-index d4648cf..7ce74a1 100644
---- a/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-cubieboard2.dts
 @@ -78,13 +78,9 @@
  			status = "okay";
  
@@ -80,6 +80,3 @@ index d4648cf..7ce74a1 100644
 +	regulator-max-microvolt = <3000000>;
 +	regulator-name = "avcc";
 +};
--- 
-2.1.4
-

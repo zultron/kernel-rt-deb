@@ -15,11 +15,11 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  drivers/staging/rtl8723au/os_dep/usb_intf.c    | 12 ++----------
  5 files changed, 2 insertions(+), 59 deletions(-)
 
-diff --git a/drivers/staging/rtl8723au/core/rtw_pwrctrl.c b/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
-index dbd01b6..7dc7c90 100644
---- a/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
-+++ b/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
-@@ -114,7 +114,6 @@ int ips_leave23a(struct rtw_adapter * padapter)
+Index: tree-jessie/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
+===================================================================
+--- tree-jessie.orig/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
++++ tree-jessie/drivers/staging/rtl8723au/core/rtw_pwrctrl.c
+@@ -114,7 +114,6 @@ int ips_leave23a(struct rtw_adapter * pa
  
  static bool rtw_pwr_unassociated_idle(struct rtw_adapter *adapter)
  {
@@ -27,7 +27,7 @@ index dbd01b6..7dc7c90 100644
  	struct mlme_priv *pmlmepriv = &adapter->mlmepriv;
  	struct xmit_priv *pxmit_priv = &adapter->xmitpriv;
  
-@@ -130,21 +129,6 @@ static bool rtw_pwr_unassociated_idle(struct rtw_adapter *adapter)
+@@ -130,21 +129,6 @@ static bool rtw_pwr_unassociated_idle(st
  		goto exit;
  	}
  
@@ -49,11 +49,11 @@ index dbd01b6..7dc7c90 100644
  	if (pxmit_priv->free_xmitbuf_cnt != NR_XMITBUFF ||
  		pxmit_priv->free_xmit_extbuf_cnt != NR_XMIT_EXTBUFF) {
  		DBG_8723A_LEVEL(_drv_always_,
-diff --git a/drivers/staging/rtl8723au/core/rtw_wlan_util.c b/drivers/staging/rtl8723au/core/rtw_wlan_util.c
-index 67fb7ec..a9fa109 100644
---- a/drivers/staging/rtl8723au/core/rtw_wlan_util.c
-+++ b/drivers/staging/rtl8723au/core/rtw_wlan_util.c
-@@ -1644,28 +1644,3 @@ void process_addba_req23a(struct rtw_adapter *padapter,
+Index: tree-jessie/drivers/staging/rtl8723au/core/rtw_wlan_util.c
+===================================================================
+--- tree-jessie.orig/drivers/staging/rtl8723au/core/rtw_wlan_util.c
++++ tree-jessie/drivers/staging/rtl8723au/core/rtw_wlan_util.c
+@@ -1644,28 +1644,3 @@ void process_addba_req23a(struct rtw_ada
  			true : false;
  	}
  }
@@ -82,10 +82,10 @@ index 67fb7ec..a9fa109 100644
 -
 -	return status;
 -}
-diff --git a/drivers/staging/rtl8723au/include/drv_types.h b/drivers/staging/rtl8723au/include/drv_types.h
-index a94857d..3ef9d7a 100644
---- a/drivers/staging/rtl8723au/include/drv_types.h
-+++ b/drivers/staging/rtl8723au/include/drv_types.h
+Index: tree-jessie/drivers/staging/rtl8723au/include/drv_types.h
+===================================================================
+--- tree-jessie.orig/drivers/staging/rtl8723au/include/drv_types.h
++++ tree-jessie/drivers/staging/rtl8723au/include/drv_types.h
 @@ -259,7 +259,6 @@ struct rtw_adapter {
  	u8 bWritePortCancel;
  	/* The driver will show the desired chan nor when this flag is 1. */
@@ -103,11 +103,11 @@ index a94857d..3ef9d7a 100644
  static inline u8 *myid(struct eeprom_priv *peepriv)
  {
  	return peepriv->mac_addr;
-diff --git a/drivers/staging/rtl8723au/os_dep/os_intfs.c b/drivers/staging/rtl8723au/os_dep/os_intfs.c
-index 1fb3438..ee3d62c 100644
---- a/drivers/staging/rtl8723au/os_dep/os_intfs.c
-+++ b/drivers/staging/rtl8723au/os_dep/os_intfs.c
-@@ -584,11 +584,6 @@ int rtw_free_drv_sw23a(struct rtw_adapter *padapter)
+Index: tree-jessie/drivers/staging/rtl8723au/os_dep/os_intfs.c
+===================================================================
+--- tree-jessie.orig/drivers/staging/rtl8723au/os_dep/os_intfs.c
++++ tree-jessie/drivers/staging/rtl8723au/os_dep/os_intfs.c
+@@ -584,11 +584,6 @@ int rtw_free_drv_sw23a(struct rtw_adapte
  	kfree(padapter->HalData);
  	padapter->HalData = NULL;
  
@@ -119,11 +119,11 @@ index 1fb3438..ee3d62c 100644
  	RT_TRACE(_module_os_intfs_c_, _drv_info_, ("-rtw_free_drv_sw23a\n"));
  	return _SUCCESS;
  }
-diff --git a/drivers/staging/rtl8723au/os_dep/usb_intf.c b/drivers/staging/rtl8723au/os_dep/usb_intf.c
-index 8b25c1a..d0a3a1e6 100644
---- a/drivers/staging/rtl8723au/os_dep/usb_intf.c
-+++ b/drivers/staging/rtl8723au/os_dep/usb_intf.c
-@@ -572,7 +572,7 @@ static struct rtw_adapter *rtw_usb_if1_init(struct dvobj_priv *dvobj,
+Index: tree-jessie/drivers/staging/rtl8723au/os_dep/usb_intf.c
+===================================================================
+--- tree-jessie.orig/drivers/staging/rtl8723au/os_dep/usb_intf.c
++++ tree-jessie/drivers/staging/rtl8723au/os_dep/usb_intf.c
+@@ -574,7 +574,7 @@ static struct rtw_adapter *rtw_usb_if1_i
  
  	pnetdev = rtw_init_netdev23a(padapter);
  	if (!pnetdev)
@@ -132,7 +132,7 @@ index 8b25c1a..d0a3a1e6 100644
  	padapter = netdev_priv(pnetdev);
  
  	padapter->dvobj = dvobj;
-@@ -583,13 +583,10 @@ static struct rtw_adapter *rtw_usb_if1_init(struct dvobj_priv *dvobj,
+@@ -585,13 +585,10 @@ static struct rtw_adapter *rtw_usb_if1_i
  
  	rtl8723au_set_hw_type(padapter);
  
@@ -147,7 +147,7 @@ index 8b25c1a..d0a3a1e6 100644
  
  	/* step 2. allocate HalData */
  	padapter->HalData = kzalloc(sizeof(struct hal_data_8723a), GFP_KERNEL);
-@@ -650,9 +647,6 @@ free_wdev:
+@@ -652,9 +649,6 @@ free_wdev:
  		rtw_wdev_unregister(padapter->rtw_wdev);
  		rtw_wdev_free(padapter->rtw_wdev);
  	}
@@ -157,7 +157,7 @@ index 8b25c1a..d0a3a1e6 100644
  free_adapter:
  	if (status != _SUCCESS) {
  		if (pnetdev)
-@@ -684,8 +678,6 @@ static void rtw_usb_if1_deinit(struct rtw_adapter *if1)
+@@ -686,8 +680,6 @@ static void rtw_usb_if1_deinit(struct rt
  	DBG_8723A("+r871xu_dev_remove, hw_init_completed =%d\n",
  		  if1->hw_init_completed);
  

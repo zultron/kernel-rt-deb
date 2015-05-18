@@ -21,10 +21,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun7i-a20.dtsi  | 3 ++-
  4 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
-index 8aa412f..e6aaad6 100644
---- a/arch/arm/boot/dts/sun4i-a10.dtsi
-+++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
 @@ -34,7 +34,8 @@
  
  		framebuffer0-hdmi {
@@ -35,10 +35,10 @@ index 8aa412f..e6aaad6 100644
  			status = "disabled";
  		};
  	};
-diff --git a/arch/arm/boot/dts/sun5i-a10s.dtsi b/arch/arm/boot/dts/sun5i-a10s.dtsi
-index 3b0ea26..7b9bb3f 100644
---- a/arch/arm/boot/dts/sun5i-a10s.dtsi
-+++ b/arch/arm/boot/dts/sun5i-a10s.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun5i-a10s.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun5i-a10s.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun5i-a10s.dtsi
 @@ -31,7 +31,8 @@
  
  		framebuffer0-hdmi {
@@ -49,10 +49,10 @@ index 3b0ea26..7b9bb3f 100644
  			status = "disabled";
  		};
  	};
-diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
-index eedb1e0..842d2e6 100644
---- a/arch/arm/boot/dts/sun6i-a31.dtsi
-+++ b/arch/arm/boot/dts/sun6i-a31.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun6i-a31.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun6i-a31.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun6i-a31.dtsi
 @@ -32,6 +32,7 @@
  
  		framebuffer0-hdmi {
@@ -61,10 +61,10 @@ index eedb1e0..842d2e6 100644
  			status = "disabled";
  		};
  	};
-diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
-index bb01f9b..c120b4f 100644
---- a/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ b/arch/arm/boot/dts/sun7i-a20.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
 @@ -35,7 +35,8 @@
  
  		framebuffer0-hdmi {
@@ -75,6 +75,3 @@ index bb01f9b..c120b4f 100644
  			status = "disabled";
  		};
  	};
--- 
-2.1.4
-

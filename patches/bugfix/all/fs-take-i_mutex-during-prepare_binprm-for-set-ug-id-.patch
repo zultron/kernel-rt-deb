@@ -16,8 +16,10 @@ Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
  fs/exec.c | 76 ++++++++++++++++++++++++++++++++++++++++-----------------------
  1 file changed, 48 insertions(+), 28 deletions(-)
 
---- a/fs/exec.c
-+++ b/fs/exec.c
+Index: tree-jessie/fs/exec.c
+===================================================================
+--- tree-jessie.orig/fs/exec.c
++++ tree-jessie/fs/exec.c
 @@ -1254,6 +1254,53 @@ static void check_unsafe_exec(struct lin
  	spin_unlock(&p->fs->lock);
  }

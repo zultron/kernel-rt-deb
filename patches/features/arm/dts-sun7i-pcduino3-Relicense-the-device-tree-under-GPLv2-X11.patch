@@ -13,10 +13,10 @@ device trees under a GPL/X11 dual-license.
 Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
 Acked-by: Zoltan HERPAI <wigyori@uid0.hu>
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-pcduino3.dts b/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
-index 046dfc0..8dca49b 100644
---- a/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
 @@ -2,12 +2,48 @@
   * Copyright 2014 Zoltan HERPAI
   * Zoltan HERPAI <wigyori@uid0.hu>
@@ -71,4 +71,3 @@ index 046dfc0..8dca49b 100644
   */
  
  /dts-v1/;
-

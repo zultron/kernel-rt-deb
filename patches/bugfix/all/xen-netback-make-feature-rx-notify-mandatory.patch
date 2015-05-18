@@ -21,10 +21,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/xenbus.c    |   13 ++++---------
  3 files changed, 5 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/net/xen-netback/common.h b/drivers/net/xen-netback/common.h
-index d4eb8d2..93ca77c 100644
---- a/drivers/net/xen-netback/common.h
-+++ b/drivers/net/xen-netback/common.h
+Index: tree-jessie/drivers/net/xen-netback/common.h
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/common.h
++++ tree-jessie/drivers/net/xen-netback/common.h
 @@ -228,9 +228,6 @@ struct xenvif {
  	u8 ip_csum:1;
  	u8 ipv6_csum:1;
@@ -44,11 +44,11 @@ index d4eb8d2..93ca77c 100644
  int xenvif_queue_stopped(struct xenvif_queue *queue);
  void xenvif_wake_queue(struct xenvif_queue *queue);
  
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 18cdc81..6879251 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -60,16 +60,6 @@ void xenvif_skb_zerocopy_complete(struct xenvif_queue *queue)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -60,16 +60,6 @@ void xenvif_skb_zerocopy_complete(struct
  	atomic_dec(&queue->inflight_packets);
  }
  
@@ -65,7 +65,7 @@ index 18cdc81..6879251 100644
  int xenvif_schedulable(struct xenvif *vif)
  {
  	return netif_running(vif->dev) &&
-@@ -209,7 +199,7 @@ static int xenvif_start_xmit(struct sk_buff *skb, struct net_device *dev)
+@@ -209,7 +199,7 @@ static int xenvif_start_xmit(struct sk_b
  	if (!xenvif_rx_ring_slots_available(queue, min_slots_needed)) {
  		queue->rx_stalled.function = xenvif_rx_stalled;
  		queue->rx_stalled.data = (unsigned long)queue;
@@ -74,11 +74,11 @@ index 18cdc81..6879251 100644
  		mod_timer(&queue->rx_stalled,
  			  jiffies + rx_drain_timeout_jiffies);
  	}
-diff --git a/drivers/net/xen-netback/xenbus.c b/drivers/net/xen-netback/xenbus.c
-index 9c47b89..5e5cca1 100644
---- a/drivers/net/xen-netback/xenbus.c
-+++ b/drivers/net/xen-netback/xenbus.c
-@@ -873,15 +873,10 @@ static int read_xenbus_vif_flags(struct backend_info *be)
+Index: tree-jessie/drivers/net/xen-netback/xenbus.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/xenbus.c
++++ tree-jessie/drivers/net/xen-netback/xenbus.c
+@@ -873,15 +873,10 @@ static int read_xenbus_vif_flags(struct
  	if (!rx_copy)
  		return -EOPNOTSUPP;
  
@@ -98,6 +98,3 @@ index 9c47b89..5e5cca1 100644
  	}
  
  	if (xenbus_scanf(XBT_NIL, dev->otherend, "feature-sg",
--- 
-1.7.10.4
-

@@ -10,10 +10,10 @@ Signed-off-by: Alexander Bersenev <bay@hackerdom.ru>
 Signed-off-by: Alexsey Shestacov <wingrime@linux-sunxi.org>
 Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
 
-Index: linux-3.16.7-ckt7/arch/arm/boot/dts/sun7i-a20.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
 ===================================================================
---- linux-3.16.7-ckt7.orig/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ linux-3.16.7-ckt7/arch/arm/boot/dts/sun7i-a20.dtsi
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
 @@ -799,6 +799,24 @@
  			status = "disabled";
  		};

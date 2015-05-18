@@ -24,10 +24,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun4i-a10-cubieboard.dts | 35 ++++++++++++++++++++++++++----
  1 file changed, 31 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10-cubieboard.dts b/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
-index 539b693..5543b76 100644
---- a/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
-+++ b/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10-cubieboard.dts
 @@ -92,12 +92,8 @@
  			status = "okay";
  
@@ -76,6 +76,3 @@ index 539b693..5543b76 100644
 +	regulator-max-microvolt = <3000000>;
 +	regulator-name = "avcc";
 +};
--- 
-2.1.4
-

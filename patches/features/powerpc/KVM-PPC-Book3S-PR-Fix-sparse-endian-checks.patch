@@ -11,11 +11,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_pr_papr.c |   21 +++++++++++----------
  1 file changed, 11 insertions(+), 10 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_pr_papr.c b/arch/powerpc/kvm/book3s_pr_papr.c
-index 52a63bf..f7c25c6 100644
---- a/arch/powerpc/kvm/book3s_pr_papr.c
-+++ b/arch/powerpc/kvm/book3s_pr_papr.c
-@@ -40,8 +40,9 @@ static int kvmppc_h_pr_enter(struct kvm_vcpu *vcpu)
+Index: tree-jessie/arch/powerpc/kvm/book3s_pr_papr.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_pr_papr.c
++++ tree-jessie/arch/powerpc/kvm/book3s_pr_papr.c
+@@ -40,8 +40,9 @@ static int kvmppc_h_pr_enter(struct kvm_
  {
  	long flags = kvmppc_get_gpr(vcpu, 4);
  	long pte_index = kvmppc_get_gpr(vcpu, 5);
@@ -27,7 +27,7 @@ index 52a63bf..f7c25c6 100644
  	long int ret;
  
  	i = pte_index & 7;
-@@ -93,8 +94,8 @@ static int kvmppc_h_pr_remove(struct kvm_vcpu *vcpu)
+@@ -93,8 +94,8 @@ static int kvmppc_h_pr_remove(struct kvm
  	pteg = get_pteg_addr(vcpu, pte_index);
  	mutex_lock(&vcpu->kvm->arch.hpt_mutex);
  	copy_from_user(pte, (void __user *)pteg, sizeof(pte));
@@ -38,7 +38,7 @@ index 52a63bf..f7c25c6 100644
  
  	ret = H_NOT_FOUND;
  	if ((pte[0] & HPTE_V_VALID) == 0 ||
-@@ -171,8 +172,8 @@ static int kvmppc_h_pr_bulk_remove(struct kvm_vcpu *vcpu)
+@@ -171,8 +172,8 @@ static int kvmppc_h_pr_bulk_remove(struc
  
  		pteg = get_pteg_addr(vcpu, tsh & H_BULK_REMOVE_PTEX);
  		copy_from_user(pte, (void __user *)pteg, sizeof(pte));
@@ -49,7 +49,7 @@ index 52a63bf..f7c25c6 100644
  
  		/* tsl = AVPN */
  		flags = (tsh & H_BULK_REMOVE_FLAGS) >> 26;
-@@ -211,8 +212,8 @@ static int kvmppc_h_pr_protect(struct kvm_vcpu *vcpu)
+@@ -211,8 +212,8 @@ static int kvmppc_h_pr_protect(struct kv
  	pteg = get_pteg_addr(vcpu, pte_index);
  	mutex_lock(&vcpu->kvm->arch.hpt_mutex);
  	copy_from_user(pte, (void __user *)pteg, sizeof(pte));
@@ -60,7 +60,7 @@ index 52a63bf..f7c25c6 100644
  
  	ret = H_NOT_FOUND;
  	if ((pte[0] & HPTE_V_VALID) == 0 ||
-@@ -231,8 +232,8 @@ static int kvmppc_h_pr_protect(struct kvm_vcpu *vcpu)
+@@ -231,8 +232,8 @@ static int kvmppc_h_pr_protect(struct kv
  
  	rb = compute_tlbie_rb(v, r, pte_index);
  	vcpu->arch.mmu.tlbie(vcpu, rb, rb & 1 ? true : false);
@@ -71,6 +71,3 @@ index 52a63bf..f7c25c6 100644
  	copy_to_user((void __user *)pteg, pte, sizeof(pte));
  	ret = H_SUCCESS;
  
--- 
-1.7.10.4
-

@@ -19,8 +19,10 @@ Signed-off-by: Jack Morgenstein <jackm@mellanox.com>
 Signed-off-by: Or Gerlitz <ogerlitz@mellanox.com>
 ---
 
---- a/drivers/infiniband/core/umem.c
-+++ b/drivers/infiniband/core/umem.c
+Index: tree-jessie/drivers/infiniband/core/umem.c
+===================================================================
+--- tree-jessie.orig/drivers/infiniband/core/umem.c
++++ tree-jessie/drivers/infiniband/core/umem.c
 @@ -94,6 +94,14 @@ struct ib_umem *ib_umem_get(struct ib_uc
  	if (dmasync)
  		dma_set_attr(DMA_ATTR_WRITE_BARRIER, &attrs);

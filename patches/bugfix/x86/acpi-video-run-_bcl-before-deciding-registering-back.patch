@@ -28,8 +28,10 @@ Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
  drivers/acpi/video.c | 15 +++++++++++++++
  1 file changed, 15 insertions(+)
 
---- a/drivers/acpi/video.c
-+++ b/drivers/acpi/video.c
+Index: tree-jessie/drivers/acpi/video.c
+===================================================================
+--- tree-jessie.orig/drivers/acpi/video.c
++++ tree-jessie/drivers/acpi/video.c
 @@ -1836,6 +1836,19 @@ static void acpi_video_dev_register_back
  		printk(KERN_ERR PREFIX "Create sysfs link\n");
  }

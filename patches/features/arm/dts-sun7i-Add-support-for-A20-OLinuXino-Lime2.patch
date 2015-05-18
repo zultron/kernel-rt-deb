@@ -12,9 +12,11 @@ Differences to previous Lime boards are 1GB RAM and gigabit ethernet
 Signed-off-by: Iain Paton <ipaton0@gmail.com>
 Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
 
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -381,6 +381,7 @@
+Index: tree-jessie/arch/arm/boot/dts/Makefile
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/Makefile
++++ tree-jessie/arch/arm/boot/dts/Makefile
+@@ -381,6 +381,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
  	sun7i-a20-cubietruck.dtb \
  	sun7i-a20-i12-tvbox.dtb \
  	sun7i-a20-olinuxino-lime.dtb \
@@ -22,8 +24,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  	sun7i-a20-olinuxino-micro.dtb \
  	sun7i-a20-pcduino3.dtb
  dtb-$(CONFIG_ARCH_TEGRA) += tegra20-harmony.dtb \
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+===================================================================
 --- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
 @@ -0,0 +1,228 @@
 +/*
 + * Copyright 2014 - Iain Paton <ipaton0@gmail.com>

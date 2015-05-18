@@ -10,8 +10,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  - Only wire up memfd_create
  - Insert unimplemented-syscall entries for seccomp and getrandom]
 ---
---- a/arch/mips/include/uapi/asm/unistd.h
-+++ b/arch/mips/include/uapi/asm/unistd.h
+Index: tree-jessie/arch/mips/include/uapi/asm/unistd.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/uapi/asm/unistd.h
++++ tree-jessie/arch/mips/include/uapi/asm/unistd.h
 @@ -372,16 +372,17 @@
  #define __NR_sched_setattr		(__NR_Linux + 349)
  #define __NR_sched_getattr		(__NR_Linux + 350)
@@ -71,8 +73,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
 +#define __NR_N32_Linux_syscalls		318
  
  #endif /* _UAPI_ASM_UNISTD_H */
---- a/arch/mips/kernel/scall32-o32.S
-+++ b/arch/mips/kernel/scall32-o32.S
+Index: tree-jessie/arch/mips/kernel/scall32-o32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall32-o32.S
++++ tree-jessie/arch/mips/kernel/scall32-o32.S
 @@ -578,3 +578,6 @@ EXPORT(sys_call_table)
  	PTR	sys_sched_setattr
  	PTR	sys_sched_getattr		/* 4350 */
@@ -80,8 +84,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
 +	PTR	sys_ni_syscall			/* seccomp */
 +	PTR	sys_ni_syscall			/* getrandom */
 +	PTR	sys_memfd_create
---- a/arch/mips/kernel/scall64-64.S
-+++ b/arch/mips/kernel/scall64-64.S
+Index: tree-jessie/arch/mips/kernel/scall64-64.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-64.S
++++ tree-jessie/arch/mips/kernel/scall64-64.S
 @@ -431,4 +431,7 @@ EXPORT(sys_call_table)
  	PTR	sys_sched_setattr
  	PTR	sys_sched_getattr		/* 5310 */
@@ -90,8 +96,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
 +	PTR	sys_ni_syscall			/* getrandom */
 +	PTR	sys_memfd_create
  	.size	sys_call_table,.-sys_call_table
---- a/arch/mips/kernel/scall64-n32.S
-+++ b/arch/mips/kernel/scall64-n32.S
+Index: tree-jessie/arch/mips/kernel/scall64-n32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-n32.S
++++ tree-jessie/arch/mips/kernel/scall64-n32.S
 @@ -424,4 +424,7 @@ EXPORT(sysn32_call_table)
  	PTR	sys_sched_setattr
  	PTR	sys_sched_getattr
@@ -100,9 +108,11 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
 +	PTR	sys_ni_syscall			/* getrandom */
 +	PTR	sys_memfd_create
  	.size	sysn32_call_table,.-sysn32_call_table
---- a/arch/mips/kernel/scall64-o32.S
-+++ b/arch/mips/kernel/scall64-o32.S
-@@ -557,4 +557,7 @@ EXPORT(sys32_call_table)
+Index: tree-jessie/arch/mips/kernel/scall64-o32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-o32.S
++++ tree-jessie/arch/mips/kernel/scall64-o32.S
+@@ -561,4 +561,7 @@ EXPORT(sys32_call_table)
  	PTR	sys_sched_setattr
  	PTR	sys_sched_getattr		/* 4350 */
  	PTR	sys_renameat2

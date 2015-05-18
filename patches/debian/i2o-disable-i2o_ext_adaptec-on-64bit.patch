@@ -15,8 +15,10 @@ In file included from /tmp/buildd/linux-3.16.2/drivers/message/i2o/config-osm.c:
          ((void __user *)sg[j].addr_bus, sg_list[j].virt,
           ^
 
---- a/drivers/message/i2o/Kconfig
-+++ b/drivers/message/i2o/Kconfig
+Index: tree-jessie/drivers/message/i2o/Kconfig
+===================================================================
+--- tree-jessie.orig/drivers/message/i2o/Kconfig
++++ tree-jessie/drivers/message/i2o/Kconfig
 @@ -37,6 +37,7 @@ config I2O_LCT_NOTIFY_ON_CHANGES
  
  config I2O_EXT_ADAPTEC

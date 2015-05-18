@@ -27,10 +27,10 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/eventfd.c |   41 +++++++++++++++++++++++++----------------
  1 file changed, 25 insertions(+), 16 deletions(-)
 
-diff --git a/virt/kvm/eventfd.c b/virt/kvm/eventfd.c
-index 20c3af7..bae593a 100644
---- a/virt/kvm/eventfd.c
-+++ b/virt/kvm/eventfd.c
+Index: tree-jessie/virt/kvm/eventfd.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/eventfd.c
++++ tree-jessie/virt/kvm/eventfd.c
 @@ -33,6 +33,7 @@
  #include <linux/kernel.h>
  #include <linux/srcu.h>
@@ -49,7 +49,7 @@ index 20c3af7..bae593a 100644
  	/* Used for level IRQ fast-path */
  	int gsi;
  	struct work_struct inject;
-@@ -223,16 +225,20 @@ irqfd_wakeup(wait_queue_t *wait, unsigned mode, int sync, void *key)
+@@ -223,16 +225,20 @@ irqfd_wakeup(wait_queue_t *wait, unsigne
  {
  	struct _irqfd *irqfd = container_of(wait, struct _irqfd, wait);
  	unsigned long flags = (unsigned long)key;
@@ -74,7 +74,7 @@ index 20c3af7..bae593a 100644
  					false);
  		else
  			schedule_work(&irqfd->inject);
-@@ -277,18 +283,20 @@ static void irqfd_update(struct kvm *kvm, struct _irqfd *irqfd,
+@@ -277,18 +283,20 @@ static void irqfd_update(struct kvm *kvm
  {
  	struct kvm_kernel_irq_routing_entry *e;
  
@@ -102,7 +102,7 @@ index 20c3af7..bae593a 100644
  }
  
  static int
-@@ -310,6 +318,7 @@ kvm_irqfd_assign(struct kvm *kvm, struct kvm_irqfd *args)
+@@ -310,6 +318,7 @@ kvm_irqfd_assign(struct kvm *kvm, struct
  	INIT_LIST_HEAD(&irqfd->list);
  	INIT_WORK(&irqfd->inject, irqfd_inject);
  	INIT_WORK(&irqfd->shutdown, irqfd_shutdown);
@@ -110,7 +110,7 @@ index 20c3af7..bae593a 100644
  
  	f = fdget(args->fd);
  	if (!f.file) {
-@@ -466,14 +475,14 @@ kvm_irqfd_deassign(struct kvm *kvm, struct kvm_irqfd *args)
+@@ -466,14 +475,14 @@ kvm_irqfd_deassign(struct kvm *kvm, stru
  	list_for_each_entry_safe(irqfd, tmp, &kvm->irqfds.items, list) {
  		if (irqfd->eventfd == eventfd && irqfd->gsi == args->gsi) {
  			/*
@@ -129,6 +129,3 @@ index 20c3af7..bae593a 100644
  			irqfd_deactivate(irqfd);
  		}
  	}
--- 
-1.7.10.4
-

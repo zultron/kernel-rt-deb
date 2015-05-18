@@ -18,11 +18,11 @@ big to backport.
  drivers/power/reset/xgene-reboot.c | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/power/reset/xgene-reboot.c b/drivers/power/reset/xgene-reboot.c
-index ecd55f8..4a63f8f 100644
---- a/drivers/power/reset/xgene-reboot.c
-+++ b/drivers/power/reset/xgene-reboot.c
-@@ -73,8 +73,7 @@ static int xgene_reboot_probe(struct platform_device *pdev)
+Index: tree-jessie/drivers/power/reset/xgene-reboot.c
+===================================================================
+--- tree-jessie.orig/drivers/power/reset/xgene-reboot.c
++++ tree-jessie/drivers/power/reset/xgene-reboot.c
+@@ -73,8 +73,7 @@ static int xgene_reboot_probe(struct pla
  		return -ENODEV;
  	}
  
@@ -32,6 +32,3 @@ index ecd55f8..4a63f8f 100644
  
  	ctx->pdev = pdev;
  	arm_pm_restart = xgene_restart;
--- 
-2.1.3
-

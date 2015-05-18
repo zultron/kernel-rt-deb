@@ -22,10 +22,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
  create mode 100644 drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
 
-diff --git a/drivers/net/ethernet/apm/xgene/Makefile b/drivers/net/ethernet/apm/xgene/Makefile
-index c643e8a..589b352 100644
---- a/drivers/net/ethernet/apm/xgene/Makefile
-+++ b/drivers/net/ethernet/apm/xgene/Makefile
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/Makefile
++++ tree-jessie/drivers/net/ethernet/apm/xgene/Makefile
 @@ -2,5 +2,6 @@
  # Makefile for APM X-Gene Ethernet Driver.
  #
@@ -34,11 +34,11 @@ index c643e8a..589b352 100644
 +xgene-enet-objs := xgene_enet_hw.o xgene_enet_xgmac.o \
 +		   xgene_enet_main.o xgene_enet_ethtool.o
  obj-$(CONFIG_NET_XGENE) += xgene-enet.o
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-index 084ac68..15ec426 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-@@ -42,6 +42,11 @@ static inline u32 xgene_get_bits(u32 val, u32 start, u32 end)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+@@ -42,6 +42,11 @@ static inline u32 xgene_get_bits(u32 val
  	return (val & GENMASK(end, start)) >> start;
  }
  
@@ -50,7 +50,7 @@ index 084ac68..15ec426 100644
  #define CSR_RING_ID		0x0008
  #define OVERWRITE		BIT(31)
  #define IS_BUFFER_POOL		BIT(20)
-@@ -52,7 +57,6 @@ static inline u32 xgene_get_bits(u32 val, u32 start, u32 end)
+@@ -52,7 +57,6 @@ static inline u32 xgene_get_bits(u32 val
  #define CSR_RING_WR_BASE	0x0070
  #define NUM_RING_CONFIG		5
  #define BUFPOOL_MODE		3
@@ -58,7 +58,7 @@ index 084ac68..15ec426 100644
  #define INC_DEC_CMD_ADDR	0x002c
  #define UDP_HDR_SIZE		2
  #define BUF_LEN_CODE_2K		0x5000
-@@ -94,11 +98,9 @@ static inline u32 xgene_get_bits(u32 val, u32 start, u32 end)
+@@ -94,11 +98,9 @@ static inline u32 xgene_get_bits(u32 val
  
  #define BLOCK_ETH_CSR_OFFSET		0x2000
  #define BLOCK_ETH_RING_IF_OFFSET	0x9000
@@ -70,7 +70,7 @@ index 084ac68..15ec426 100644
  #define BLOCK_ETH_MAC_CSR_OFFSET	0x2800
  
  #define MAC_ADDR_REG_OFFSET		0x00
-@@ -107,12 +109,6 @@ static inline u32 xgene_get_bits(u32 val, u32 start, u32 end)
+@@ -107,12 +109,6 @@ static inline u32 xgene_get_bits(u32 val
  #define MAC_READ_REG_OFFSET		0x0c
  #define MAC_COMMAND_DONE_REG_OFFSET	0x10
  
@@ -83,10 +83,10 @@ index 084ac68..15ec426 100644
  #define MII_MGMT_CONFIG_ADDR		0x20
  #define MII_MGMT_COMMAND_ADDR		0x24
  #define MII_MGMT_ADDRESS_ADDR		0x28
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index c432644..9b85239 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
 @@ -21,6 +21,7 @@
  
  #include "xgene_enet_main.h"
@@ -95,7 +95,7 @@ index c432644..9b85239 100644
  
  static void xgene_enet_init_bufpool(struct xgene_enet_desc_ring *buf_pool)
  {
-@@ -390,7 +391,7 @@ static int xgene_enet_process_ring(struct xgene_enet_desc_ring *ring,
+@@ -390,7 +391,7 @@ static int xgene_enet_process_ring(struc
  		}
  	}
  
@@ -104,7 +104,7 @@ index c432644..9b85239 100644
  }
  
  static int xgene_enet_napi(struct napi_struct *napi, const int budget)
-@@ -456,8 +457,10 @@ static int xgene_enet_open(struct net_device *ndev)
+@@ -456,8 +457,10 @@ static int xgene_enet_open(struct net_de
  		return ret;
  	napi_enable(&pdata->rx_ring->napi);
  
@@ -116,7 +116,7 @@ index c432644..9b85239 100644
  
  	netif_start_queue(ndev);
  
-@@ -471,8 +474,10 @@ static int xgene_enet_close(struct net_device *ndev)
+@@ -471,8 +474,10 @@ static int xgene_enet_close(struct net_d
  
  	netif_stop_queue(ndev);
  
@@ -128,7 +128,7 @@ index c432644..9b85239 100644
  
  	napi_disable(&pdata->rx_ring->napi);
  	xgene_enet_free_irq(ndev);
-@@ -615,7 +620,6 @@ static struct xgene_enet_desc_ring *xgene_enet_create_desc_ring(
+@@ -615,7 +620,6 @@ static struct xgene_enet_desc_ring *xgen
  
  	ring->cmd_base = pdata->ring_cmd_addr + (ring->num << 6);
  	ring->cmd = ring->cmd_base + INC_DEC_CMD_ADDR;
@@ -136,7 +136,7 @@ index c432644..9b85239 100644
  	ring = xgene_enet_setup_ring(ring);
  	netdev_dbg(ndev, "ring info: num=%d  size=%d  id=%d  slots=%d\n",
  		   ring->num, ring->size, ring->id, ring->slots);
-@@ -805,8 +809,13 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
+@@ -805,8 +809,13 @@ static int xgene_enet_get_resources(stru
  
  	pdata->phy_mode = of_get_phy_mode(pdev->dev.of_node);
  	if (pdata->phy_mode < 0) {
@@ -152,7 +152,7 @@ index c432644..9b85239 100644
  	}
  
  	pdata->clk = devm_clk_get(&pdev->dev, NULL);
-@@ -821,12 +830,18 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
+@@ -821,12 +830,18 @@ static int xgene_enet_get_resources(stru
  	pdata->eth_csr_addr = base_addr + BLOCK_ETH_CSR_OFFSET;
  	pdata->eth_ring_if_addr = base_addr + BLOCK_ETH_RING_IF_OFFSET;
  	pdata->eth_diag_csr_addr = base_addr + BLOCK_ETH_DIAG_CSR_OFFSET;
@@ -175,7 +175,7 @@ index c432644..9b85239 100644
  }
  
  static int xgene_enet_init_hw(struct xgene_enet_pdata *pdata)
-@@ -836,8 +851,7 @@ static int xgene_enet_init_hw(struct xgene_enet_pdata *pdata)
+@@ -836,8 +851,7 @@ static int xgene_enet_init_hw(struct xge
  	u16 dst_ring_num;
  	int ret;
  
@@ -185,7 +185,7 @@ index c432644..9b85239 100644
  
  	ret = xgene_enet_create_desc_rings(ndev);
  	if (ret) {
-@@ -856,14 +870,23 @@ static int xgene_enet_init_hw(struct xgene_enet_pdata *pdata)
+@@ -856,14 +870,23 @@ static int xgene_enet_init_hw(struct xge
  
  	dst_ring_num = xgene_enet_dst_ring_num(pdata->rx_ring);
  	pdata->port_ops->cle_bypass(pdata, dst_ring_num, buf_pool->id);
@@ -211,7 +211,7 @@ index c432644..9b85239 100644
  }
  
  static int xgene_enet_probe(struct platform_device *pdev)
-@@ -895,8 +918,6 @@ static int xgene_enet_probe(struct platform_device *pdev)
+@@ -895,8 +918,6 @@ static int xgene_enet_probe(struct platf
  		goto err;
  
  	xgene_enet_setup_ops(pdata);
@@ -220,7 +220,7 @@ index c432644..9b85239 100644
  
  	ret = register_netdev(ndev);
  	if (ret) {
-@@ -916,7 +937,10 @@ static int xgene_enet_probe(struct platform_device *pdev)
+@@ -916,7 +937,10 @@ static int xgene_enet_probe(struct platf
  
  	napi = &pdata->rx_ring->napi;
  	netif_napi_add(ndev, napi, xgene_enet_napi, NAPI_POLL_WEIGHT);
@@ -232,10 +232,10 @@ index c432644..9b85239 100644
  
  	return ret;
  err:
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-index ac180f9..86cf68b 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 @@ -105,18 +105,17 @@ struct xgene_enet_pdata {
  	void __iomem *eth_ring_if_addr;
  	void __iomem *eth_diag_csr_addr;
@@ -257,11 +257,10 @@ index ac180f9..86cf68b 100644
  };
  
  /* Set the specified value into a bit-field defined by its starting position
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
-new file mode 100644
-index 0000000..cd64b9f
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
 @@ -0,0 +1,331 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -594,11 +593,10 @@ index 0000000..cd64b9f
 +	.cle_bypass = xgene_enet_xgcle_bypass,
 +	.shutdown = xgene_enet_shutdown,
 +};
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
-new file mode 100644
-index 0000000..d2d59e7
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
+===================================================================
 --- /dev/null
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
 @@ -0,0 +1,57 @@
 +/* Applied Micro X-Gene SoC Ethernet Driver
 + *
@@ -657,6 +655,3 @@ index 0000000..d2d59e7
 +extern struct xgene_port_ops xgene_xgport_ops;
 +
 +#endif /* __XGENE_ENET_XGMAC_H__ */
--- 
-2.1.0
-

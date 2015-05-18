@@ -18,11 +18,11 @@ Acked-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/kvm_main.c               |   58 ++++++++++++++++++++-----------------
  3 files changed, 37 insertions(+), 29 deletions(-)
 
-diff --git a/Documentation/virtual/kvm/api.txt b/Documentation/virtual/kvm/api.txt
-index 884f819..8898caf 100644
---- a/Documentation/virtual/kvm/api.txt
-+++ b/Documentation/virtual/kvm/api.txt
-@@ -148,9 +148,9 @@ of banks, as set via the KVM_X86_SETUP_MCE ioctl.
+Index: tree-jessie/Documentation/virtual/kvm/api.txt
+===================================================================
+--- tree-jessie.orig/Documentation/virtual/kvm/api.txt
++++ tree-jessie/Documentation/virtual/kvm/api.txt
+@@ -148,9 +148,9 @@ of banks, as set via the KVM_X86_SETUP_M
  
  4.4 KVM_CHECK_EXTENSION
  
@@ -34,7 +34,7 @@ index 884f819..8898caf 100644
  Parameters: extension identifier (KVM_CAP_*)
  Returns: 0 if unsupported; 1 (or some other positive integer) if supported
  
-@@ -160,6 +160,9 @@ receives an integer that describes the extension availability.
+@@ -160,6 +160,9 @@ receives an integer that describes the e
  Generally 0 means no and 1 means yes, but some extensions may report
  additional information in the integer return value.
  
@@ -44,11 +44,11 @@ index 884f819..8898caf 100644
  
  4.5 KVM_GET_VCPU_MMAP_SIZE
  
-diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-index 0418b74..51776ca 100644
---- a/include/uapi/linux/kvm.h
-+++ b/include/uapi/linux/kvm.h
-@@ -759,6 +759,7 @@ struct kvm_ppc_smmu_info {
+Index: tree-jessie/include/uapi/linux/kvm.h
+===================================================================
+--- tree-jessie.orig/include/uapi/linux/kvm.h
++++ tree-jessie/include/uapi/linux/kvm.h
+@@ -760,6 +760,7 @@ struct kvm_ppc_smmu_info {
  #define KVM_CAP_ARM_PSCI_0_2 102
  #define KVM_CAP_PPC_FIXUP_HCALL 103
  #define KVM_CAP_PPC_ENABLE_HCALL 104
@@ -56,11 +56,11 @@ index 0418b74..51776ca 100644
  
  #ifdef KVM_CAP_IRQ_ROUTING
  
-diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-index e28f3ca..1b95cc9 100644
---- a/virt/kvm/kvm_main.c
-+++ b/virt/kvm/kvm_main.c
-@@ -2324,6 +2324,34 @@ static int kvm_ioctl_create_device(struct kvm *kvm,
+Index: tree-jessie/virt/kvm/kvm_main.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/kvm_main.c
++++ tree-jessie/virt/kvm/kvm_main.c
+@@ -2344,6 +2344,34 @@ static int kvm_ioctl_create_device(struc
  	return 0;
  }
  
@@ -95,7 +95,7 @@ index e28f3ca..1b95cc9 100644
  static long kvm_vm_ioctl(struct file *filp,
  			   unsigned int ioctl, unsigned long arg)
  {
-@@ -2487,6 +2515,9 @@ static long kvm_vm_ioctl(struct file *filp,
+@@ -2507,6 +2535,9 @@ static long kvm_vm_ioctl(struct file *fi
  		r = 0;
  		break;
  	}
@@ -105,7 +105,7 @@ index e28f3ca..1b95cc9 100644
  	default:
  		r = kvm_arch_vm_ioctl(filp, ioctl, arg);
  		if (r == -ENOTTY)
-@@ -2571,33 +2602,6 @@ static int kvm_dev_ioctl_create_vm(unsigned long type)
+@@ -2591,33 +2622,6 @@ static int kvm_dev_ioctl_create_vm(unsig
  	return r;
  }
  
@@ -139,6 +139,3 @@ index e28f3ca..1b95cc9 100644
  static long kvm_dev_ioctl(struct file *filp,
  			  unsigned int ioctl, unsigned long arg)
  {
--- 
-1.7.10.4
-

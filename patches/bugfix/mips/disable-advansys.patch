@@ -12,9 +12,11 @@ make[5]: *** [__modpost] Error 1
 But report:
 http://www.mail-archive.com/linux-scsi@vger.kernel.org/msg12773.html
 
---- a/drivers/scsi/Kconfig	2007-12-27 19:16:18.000000000 +0000
-+++ b/drivers/scsi/Kconfig	2007-12-27 19:16:58.000000000 +0000
-@@ -523,6 +523,7 @@
+Index: tree-jessie/drivers/scsi/Kconfig
+===================================================================
+--- tree-jessie.orig/drivers/scsi/Kconfig
++++ tree-jessie/drivers/scsi/Kconfig
+@@ -530,6 +530,7 @@ config SCSI_ADVANSYS
  	tristate "AdvanSys SCSI support"
  	depends on SCSI && VIRT_TO_BUS
  	depends on ISA || EISA || PCI

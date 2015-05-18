@@ -12,8 +12,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun7i-a20.dtsi | 7 +++++++
  1 file changed, 7 insertions(+)
 
---- a/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ b/arch/arm/boot/dts/sun7i-a20.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun7i-a20.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20.dtsi
 @@ -618,6 +618,13 @@
  				allwinner,pull = <0>;
  			};

@@ -58,10 +58,10 @@ Tested-by: Aaro Koskinen <aaro.koskinen@iki.fi>
  arch/parisc/include/uapi/asm/signal.h | 16 ++++++----------
  1 file changed, 6 insertions(+), 10 deletions(-)
 
-diff --git a/arch/parisc/include/uapi/asm/signal.h b/arch/parisc/include/uapi/asm/signal.h
-index f5645d6..10df707 100644
---- a/arch/parisc/include/uapi/asm/signal.h
-+++ b/arch/parisc/include/uapi/asm/signal.h
+Index: tree-jessie/arch/parisc/include/uapi/asm/signal.h
+===================================================================
+--- tree-jessie.orig/arch/parisc/include/uapi/asm/signal.h
++++ tree-jessie/arch/parisc/include/uapi/asm/signal.h
 @@ -8,12 +8,12 @@
  #define SIGTRAP		 5
  #define SIGABRT		 6

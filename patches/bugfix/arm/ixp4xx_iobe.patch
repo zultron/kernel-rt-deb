@@ -15,11 +15,11 @@ make[1]: *** [drivers/net] Error 2
 
 Signed-off-by: Arnaud Patard <arnaud.patard@rtp-net.org>
 
-Index: linux-3.1/arch/arm/mach-ixp4xx/include/mach/io.h
+Index: tree-jessie/arch/arm/mach-ixp4xx/include/mach/io.h
 ===================================================================
---- linux-3.1.orig/arch/arm/mach-ixp4xx/include/mach/io.h	2011-11-13 14:14:50.662853902 +0100
-+++ linux-3.1/arch/arm/mach-ixp4xx/include/mach/io.h	2011-11-13 14:19:38.522841236 +0100
-@@ -387,6 +387,20 @@ static inline unsigned int ioread16(cons
+--- tree-jessie.orig/arch/arm/mach-ixp4xx/include/mach/io.h
++++ tree-jessie/arch/arm/mach-ixp4xx/include/mach/io.h
+@@ -364,6 +364,20 @@ static inline unsigned int ioread16(cons
  #endif
  }
  
@@ -40,7 +40,7 @@ Index: linux-3.1/arch/arm/mach-ixp4xx/include/mach/io.h
  #define	ioread16_rep(p, v, c)		ioread16_rep(p, v, c)
  static inline void ioread16_rep(const void __iomem *addr, void *vaddr,
  				u32 count)
-@@ -417,6 +431,21 @@ static inline unsigned int ioread32(cons
+@@ -394,6 +408,21 @@ static inline unsigned int ioread32(cons
  	}
  }
  
@@ -62,7 +62,7 @@ Index: linux-3.1/arch/arm/mach-ixp4xx/include/mach/io.h
  #define	ioread32_rep(p, v, c)		ioread32_rep(p, v, c)
  static inline void ioread32_rep(const void __iomem *addr, void *vaddr,
  				u32 count)
-@@ -475,6 +504,20 @@ static inline void iowrite16(u16 value,
+@@ -452,6 +481,20 @@ static inline void iowrite16(u16 value,
  #endif
  }
  
@@ -83,7 +83,7 @@ Index: linux-3.1/arch/arm/mach-ixp4xx/include/mach/io.h
  #define	iowrite16_rep(p, v, c)		iowrite16_rep(p, v, c)
  static inline void iowrite16_rep(void __iomem *addr, const void *vaddr,
  				 u32 count)
-@@ -504,6 +547,20 @@ static inline void iowrite32(u32 value,
+@@ -481,6 +524,20 @@ static inline void iowrite32(u32 value,
  #endif
  }
  

@@ -13,8 +13,10 @@ issues are found, we have a fail-safe.
 Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
 [bwh: Remove unneeded binary sysctl bits]
 ---
---- a/kernel/fork.c
-+++ b/kernel/fork.c
+Index: tree-jessie/kernel/fork.c
+===================================================================
+--- tree-jessie.orig/kernel/fork.c
++++ tree-jessie/kernel/fork.c
 @@ -86,6 +86,11 @@
  
  #define CREATE_TRACE_POINTS
@@ -51,8 +53,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  	err = check_unshare_flags(unshare_flags);
  	if (err)
  		goto bad_unshare_out;
---- a/kernel/sysctl.c
-+++ b/kernel/sysctl.c
+Index: tree-jessie/kernel/sysctl.c
+===================================================================
+--- tree-jessie.orig/kernel/sysctl.c
++++ tree-jessie/kernel/sysctl.c
 @@ -103,6 +103,9 @@ extern int core_uses_pid;
  extern char core_pattern[];
  extern unsigned int core_pipe_limit;
@@ -79,8 +83,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  #endif
  #ifdef CONFIG_PROC_SYSCTL
  	{
---- a/kernel/user_namespace.c
-+++ b/kernel/user_namespace.c
+Index: tree-jessie/kernel/user_namespace.c
+===================================================================
+--- tree-jessie.orig/kernel/user_namespace.c
++++ tree-jessie/kernel/user_namespace.c
 @@ -23,6 +23,9 @@
  #include <linux/projid.h>
  #include <linux/fs_struct.h>
@@ -89,5 +95,5 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
 +int unprivileged_userns_clone;
 +
  static struct kmem_cache *user_ns_cachep __read_mostly;
- static DEFINE_MUTEX(userns_state_mutex);
  
+ static bool new_idmap_permitted(const struct file *file,

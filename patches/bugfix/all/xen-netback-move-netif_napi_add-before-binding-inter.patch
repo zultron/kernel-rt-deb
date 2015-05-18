@@ -28,11 +28,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/interface.c |    6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 10d832a..18cdc81 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -576,6 +576,9 @@ int xenvif_connect(struct xenvif_queue *queue, unsigned long tx_ring_ref,
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -576,6 +576,9 @@ int xenvif_connect(struct xenvif_queue *
  	init_waitqueue_head(&queue->dealloc_wq);
  	atomic_set(&queue->inflight_packets, 0);
  
@@ -42,7 +42,7 @@ index 10d832a..18cdc81 100644
  	if (tx_evtchn == rx_evtchn) {
  		/* feature-split-event-channels == 0 */
  		err = bind_interdomain_evtchn_to_irqhandler(
-@@ -629,9 +632,6 @@ int xenvif_connect(struct xenvif_queue *queue, unsigned long tx_ring_ref,
+@@ -629,9 +632,6 @@ int xenvif_connect(struct xenvif_queue *
  	wake_up_process(queue->task);
  	wake_up_process(queue->dealloc_task);
  
@@ -52,6 +52,3 @@ index 10d832a..18cdc81 100644
  	return 0;
  
  err_rx_unbind:
--- 
-1.7.10.4
-

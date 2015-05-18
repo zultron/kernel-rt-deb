@@ -20,9 +20,11 @@ having the range to be as linearly contiguous as possible.
 Signed-off-by: Lukas Czerner <lczerner@redhat.com>
 Signed-off-by: Theodore Ts'o <tytso@mit.edu>
 ---
---- a/fs/ext4/extents.c
-+++ b/fs/ext4/extents.c
-@@ -4795,12 +4795,6 @@ static long ext4_zero_range(struct file
+Index: tree-jessie/fs/ext4/extents.c
+===================================================================
+--- tree-jessie.orig/fs/ext4/extents.c
++++ tree-jessie/fs/ext4/extents.c
+@@ -4797,12 +4797,6 @@ static long ext4_zero_range(struct file
  	else
  		max_blocks -= lblk;
  
@@ -35,7 +37,7 @@ Signed-off-by: Theodore Ts'o <tytso@mit.edu>
  	mutex_lock(&inode->i_mutex);
  
  	/*
-@@ -4817,15 +4811,28 @@ static long ext4_zero_range(struct file
+@@ -4819,15 +4813,28 @@ static long ext4_zero_range(struct file
  		ret = inode_newsize_ok(inode, new_size);
  		if (ret)
  			goto out_mutex;

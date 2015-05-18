@@ -11,10 +11,10 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/Kconfig |    1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/powerpc/kvm/Kconfig b/arch/powerpc/kvm/Kconfig
-index d6a53b9..8aeeda1 100644
---- a/arch/powerpc/kvm/Kconfig
-+++ b/arch/powerpc/kvm/Kconfig
+Index: tree-jessie/arch/powerpc/kvm/Kconfig
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/Kconfig
++++ tree-jessie/arch/powerpc/kvm/Kconfig
 @@ -75,7 +75,6 @@ config KVM_BOOK3S_64
  config KVM_BOOK3S_64_HV
  	tristate "KVM support for POWER7 and PPC970 using hypervisor mode in host"
@@ -23,6 +23,3 @@ index d6a53b9..8aeeda1 100644
  	select KVM_BOOK3S_HV_POSSIBLE
  	select MMU_NOTIFIER
  	select CMA
--- 
-1.7.10.4
-

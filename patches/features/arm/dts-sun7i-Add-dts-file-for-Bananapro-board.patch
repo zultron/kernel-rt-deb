@@ -15,10 +15,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
 SUN4I_PINCTRL_PULL_UP with their corresponding values as these symbols are not
 yet defined in 3.16.]
 
-Index: linux-3.16.7-ckt7/arch/arm/boot/dts/Makefile
+Index: tree-jessie/arch/arm/boot/dts/Makefile
 ===================================================================
---- linux-3.16.7-ckt7.orig/arch/arm/boot/dts/Makefile
-+++ linux-3.16.7-ckt7/arch/arm/boot/dts/Makefile
+--- tree-jessie.orig/arch/arm/boot/dts/Makefile
++++ tree-jessie/arch/arm/boot/dts/Makefile
 @@ -377,6 +377,7 @@ dtb-$(CONFIG_MACH_SUN6I) += \
  	sun6i-a31-m9.dtb
  dtb-$(CONFIG_MACH_SUN7I) += \
@@ -27,10 +27,10 @@ Index: linux-3.16.7-ckt7/arch/arm/boot/dts/Makefile
  	sun7i-a20-cubieboard2.dtb \
  	sun7i-a20-cubietruck.dtb \
  	sun7i-a20-i12-tvbox.dtb \
-Index: linux-3.16.7-ckt7/arch/arm/boot/dts/sun7i-a20-bananapro.dts
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-bananapro.dts
 ===================================================================
 --- /dev/null
-+++ linux-3.16.7-ckt7/arch/arm/boot/dts/sun7i-a20-bananapro.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-bananapro.dts
 @@ -0,0 +1,262 @@
 +/*
 + * Copyright 2015 Hans de Goede <hdegoede@redhat.com>

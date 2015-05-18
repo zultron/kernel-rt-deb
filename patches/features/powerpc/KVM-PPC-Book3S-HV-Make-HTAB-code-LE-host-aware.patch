@@ -17,9 +17,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_rm_mmu.c      |  146 +++++++++++++++++--------------
  4 files changed, 164 insertions(+), 129 deletions(-)
 
---- a/arch/powerpc/include/asm/kvm_book3s.h
-+++ b/arch/powerpc/include/asm/kvm_book3s.h
-@@ -163,9 +163,9 @@
+Index: tree-jessie/arch/powerpc/include/asm/kvm_book3s.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/include/asm/kvm_book3s.h
++++ tree-jessie/arch/powerpc/include/asm/kvm_book3s.h
+@@ -163,9 +163,9 @@ extern pfn_t kvmppc_gfn_to_pfn(struct kv
  			bool *writable);
  extern void kvmppc_add_revmap_chain(struct kvm *kvm, struct revmap_entry *rev,
  			unsigned long *rmap, long pte_index, int realmode);
@@ -31,9 +33,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			unsigned long pte_index);
  extern void *kvmppc_pin_guest_page(struct kvm *kvm, unsigned long addr,
  			unsigned long *nb_ret);
---- a/arch/powerpc/include/asm/kvm_book3s_64.h
-+++ b/arch/powerpc/include/asm/kvm_book3s_64.h
-@@ -59,20 +59,29 @@
+Index: tree-jessie/arch/powerpc/include/asm/kvm_book3s_64.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/include/asm/kvm_book3s_64.h
++++ tree-jessie/arch/powerpc/include/asm/kvm_book3s_64.h
+@@ -59,20 +59,29 @@ extern unsigned long kvm_rma_pages;
  /* These bits are reserved in the guest view of the HPTE */
  #define HPTE_GR_RESERVED	HPTE_GR_MODIFIED
  
@@ -66,9 +70,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		     : "cc", "memory");
  	return old == 0;
  }
---- a/arch/powerpc/kvm/book3s_64_mmu_hv.c
-+++ b/arch/powerpc/kvm/book3s_64_mmu_hv.c
-@@ -450,7 +450,7 @@
+Index: tree-jessie/arch/powerpc/kvm/book3s_64_mmu_hv.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_64_mmu_hv.c
++++ tree-jessie/arch/powerpc/kvm/book3s_64_mmu_hv.c
+@@ -450,7 +450,7 @@ static int kvmppc_mmu_book3s_64_hv_xlate
  	unsigned long slb_v;
  	unsigned long pp, key;
  	unsigned long v, gr;
@@ -77,7 +83,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	int index;
  	int virtmode = vcpu->arch.shregs.msr & (data ? MSR_DR : MSR_IR);
  
-@@ -473,13 +473,13 @@
+@@ -473,13 +473,13 @@ static int kvmppc_mmu_book3s_64_hv_xlate
  		preempt_enable();
  		return -ENOENT;
  	}
@@ -94,7 +100,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	preempt_enable();
  
  	gpte->eaddr = eaddr;
-@@ -583,7 +583,8 @@
+@@ -583,7 +583,8 @@ int kvmppc_book3s_hv_page_fault(struct k
  				unsigned long ea, unsigned long dsisr)
  {
  	struct kvm *kvm = vcpu->kvm;
@@ -104,7 +110,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	unsigned long mmu_seq, psize, pte_size;
  	unsigned long gpa_base, gfn_base;
  	unsigned long gpa, gfn, hva, pfn;
-@@ -606,16 +607,16 @@
+@@ -606,16 +607,16 @@ int kvmppc_book3s_hv_page_fault(struct k
  	if (ea != vcpu->arch.pgfault_addr)
  		return RESUME_GUEST;
  	index = vcpu->arch.pgfault_index;
@@ -125,7 +131,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	preempt_enable();
  
  	if (hpte[0] != vcpu->arch.pgfault_hpte[0] ||
-@@ -731,8 +732,9 @@
+@@ -731,8 +732,9 @@ int kvmppc_book3s_hv_page_fault(struct k
  	preempt_disable();
  	while (!try_lock_hpte(hptep, HPTE_V_HVLOCK))
  		cpu_relax();
@@ -137,7 +143,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		/* HPTE has been changed under us; let the guest retry */
  		goto out_unlock;
  	hpte[0] = (hpte[0] & ~HPTE_V_ABSENT) | HPTE_V_VALID;
-@@ -752,20 +754,20 @@
+@@ -752,20 +754,20 @@ int kvmppc_book3s_hv_page_fault(struct k
  	rcbits = *rmap >> KVMPPC_RMAP_RC_SHIFT;
  	r &= rcbits | ~(HPTE_R_R | HPTE_R_C);
  
@@ -163,7 +169,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	asm volatile("ptesync" : : : "memory");
  	preempt_enable();
  	if (page && hpte_is_writable(r))
-@@ -784,7 +786,7 @@
+@@ -784,7 +786,7 @@ int kvmppc_book3s_hv_page_fault(struct k
  	return ret;
  
   out_unlock:
@@ -172,7 +178,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	preempt_enable();
  	goto out_put;
  }
-@@ -860,7 +862,7 @@
+@@ -860,7 +862,7 @@ static int kvm_unmap_rmapp(struct kvm *k
  {
  	struct revmap_entry *rev = kvm->arch.revmap;
  	unsigned long h, i, j;
@@ -181,7 +187,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	unsigned long ptel, psize, rcbits;
  
  	for (;;) {
-@@ -876,11 +878,11 @@
+@@ -876,11 +878,11 @@ static int kvm_unmap_rmapp(struct kvm *k
  		 * rmap chain lock.
  		 */
  		i = *rmapp & KVMPPC_RMAP_INDEX;
@@ -195,7 +201,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				cpu_relax();
  			continue;
  		}
-@@ -899,14 +901,14 @@
+@@ -899,14 +901,14 @@ static int kvm_unmap_rmapp(struct kvm *k
  
  		/* Now check and modify the HPTE */
  		ptel = rev[i].guest_rpte;
@@ -214,7 +220,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			*rmapp |= rcbits << KVMPPC_RMAP_RC_SHIFT;
  			if (rcbits & ~rev[i].guest_rpte) {
  				rev[i].guest_rpte = ptel | rcbits;
-@@ -914,7 +916,7 @@
+@@ -914,7 +916,7 @@ static int kvm_unmap_rmapp(struct kvm *k
  			}
  		}
  		unlock_rmap(rmapp);
@@ -223,7 +229,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	}
  	return 0;
  }
-@@ -961,7 +963,7 @@
+@@ -961,7 +963,7 @@ static int kvm_age_rmapp(struct kvm *kvm
  {
  	struct revmap_entry *rev = kvm->arch.revmap;
  	unsigned long head, i, j;
@@ -232,7 +238,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	int ret = 0;
  
   retry:
-@@ -977,23 +979,24 @@
+@@ -977,23 +979,24 @@ static int kvm_age_rmapp(struct kvm *kvm
  
  	i = head = *rmapp & KVMPPC_RMAP_INDEX;
  	do {
@@ -261,7 +267,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			kvmppc_clear_ref_hpte(kvm, hptep, i);
  			if (!(rev[i].guest_rpte & HPTE_R_R)) {
  				rev[i].guest_rpte |= HPTE_R_R;
-@@ -1001,7 +1004,7 @@
+@@ -1001,7 +1004,7 @@ static int kvm_age_rmapp(struct kvm *kvm
  			}
  			ret = 1;
  		}
@@ -270,7 +276,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	} while ((i = j) != head);
  
  	unlock_rmap(rmapp);
-@@ -1035,7 +1038,7 @@
+@@ -1035,7 +1038,7 @@ static int kvm_test_age_rmapp(struct kvm
  		do {
  			hp = (unsigned long *)(kvm->arch.hpt_virt + (i << 4));
  			j = rev[i].forw;
@@ -279,7 +285,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				goto out;
  		} while ((i = j) != head);
  	}
-@@ -1075,7 +1078,7 @@
+@@ -1075,7 +1078,7 @@ static int kvm_test_clear_dirty_npages(s
  	unsigned long head, i, j;
  	unsigned long n;
  	unsigned long v, r;
@@ -288,7 +294,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	int npages_dirty = 0;
  
   retry:
-@@ -1091,7 +1094,8 @@
+@@ -1091,7 +1094,8 @@ static int kvm_test_clear_dirty_npages(s
  
  	i = head = *rmapp & KVMPPC_RMAP_INDEX;
  	do {
@@ -298,7 +304,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		j = rev[i].forw;
  
  		/*
-@@ -1108,29 +1112,30 @@
+@@ -1108,29 +1112,30 @@ static int kvm_test_clear_dirty_npages(s
  		 * Otherwise we need to do the tlbie even if C==0 in
  		 * order to pick up any delayed writeback of C.
  		 */
@@ -337,7 +343,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			if (!(rev[i].guest_rpte & HPTE_R_C)) {
  				rev[i].guest_rpte |= HPTE_R_C;
  				note_hpte_modification(kvm, &rev[i]);
-@@ -1143,7 +1148,7 @@
+@@ -1143,7 +1148,7 @@ static int kvm_test_clear_dirty_npages(s
  		}
  		v &= ~(HPTE_V_ABSENT | HPTE_V_HVLOCK);
  		v |= HPTE_V_VALID;
@@ -346,7 +352,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	} while ((i = j) != head);
  
  	unlock_rmap(rmapp);
-@@ -1307,7 +1312,7 @@
+@@ -1307,7 +1312,7 @@ struct kvm_htab_ctx {
   * Returns 1 if this HPT entry has been modified or has pending
   * R/C bit changes.
   */
@@ -355,7 +361,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  {
  	unsigned long rcbits_unset;
  
-@@ -1316,13 +1321,14 @@
+@@ -1316,13 +1321,14 @@ static int hpte_dirty(struct revmap_entr
  
  	/* Also need to consider changes in reference and changed bits */
  	rcbits_unset = ~revp->guest_rpte & (HPTE_R_R | HPTE_R_C);
@@ -372,7 +378,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			unsigned long *hpte, struct revmap_entry *revp,
  			int want_valid, int first_pass)
  {
-@@ -1337,10 +1343,10 @@
+@@ -1337,10 +1343,10 @@ static long record_hpte(unsigned long fl
  		return 0;
  
  	valid = 0;
@@ -385,7 +391,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			valid = 0;
  	}
  	if (valid != want_valid)
-@@ -1352,7 +1358,7 @@
+@@ -1352,7 +1358,7 @@ static long record_hpte(unsigned long fl
  		preempt_disable();
  		while (!try_lock_hpte(hptp, HPTE_V_HVLOCK))
  			cpu_relax();
@@ -394,7 +400,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  
  		/* re-evaluate valid and dirty from synchronized HPTE value */
  		valid = !!(v & HPTE_V_VALID);
-@@ -1360,9 +1366,9 @@
+@@ -1360,9 +1366,9 @@ static long record_hpte(unsigned long fl
  
  		/* Harvest R and C into guest view if necessary */
  		rcbits_unset = ~revp->guest_rpte & (HPTE_R_R | HPTE_R_C);
@@ -407,7 +413,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			dirty = 1;
  		}
  
-@@ -1381,13 +1387,13 @@
+@@ -1381,13 +1387,13 @@ static long record_hpte(unsigned long fl
  			revp->guest_rpte = r;
  		}
  		asm volatile(PPC_RELEASE_BARRIER "" : : : "memory");
@@ -424,7 +430,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	return ok;
  }
  
-@@ -1397,7 +1403,7 @@
+@@ -1397,7 +1403,7 @@ static ssize_t kvm_htab_read(struct file
  	struct kvm_htab_ctx *ctx = file->private_data;
  	struct kvm *kvm = ctx->kvm;
  	struct kvm_get_htab_header hdr;
@@ -433,7 +439,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	struct revmap_entry *revp;
  	unsigned long i, nb, nw;
  	unsigned long __user *lbuf;
-@@ -1413,7 +1419,7 @@
+@@ -1413,7 +1419,7 @@ static ssize_t kvm_htab_read(struct file
  	flags = ctx->flags;
  
  	i = ctx->index;
@@ -442,7 +448,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	revp = kvm->arch.revmap + i;
  	lbuf = (unsigned long __user *)buf;
  
-@@ -1497,7 +1503,7 @@
+@@ -1497,7 +1503,7 @@ static ssize_t kvm_htab_write(struct fil
  	unsigned long i, j;
  	unsigned long v, r;
  	unsigned long __user *lbuf;
@@ -451,7 +457,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	unsigned long tmp[2];
  	ssize_t nb;
  	long int err, ret;
-@@ -1539,7 +1545,7 @@
+@@ -1539,7 +1545,7 @@ static ssize_t kvm_htab_write(struct fil
  		    i + hdr.n_valid + hdr.n_invalid > kvm->arch.hpt_npte)
  			break;
  
@@ -460,7 +466,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		lbuf = (unsigned long __user *)buf;
  		for (j = 0; j < hdr.n_valid; ++j) {
  			err = -EFAULT;
-@@ -1551,7 +1557,7 @@
+@@ -1551,7 +1557,7 @@ static ssize_t kvm_htab_write(struct fil
  			lbuf += 2;
  			nb += HPTE_SIZE;
  
@@ -469,7 +475,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				kvmppc_do_h_remove(kvm, 0, i, 0, tmp);
  			err = -EIO;
  			ret = kvmppc_virtmode_do_h_enter(kvm, H_EXACT, i, v, r,
-@@ -1577,7 +1583,7 @@
+@@ -1577,7 +1583,7 @@ static ssize_t kvm_htab_write(struct fil
  		}
  
  		for (j = 0; j < hdr.n_invalid; ++j) {
@@ -478,9 +484,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				kvmppc_do_h_remove(kvm, 0, i, 0, tmp);
  			++i;
  			hptp += 2;
---- a/arch/powerpc/kvm/book3s_hv_rm_mmu.c
-+++ b/arch/powerpc/kvm/book3s_hv_rm_mmu.c
-@@ -154,10 +154,10 @@
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rm_mmu.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rm_mmu.c
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rm_mmu.c
+@@ -154,10 +154,10 @@ static pte_t lookup_linux_pte_and_update
  	return kvmppc_read_update_linux_pte(ptep, writing, hugepage_shift);
  }
  
@@ -493,7 +501,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  }
  
  long kvmppc_do_h_enter(struct kvm *kvm, unsigned long flags,
-@@ -166,7 +166,7 @@
+@@ -166,7 +166,7 @@ long kvmppc_do_h_enter(struct kvm *kvm,
  {
  	unsigned long i, pa, gpa, gfn, psize;
  	unsigned long slot_fn, hva;
@@ -502,7 +510,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	struct revmap_entry *rev;
  	unsigned long g_ptel;
  	struct kvm_memory_slot *memslot;
-@@ -275,9 +275,9 @@
+@@ -275,9 +275,9 @@ long kvmppc_do_h_enter(struct kvm *kvm,
  		return H_PARAMETER;
  	if (likely((flags & H_EXACT) == 0)) {
  		pte_index &= ~7UL;
@@ -514,7 +522,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			    try_lock_hpte(hpte, HPTE_V_HVLOCK | HPTE_V_VALID |
  					  HPTE_V_ABSENT))
  				break;
-@@ -292,11 +292,13 @@
+@@ -292,11 +292,13 @@ long kvmppc_do_h_enter(struct kvm *kvm,
  			 */
  			hpte -= 16;
  			for (i = 0; i < 8; ++i) {
@@ -530,7 +538,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				hpte += 2;
  			}
  			if (i == 8)
-@@ -304,14 +306,17 @@
+@@ -304,14 +306,17 @@ long kvmppc_do_h_enter(struct kvm *kvm,
  		}
  		pte_index += i;
  	} else {
@@ -551,7 +559,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				return H_PTEG_FULL;
  			}
  		}
-@@ -347,11 +352,11 @@
+@@ -347,11 +352,11 @@ long kvmppc_do_h_enter(struct kvm *kvm,
  		}
  	}
  
@@ -565,7 +573,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	asm volatile("ptesync" : : : "memory");
  
  	*pte_idx_ret = pte_index;
-@@ -468,30 +473,35 @@
+@@ -468,30 +473,35 @@ long kvmppc_do_h_remove(struct kvm *kvm,
  			unsigned long pte_index, unsigned long avpn,
  			unsigned long *hpret)
  {
@@ -611,7 +619,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	}
  	r = rev->guest_rpte & ~HPTE_GR_RESERVED;
  	note_hpte_modification(kvm, rev);
-@@ -514,12 +524,14 @@
+@@ -514,12 +524,14 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  {
  	struct kvm *kvm = vcpu->kvm;
  	unsigned long *args = &vcpu->arch.gpr[4];
@@ -627,7 +635,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  
  	global = global_invalidates(kvm, 0);
  	for (i = 0; i < 4 && ret == H_SUCCESS; ) {
-@@ -542,8 +554,7 @@
+@@ -542,8 +554,7 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  				ret = H_PARAMETER;
  				break;
  			}
@@ -637,7 +645,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			/* to avoid deadlock, don't spin except for first */
  			if (!try_lock_hpte(hp, HPTE_V_HVLOCK)) {
  				if (n)
-@@ -552,23 +563,24 @@
+@@ -552,23 +563,24 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  					cpu_relax();
  			}
  			found = 0;
@@ -666,7 +674,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				args[j] = ((0x90 | flags) << 56) + pte_index;
  				continue;
  			}
-@@ -577,7 +589,7 @@
+@@ -577,7 +589,7 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  			rev = real_vmalloc_addr(&kvm->arch.revmap[pte_index]);
  			note_hpte_modification(kvm, rev);
  
@@ -675,7 +683,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  				/* insert R and C bits from PTE */
  				rcbits = rev->guest_rpte & (HPTE_R_R|HPTE_R_C);
  				args[j] |= rcbits << (56 - 5);
-@@ -585,8 +597,10 @@
+@@ -585,8 +597,10 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  				continue;
  			}
  
@@ -688,7 +696,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			indexes[n] = j;
  			hptes[n] = hp;
  			revs[n] = rev;
-@@ -605,7 +619,8 @@
+@@ -605,7 +619,8 @@ long kvmppc_h_bulk_remove(struct kvm_vcp
  			pte_index = args[j] & ((1ul << 56) - 1);
  			hp = hptes[k];
  			rev = revs[k];
@@ -698,7 +706,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  			rcbits = rev->guest_rpte & (HPTE_R_R|HPTE_R_C);
  			args[j] |= rcbits << (56 - 5);
  			hp[0] = 0;
-@@ -620,23 +635,25 @@
+@@ -620,23 +635,25 @@ long kvmppc_h_protect(struct kvm_vcpu *v
  		      unsigned long va)
  {
  	struct kvm *kvm = vcpu->kvm;
@@ -730,7 +738,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	bits = (flags << 55) & HPTE_R_PP0;
  	bits |= (flags << 48) & HPTE_R_KEY_HI;
  	bits |= flags & (HPTE_R_PP | HPTE_R_N | HPTE_R_KEY_LO);
-@@ -650,12 +667,12 @@
+@@ -650,12 +667,12 @@ long kvmppc_h_protect(struct kvm_vcpu *v
  		rev->guest_rpte = r;
  		note_hpte_modification(kvm, rev);
  	}
@@ -745,7 +753,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		do_tlbies(kvm, &rb, 1, global_invalidates(kvm, flags), true);
  		/*
  		 * If the host has this page as readonly but the guest
-@@ -681,9 +698,9 @@
+@@ -681,9 +698,9 @@ long kvmppc_h_protect(struct kvm_vcpu *v
  			}
  		}
  	}
@@ -757,7 +765,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	asm volatile("ptesync" : : : "memory");
  	return H_SUCCESS;
  }
-@@ -692,7 +709,8 @@
+@@ -692,7 +709,8 @@ long kvmppc_h_read(struct kvm_vcpu *vcpu
  		   unsigned long pte_index)
  {
  	struct kvm *kvm = vcpu->kvm;
@@ -767,7 +775,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	int i, n = 1;
  	struct revmap_entry *rev = NULL;
  
-@@ -704,9 +722,9 @@
+@@ -704,9 +722,9 @@ long kvmppc_h_read(struct kvm_vcpu *vcpu
  	}
  	rev = real_vmalloc_addr(&kvm->arch.revmap[pte_index]);
  	for (i = 0; i < n; ++i, ++pte_index) {
@@ -780,7 +788,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		if (v & HPTE_V_ABSENT) {
  			v &= ~HPTE_V_ABSENT;
  			v |= HPTE_V_VALID;
-@@ -721,25 +739,27 @@
+@@ -721,25 +739,27 @@ long kvmppc_h_read(struct kvm_vcpu *vcpu
  	return H_SUCCESS;
  }
  
@@ -814,7 +822,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	/* modify only the second-last byte, which contains the ref bit */
  	*((char *)hptep + 14) = rbyte;
  	do_tlbies(kvm, &rb, 1, 1, false);
-@@ -765,7 +785,7 @@
+@@ -765,7 +785,7 @@ long kvmppc_hv_find_lock_hpte(struct kvm
  	unsigned long somask;
  	unsigned long vsid, hash;
  	unsigned long avpn;
@@ -823,7 +831,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	unsigned long mask, val;
  	unsigned long v, r;
  
-@@ -797,11 +817,11 @@
+@@ -797,11 +817,11 @@ long kvmppc_hv_find_lock_hpte(struct kvm
  	val |= avpn;
  
  	for (;;) {
@@ -837,7 +845,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  
  			/* Check valid/absent, hash, segment size and AVPN */
  			if (!(v & valid) || (v & mask) != val)
-@@ -810,8 +830,8 @@
+@@ -810,8 +830,8 @@ long kvmppc_hv_find_lock_hpte(struct kvm
  			/* Lock the PTE and read it under the lock */
  			while (!try_lock_hpte(&hpte[i], HPTE_V_HVLOCK))
  				cpu_relax();
@@ -848,7 +856,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  
  			/*
  			 * Check the HPTE again, including base page size
-@@ -822,7 +842,7 @@
+@@ -822,7 +842,7 @@ long kvmppc_hv_find_lock_hpte(struct kvm
  				return (hash << 3) + (i >> 1);
  
  			/* Unlock and move on */
@@ -857,7 +865,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  		}
  
  		if (val & HPTE_V_SECONDARY)
-@@ -851,7 +871,7 @@
+@@ -851,7 +871,7 @@ long kvmppc_hpte_hv_fault(struct kvm_vcp
  	struct kvm *kvm = vcpu->kvm;
  	long int index;
  	unsigned long v, r, gr;
@@ -866,7 +874,7 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  	unsigned long valid;
  	struct revmap_entry *rev;
  	unsigned long pp, key;
-@@ -867,9 +887,9 @@
+@@ -867,9 +887,9 @@ long kvmppc_hpte_hv_fault(struct kvm_vcp
  			return status;	/* there really was no HPTE */
  		return 0;		/* for prot fault, HPTE disappeared */
  	}

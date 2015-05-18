@@ -42,11 +42,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/xgene_enet_main.h | 3 +++
  2 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index cc3f955..1236696 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-@@ -639,9 +639,9 @@ static int xgene_enet_create_desc_rings(struct net_device *ndev)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+@@ -639,9 +639,9 @@ static int xgene_enet_create_desc_rings(
  	struct device *dev = ndev_to_dev(ndev);
  	struct xgene_enet_desc_ring *rx_ring, *tx_ring, *cp_ring;
  	struct xgene_enet_desc_ring *buf_pool = NULL;
@@ -59,10 +59,10 @@ index cc3f955..1236696 100644
  	int ret;
  
  	/* allocate rx descriptor ring */
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-index dba647d..f9958fa 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 @@ -38,6 +38,9 @@
  #define SKB_BUFFER_SIZE		(XGENE_ENET_MAX_MTU - NET_IP_ALIGN)
  #define NUM_PKT_BUF	64
@@ -73,6 +73,3 @@ index dba647d..f9958fa 100644
  
  #define PHY_POLL_LINK_ON	(10 * HZ)
  #define PHY_POLL_LINK_OFF	(PHY_POLL_LINK_ON / 5)
--- 
-2.1.0
-

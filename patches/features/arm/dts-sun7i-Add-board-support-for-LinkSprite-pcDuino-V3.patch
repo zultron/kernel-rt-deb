@@ -16,9 +16,11 @@ Signed-off-by: Zoltan HERPAI <wigyori@uid0.hu>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
 
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -381,7 +381,8 @@
+Index: tree-jessie/arch/arm/boot/dts/Makefile
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/Makefile
++++ tree-jessie/arch/arm/boot/dts/Makefile
+@@ -381,7 +381,8 @@ dtb-$(CONFIG_MACH_SUN7I) += \
  	sun7i-a20-cubietruck.dtb \
  	sun7i-a20-i12-tvbox.dtb \
  	sun7i-a20-olinuxino-lime.dtb \
@@ -28,8 +30,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  dtb-$(CONFIG_ARCH_TEGRA) += tegra20-harmony.dtb \
  	tegra20-iris-512.dtb \
  	tegra20-medcom-wide.dtb \
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
+===================================================================
 --- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-pcduino3.dts
 @@ -0,0 +1,173 @@
 +/*
 + * Copyright 2014 Zoltan HERPAI

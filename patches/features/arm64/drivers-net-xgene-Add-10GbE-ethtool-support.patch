@@ -11,11 +11,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  .../net/ethernet/apm/xgene/xgene_enet_ethtool.c    | 28 +++++++++++++++++-----
  1 file changed, 22 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-index 63f2aa5..c1c997b 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
-@@ -59,10 +59,22 @@ static int xgene_get_settings(struct net_device *ndev, struct ethtool_cmd *cmd)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_ethtool.c
+@@ -59,10 +59,22 @@ static int xgene_get_settings(struct net
  	struct xgene_enet_pdata *pdata = netdev_priv(ndev);
  	struct phy_device *phydev = pdata->phy_dev;
  
@@ -24,8 +24,7 @@ index 63f2aa5..c1c997b 100644
 +	if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII) {
 +		if (phydev == NULL)
 +			return -ENODEV;
- 
--	return phy_ethtool_gset(phydev, cmd);
++
 +		return phy_ethtool_gset(phydev, cmd);
 +	}
 +
@@ -36,12 +35,13 @@ index 63f2aa5..c1c997b 100644
 +	cmd->port = PORT_FIBRE;
 +	cmd->transceiver = XCVR_EXTERNAL;
 +	cmd->autoneg = AUTONEG_DISABLE;
-+
+ 
+-	return phy_ethtool_gset(phydev, cmd);
 +	return 0;
  }
  
  static int xgene_set_settings(struct net_device *ndev, struct ethtool_cmd *cmd)
-@@ -70,10 +82,14 @@ static int xgene_set_settings(struct net_device *ndev, struct ethtool_cmd *cmd)
+@@ -70,10 +82,14 @@ static int xgene_set_settings(struct net
  	struct xgene_enet_pdata *pdata = netdev_priv(ndev);
  	struct phy_device *phydev = pdata->phy_dev;
  
@@ -50,15 +50,12 @@ index 63f2aa5..c1c997b 100644
 +	if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII) {
 +		if (phydev == NULL)
 +			return -ENODEV;
-+
-+		return phy_ethtool_sset(phydev, cmd);
-+	}
  
 -	return phy_ethtool_sset(phydev, cmd);
++		return phy_ethtool_sset(phydev, cmd);
++	}
++
 +	return -EINVAL;
  }
  
  static void xgene_get_strings(struct net_device *ndev, u32 stringset, u8 *data)
--- 
-2.1.0
-

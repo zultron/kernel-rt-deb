@@ -23,10 +23,10 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/kvm_main.c        |   2 +
  4 files changed, 69 insertions(+), 65 deletions(-)
 
-diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
-index 8593d2e..a4c33b3 100644
---- a/include/linux/kvm_host.h
-+++ b/include/linux/kvm_host.h
+Index: tree-jessie/include/linux/kvm_host.h
+===================================================================
+--- tree-jessie.orig/include/linux/kvm_host.h
++++ tree-jessie/include/linux/kvm_host.h
 @@ -388,6 +388,8 @@ struct kvm {
  	 */
  	struct kvm_irq_routing_table __rcu *irq_routing;
@@ -36,10 +36,10 @@ index 8593d2e..a4c33b3 100644
  	struct hlist_head irq_ack_notifier_list;
  #endif
  
-diff --git a/include/trace/events/kvm.h b/include/trace/events/kvm.h
-index 131a0bd..908925a 100644
---- a/include/trace/events/kvm.h
-+++ b/include/trace/events/kvm.h
+Index: tree-jessie/include/trace/events/kvm.h
+===================================================================
+--- tree-jessie.orig/include/trace/events/kvm.h
++++ tree-jessie/include/trace/events/kvm.h
 @@ -37,7 +37,7 @@ TRACE_EVENT(kvm_userspace_exit,
  		  __entry->errno < 0 ? -__entry->errno : __entry->reason)
  );
@@ -76,10 +76,10 @@ index 131a0bd..908925a 100644
  
  
  
-diff --git a/virt/kvm/eventfd.c b/virt/kvm/eventfd.c
-index f5f6154..3c5981c 100644
---- a/virt/kvm/eventfd.c
-+++ b/virt/kvm/eventfd.c
+Index: tree-jessie/virt/kvm/eventfd.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/eventfd.c
++++ tree-jessie/virt/kvm/eventfd.c
 @@ -445,6 +445,67 @@ out:
  	kfree(irqfd);
  	return ret;
@@ -148,7 +148,7 @@ index f5f6154..3c5981c 100644
  #endif
  
  void
-@@ -867,64 +928,3 @@ kvm_ioeventfd(struct kvm *kvm, struct kvm_ioeventfd *args)
+@@ -867,64 +928,3 @@ kvm_ioeventfd(struct kvm *kvm, struct kv
  
  	return kvm_assign_ioeventfd(kvm, args);
  }
@@ -213,11 +213,11 @@ index f5f6154..3c5981c 100644
 -	kvm_vcpu_request_scan_ioapic(kvm);
 -#endif
 -}
-diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-index a69a623..33712fb 100644
---- a/virt/kvm/kvm_main.c
-+++ b/virt/kvm/kvm_main.c
-@@ -465,6 +465,8 @@ static struct kvm *kvm_create_vm(unsigned long type)
+Index: tree-jessie/virt/kvm/kvm_main.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/kvm_main.c
++++ tree-jessie/virt/kvm/kvm_main.c
+@@ -464,6 +464,8 @@ static struct kvm *kvm_create_vm(unsigne
  
  #ifdef CONFIG_HAVE_KVM_IRQCHIP
  	INIT_HLIST_HEAD(&kvm->mask_notifier_list);
@@ -226,6 +226,3 @@ index a69a623..33712fb 100644
  	INIT_HLIST_HEAD(&kvm->irq_ack_notifier_list);
  #endif
  
--- 
-2.0.0
-

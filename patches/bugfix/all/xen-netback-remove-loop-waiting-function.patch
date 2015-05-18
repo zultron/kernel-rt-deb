@@ -17,11 +17,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/interface.c |   29 -----------------------------
  1 file changed, 29 deletions(-)
 
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 428c57c..10d832a 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -660,25 +660,6 @@ void xenvif_carrier_off(struct xenvif *vif)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -660,25 +660,6 @@ void xenvif_carrier_off(struct xenvif *v
  	rtnl_unlock();
  }
  
@@ -69,6 +69,3 @@ index 428c57c..10d832a 100644
  		xenvif_deinit_queue(queue);
  	}
  
--- 
-1.7.10.4
-

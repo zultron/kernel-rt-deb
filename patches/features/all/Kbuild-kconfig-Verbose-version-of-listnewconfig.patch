@@ -18,8 +18,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  scripts/kconfig/lkc_proto.h |    1 +
  4 files changed, 44 insertions(+), 10 deletions(-)
 
---- a/scripts/kconfig/conf.c
-+++ b/scripts/kconfig/conf.c
+Index: tree-jessie/scripts/kconfig/conf.c
+===================================================================
+--- tree-jessie.orig/scripts/kconfig/conf.c
++++ tree-jessie/scripts/kconfig/conf.c
 @@ -368,7 +368,6 @@ static void conf(struct menu *menu)
  		switch (prop->type) {
  		case P_MENU:
@@ -103,8 +105,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  		break;
  	}
  
---- a/scripts/kconfig/confdata.c
-+++ b/scripts/kconfig/confdata.c
+Index: tree-jessie/scripts/kconfig/confdata.c
+===================================================================
+--- tree-jessie.orig/scripts/kconfig/confdata.c
++++ tree-jessie/scripts/kconfig/confdata.c
 @@ -732,6 +732,14 @@ next_menu:
  	return 0;
  }
@@ -132,8 +136,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  			continue;
  		switch (sym_get_type(sym)) {
  		case S_BOOLEAN:
---- a/scripts/kconfig/expr.h
-+++ b/scripts/kconfig/expr.h
+Index: tree-jessie/scripts/kconfig/expr.h
+===================================================================
+--- tree-jessie.orig/scripts/kconfig/expr.h
++++ tree-jessie/scripts/kconfig/expr.h
 @@ -112,6 +112,8 @@ struct symbol {
  /* Set symbol to y if allnoconfig; used for symbols that hide others */
  #define SYMBOL_ALLNOCONFIG_Y 0x200000
@@ -143,8 +149,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  #define SYMBOL_MAXLENGTH	256
  #define SYMBOL_HASHSIZE		9973
  
---- a/scripts/kconfig/lkc_proto.h
-+++ b/scripts/kconfig/lkc_proto.h
+Index: tree-jessie/scripts/kconfig/lkc_proto.h
+===================================================================
+--- tree-jessie.orig/scripts/kconfig/lkc_proto.h
++++ tree-jessie/scripts/kconfig/lkc_proto.h
 @@ -7,6 +7,7 @@ P(conf_read_simple,int,(const char *name
  P(conf_write_defconfig,int,(const char *name));
  P(conf_write,int,(const char *name));

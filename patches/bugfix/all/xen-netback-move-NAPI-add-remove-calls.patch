@@ -19,11 +19,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/interface.c |    9 +++++----
  1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 04696fc..23702ea 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -524,9 +524,6 @@ int xenvif_init_queue(struct xenvif_queue *queue)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -524,9 +524,6 @@ int xenvif_init_queue(struct xenvif_queu
  
  	init_timer(&queue->rx_stalled);
  
@@ -33,7 +33,7 @@ index 04696fc..23702ea 100644
  	return 0;
  }
  
-@@ -614,6 +611,9 @@ int xenvif_connect(struct xenvif_queue *queue, unsigned long tx_ring_ref,
+@@ -614,6 +611,9 @@ int xenvif_connect(struct xenvif_queue *
  	wake_up_process(queue->task);
  	wake_up_process(queue->dealloc_task);
  
@@ -43,7 +43,7 @@ index 04696fc..23702ea 100644
  	return 0;
  
  err_rx_unbind:
-@@ -672,6 +672,8 @@ void xenvif_disconnect(struct xenvif *vif)
+@@ -672,6 +672,8 @@ void xenvif_disconnect(struct xenvif *vi
  	for (queue_index = 0; queue_index < num_queues; ++queue_index) {
  		queue = &vif->queues[queue_index];
  
@@ -52,7 +52,7 @@ index 04696fc..23702ea 100644
  		if (queue->task) {
  			del_timer_sync(&queue->rx_stalled);
  			kthread_stop(queue->task);
-@@ -704,7 +706,6 @@ void xenvif_disconnect(struct xenvif *vif)
+@@ -704,7 +706,6 @@ void xenvif_disconnect(struct xenvif *vi
  void xenvif_deinit_queue(struct xenvif_queue *queue)
  {
  	free_xenballooned_pages(MAX_PENDING_REQS, queue->mmap_pages);
@@ -60,6 +60,3 @@ index 04696fc..23702ea 100644
  }
  
  void xenvif_free(struct xenvif *vif)
--- 
-1.7.10.4
-

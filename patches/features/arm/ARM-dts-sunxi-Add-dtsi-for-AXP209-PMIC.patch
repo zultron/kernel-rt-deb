@@ -15,11 +15,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  1 file changed, 97 insertions(+)
  create mode 100644 arch/arm/boot/dts/axp209.dtsi
 
-diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
-new file mode 100644
-index 0000000..c20cf53
+Index: tree-jessie/arch/arm/boot/dts/axp209.dtsi
+===================================================================
 --- /dev/null
-+++ b/arch/arm/boot/dts/axp209.dtsi
++++ tree-jessie/arch/arm/boot/dts/axp209.dtsi
 @@ -0,0 +1,97 @@
 +/*
 + * Copyright 2015 Chen-Yu Tsai
@@ -118,6 +117,3 @@ index 0000000..c20cf53
 +		};
 +	};
 +};
--- 
-2.1.4
-

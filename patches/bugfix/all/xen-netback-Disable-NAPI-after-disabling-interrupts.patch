@@ -17,11 +17,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/interface.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 21d8db8..ddcb757 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -235,10 +235,10 @@ static void xenvif_down(struct xenvif *vif)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -235,10 +235,10 @@ static void xenvif_down(struct xenvif *v
  
  	for (queue_index = 0; queue_index < num_queues; ++queue_index) {
  		queue = &vif->queues[queue_index];
@@ -33,6 +33,3 @@ index 21d8db8..ddcb757 100644
  		del_timer_sync(&queue->credit_timeout);
  	}
  }
--- 
-1.7.10.4
-

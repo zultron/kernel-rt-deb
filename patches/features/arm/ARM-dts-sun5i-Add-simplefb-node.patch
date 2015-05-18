@@ -12,10 +12,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun5i-a10s.dtsi | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun5i-a10s.dtsi b/arch/arm/boot/dts/sun5i-a10s.dtsi
-index b64f705..3b0ea26 100644
---- a/arch/arm/boot/dts/sun5i-a10s.dtsi
-+++ b/arch/arm/boot/dts/sun5i-a10s.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun5i-a10s.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun5i-a10s.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun5i-a10s.dtsi
 @@ -24,6 +24,18 @@
  		serial3 = &uart3;
  	};
@@ -35,6 +35,3 @@ index b64f705..3b0ea26 100644
  	cpus {
  		cpu@0 {
  			compatible = "arm,cortex-a8";
--- 
-2.1.4
-

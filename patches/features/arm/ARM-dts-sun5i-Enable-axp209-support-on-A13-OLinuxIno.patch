@@ -12,10 +12,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun5i-a13-olinuxino.dts | 9 +++++++++
  1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun5i-a13-olinuxino.dts b/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
-index 429994e..59261aa 100644
---- a/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
-+++ b/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
+Index: tree-jessie/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
++++ tree-jessie/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
 @@ -76,6 +76,15 @@
  			pinctrl-names = "default";
  			pinctrl-0 = <&i2c0_pins_a>;
@@ -32,6 +32,3 @@ index 429994e..59261aa 100644
  		};
  
  		i2c1: i2c@01c2b000 {
--- 
-2.1.4
-

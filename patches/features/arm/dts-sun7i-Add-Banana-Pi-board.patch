@@ -17,9 +17,11 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  2 files changed, 215 insertions(+)
  create mode 100644 arch/arm/boot/dts/sun7i-a20-bananapi.dts
 
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -376,6 +376,7 @@
+Index: tree-jessie/arch/arm/boot/dts/Makefile
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/Makefile
++++ tree-jessie/arch/arm/boot/dts/Makefile
+@@ -376,6 +376,7 @@ dtb-$(CONFIG_MACH_SUN6I) += \
  	sun6i-a31-colombus.dtb \
  	sun6i-a31-m9.dtb
  dtb-$(CONFIG_MACH_SUN7I) += \
@@ -27,8 +29,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  	sun7i-a20-cubieboard2.dtb \
  	sun7i-a20-cubietruck.dtb \
  	sun7i-a20-i12-tvbox.dtb \
+Index: tree-jessie/arch/arm/boot/dts/sun7i-a20-bananapi.dts
+===================================================================
 --- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
++++ tree-jessie/arch/arm/boot/dts/sun7i-a20-bananapi.dts
 @@ -0,0 +1,214 @@
 +/*
 + * Copyright 2014 Hans de Goede <hdegoede@redhat.com>

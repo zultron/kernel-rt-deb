@@ -21,11 +21,11 @@ Signed-off-by: Grant Likely <grant.likely@linaro.org>
  drivers/of/base.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index d8574ad..bcfd08c 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1986,7 +1986,7 @@ bool of_console_check(struct device_node *dn, char *name, int index)
+Index: tree-jessie/drivers/of/base.c
+===================================================================
+--- tree-jessie.orig/drivers/of/base.c
++++ tree-jessie/drivers/of/base.c
+@@ -2194,7 +2194,7 @@ bool of_console_check(struct device_node
  {
  	if (!dn || dn != of_stdout || console_set_on_cmdline)
  		return false;
@@ -34,6 +34,3 @@ index d8574ad..bcfd08c 100644
  }
  EXPORT_SYMBOL_GPL(of_console_check);
  
--- 
-2.1.0
-

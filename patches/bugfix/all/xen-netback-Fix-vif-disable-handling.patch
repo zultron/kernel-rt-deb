@@ -19,10 +19,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/netback.c |   10 ++++++++--
  1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/xen-netback/netback.c b/drivers/net/xen-netback/netback.c
-index aa20933..4734472 100644
---- a/drivers/net/xen-netback/netback.c
-+++ b/drivers/net/xen-netback/netback.c
+Index: tree-jessie/drivers/net/xen-netback/netback.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/netback.c
++++ tree-jessie/drivers/net/xen-netback/netback.c
 @@ -2025,9 +2025,15 @@ int xenvif_kthread_guest_rx(void *data)
  		 * context so we defer it here, if this thread is
  		 * associated with queue 0.
@@ -41,6 +41,3 @@ index aa20933..4734472 100644
  						     &queue->status))) {
  			xenvif_rx_purge_event(queue);
  		} else if (!netif_carrier_ok(queue->vif->dev)) {
--- 
-1.7.10.4
-

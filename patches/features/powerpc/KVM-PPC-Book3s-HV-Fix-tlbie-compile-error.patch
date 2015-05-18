@@ -16,11 +16,11 @@ Acked-by: Paul Mackerras <paulus@samba.org>
  arch/powerpc/include/asm/kvm_book3s_64.h |    8 ++------
  1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/arch/powerpc/include/asm/kvm_book3s_64.h b/arch/powerpc/include/asm/kvm_book3s_64.h
-index fddb72b..c7871f3 100644
---- a/arch/powerpc/include/asm/kvm_book3s_64.h
-+++ b/arch/powerpc/include/asm/kvm_book3s_64.h
-@@ -110,16 +110,12 @@ static inline int __hpte_actual_psize(unsigned int lp, int psize)
+Index: tree-jessie/arch/powerpc/include/asm/kvm_book3s_64.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/include/asm/kvm_book3s_64.h
++++ tree-jessie/arch/powerpc/include/asm/kvm_book3s_64.h
+@@ -110,16 +110,12 @@ static inline int __hpte_actual_psize(un
  static inline unsigned long compute_tlbie_rb(unsigned long v, unsigned long r,
  					     unsigned long pte_index)
  {
@@ -39,6 +39,3 @@ index fddb72b..c7871f3 100644
  		for (b_psize = 0; b_psize < MMU_PAGE_COUNT; b_psize++) {
  
  			/* valid entries have a shift value */
--- 
-1.7.10.4
-

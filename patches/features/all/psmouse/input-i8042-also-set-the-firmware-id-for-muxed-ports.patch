@@ -11,9 +11,11 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  drivers/input/serio/i8042.c | 2 ++
  1 file changed, 2 insertions(+)
 
---- a/drivers/input/serio/i8042.c
-+++ b/drivers/input/serio/i8042.c
-@@ -1268,6 +1268,8 @@ static int __init i8042_create_aux_port(
+Index: tree-jessie/drivers/input/serio/i8042.c
+===================================================================
+--- tree-jessie.orig/drivers/input/serio/i8042.c
++++ tree-jessie/drivers/input/serio/i8042.c
+@@ -1254,6 +1254,8 @@ static int __init i8042_create_aux_port(
  	} else {
  		snprintf(serio->name, sizeof(serio->name), "i8042 AUX%d port", idx);
  		snprintf(serio->phys, sizeof(serio->phys), I8042_MUX_PHYS_DESC, idx + 1);

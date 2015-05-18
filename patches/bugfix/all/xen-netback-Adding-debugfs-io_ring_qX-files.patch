@@ -25,10 +25,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/xenbus.c    |  178 ++++++++++++++++++++++++++++++++++-
  4 files changed, 200 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/xen-netback/common.h b/drivers/net/xen-netback/common.h
-index 2532ce8..28c9822 100644
---- a/drivers/net/xen-netback/common.h
-+++ b/drivers/net/xen-netback/common.h
+Index: tree-jessie/drivers/net/xen-netback/common.h
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/common.h
++++ tree-jessie/drivers/net/xen-netback/common.h
 @@ -44,6 +44,7 @@
  #include <xen/interface/grant_table.h>
  #include <xen/grant_table.h>
@@ -48,7 +48,7 @@ index 2532ce8..28c9822 100644
  	/* Miscellaneous private stuff. */
  	struct net_device *dev;
  };
-@@ -297,10 +302,16 @@ static inline pending_ring_idx_t nr_pending_reqs(struct xenvif_queue *queue)
+@@ -297,10 +302,16 @@ static inline pending_ring_idx_t nr_pend
  /* Callback from stack when TX packet can be released */
  void xenvif_zerocopy_callback(struct ubuf_info *ubuf, bool zerocopy_success);
  
@@ -65,11 +65,11 @@ index 2532ce8..28c9822 100644
 +#endif
 +
  #endif /* __XEN_NETBACK__COMMON_H__ */
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 9e97c7c..ef75b45 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
-@@ -102,7 +102,7 @@ static irqreturn_t xenvif_rx_interrupt(int irq, void *dev_id)
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
+@@ -102,7 +102,7 @@ static irqreturn_t xenvif_rx_interrupt(i
  	return IRQ_HANDLED;
  }
  
@@ -78,10 +78,10 @@ index 9e97c7c..ef75b45 100644
  {
  	xenvif_tx_interrupt(irq, dev_id);
  	xenvif_rx_interrupt(irq, dev_id);
-diff --git a/drivers/net/xen-netback/netback.c b/drivers/net/xen-netback/netback.c
-index c65b636..769e553 100644
---- a/drivers/net/xen-netback/netback.c
-+++ b/drivers/net/xen-netback/netback.c
+Index: tree-jessie/drivers/net/xen-netback/netback.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/netback.c
++++ tree-jessie/drivers/net/xen-netback/netback.c
 @@ -2027,6 +2027,13 @@ static int __init netback_init(void)
  
  	rx_drain_timeout_jiffies = msecs_to_jiffies(rx_drain_timeout_msecs);
@@ -107,11 +107,11 @@ index c65b636..769e553 100644
  	xenvif_xenbus_fini();
  }
  module_exit(netback_fini);
-diff --git a/drivers/net/xen-netback/xenbus.c b/drivers/net/xen-netback/xenbus.c
-index 3d85acd..580517d 100644
---- a/drivers/net/xen-netback/xenbus.c
-+++ b/drivers/net/xen-netback/xenbus.c
-@@ -44,6 +44,175 @@ static void unregister_hotplug_status_watch(struct backend_info *be);
+Index: tree-jessie/drivers/net/xen-netback/xenbus.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/xenbus.c
++++ tree-jessie/drivers/net/xen-netback/xenbus.c
+@@ -44,6 +44,175 @@ static void unregister_hotplug_status_wa
  static void set_backend_state(struct backend_info *be,
  			      enum xenbus_state state);
  
@@ -287,7 +287,7 @@ index 3d85acd..580517d 100644
  static int netback_remove(struct xenbus_device *dev)
  {
  	struct backend_info *be = dev_get_drvdata(&dev->dev);
-@@ -246,8 +415,12 @@ static void backend_create_xenvif(struct backend_info *be)
+@@ -246,8 +415,12 @@ static void backend_create_xenvif(struct
  
  static void backend_disconnect(struct backend_info *be)
  {
@@ -301,7 +301,7 @@ index 3d85acd..580517d 100644
  }
  
  static void backend_connect(struct backend_info *be)
-@@ -560,6 +733,9 @@ static void connect(struct backend_info *be)
+@@ -560,6 +733,9 @@ static void connect(struct backend_info
  			be->vif->num_queues = queue_index;
  			goto err;
  		}
@@ -311,6 +311,3 @@ index 3d85acd..580517d 100644
  	}
  
  	/* Initialisation completed, tell core driver the number of
--- 
-1.7.10.4
-

@@ -14,11 +14,11 @@ Reviewed-by: Daniel Kiper <daniel.kiper@oracle.com>
  drivers/xen/balloon.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/xen/balloon.c b/drivers/xen/balloon.c
-index 5c660c7..1e0a317 100644
---- a/drivers/xen/balloon.c
-+++ b/drivers/xen/balloon.c
-@@ -230,8 +230,8 @@ static enum bp_state reserve_additional_memory(long credit)
+Index: tree-jessie/drivers/xen/balloon.c
+===================================================================
+--- tree-jessie.orig/drivers/xen/balloon.c
++++ tree-jessie/drivers/xen/balloon.c
+@@ -230,8 +230,8 @@ static enum bp_state reserve_additional_
  	rc = add_memory(nid, hotplug_start_paddr, balloon_hotplug << PAGE_SHIFT);
  
  	if (rc) {
@@ -29,6 +29,3 @@ index 5c660c7..1e0a317 100644
  	}
  
  	balloon_hotplug -= credit;
--- 
-1.7.10.4
-

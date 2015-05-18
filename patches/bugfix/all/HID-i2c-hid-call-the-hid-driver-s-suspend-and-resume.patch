@@ -20,11 +20,11 @@ Signed-off-by: Jiri Kosina <jkosina@suse.cz>
  drivers/hid/i2c-hid/i2c-hid.c | 15 ++++++++++++++-
  1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/hid/i2c-hid/i2c-hid.c b/drivers/hid/i2c-hid/i2c-hid.c
-index 21aafc8..747d544 100644
---- a/drivers/hid/i2c-hid/i2c-hid.c
-+++ b/drivers/hid/i2c-hid/i2c-hid.c
-@@ -1054,21 +1054,29 @@ static int i2c_hid_remove(struct i2c_client *client)
+Index: tree-jessie/drivers/hid/i2c-hid/i2c-hid.c
+===================================================================
+--- tree-jessie.orig/drivers/hid/i2c-hid/i2c-hid.c
++++ tree-jessie/drivers/hid/i2c-hid/i2c-hid.c
+@@ -1054,21 +1054,29 @@ static int i2c_hid_remove(struct i2c_cli
  static int i2c_hid_suspend(struct device *dev)
  {
  	struct i2c_client *client = to_i2c_client(dev);
@@ -55,7 +55,7 @@ index 21aafc8..747d544 100644
  
  	enable_irq(client->irq);
  	ret = i2c_hid_hwreset(client);
-@@ -1078,6 +1086,11 @@ static int i2c_hid_resume(struct device *dev)
+@@ -1078,6 +1086,11 @@ static int i2c_hid_resume(struct device
  	if (device_may_wakeup(&client->dev))
  		disable_irq_wake(client->irq);
  

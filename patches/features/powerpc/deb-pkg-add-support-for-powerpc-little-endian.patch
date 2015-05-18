@@ -10,10 +10,10 @@ endian and sets the Debian arch appropriately.
 
 Signed-off-by: Michael Neuling <mikey@neuling.org>
 
-diff --git a/scripts/package/builddeb b/scripts/package/builddeb
-index 35d5a58..6f4a1af 100644
---- a/scripts/package/builddeb
-+++ b/scripts/package/builddeb
+Index: tree-jessie/scripts/package/builddeb
+===================================================================
+--- tree-jessie.orig/scripts/package/builddeb
++++ tree-jessie/scripts/package/builddeb
 @@ -37,7 +37,7 @@ create_package() {
  	s390*)
  		debarch=s390$(grep -q CONFIG_64BIT=y $KCONFIG_CONFIG && echo x || true) ;;

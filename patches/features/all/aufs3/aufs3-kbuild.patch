@@ -8,10 +8,10 @@ Patch headers added by debian/patches/features/all/aufs3/gen-patch
 
 aufs3.16 kbuild patch
 
-diff --git a/fs/Kconfig b/fs/Kconfig
-index 312393f..78632ed 100644
---- a/fs/Kconfig
-+++ b/fs/Kconfig
+Index: tree-jessie/fs/Kconfig
+===================================================================
+--- tree-jessie.orig/fs/Kconfig
++++ tree-jessie/fs/Kconfig
 @@ -209,6 +209,7 @@ source "fs/ufs/Kconfig"
  source "fs/exofs/Kconfig"
  source "fs/f2fs/Kconfig"
@@ -20,19 +20,19 @@ index 312393f..78632ed 100644
  
  endif # MISC_FILESYSTEMS
  
-diff --git a/fs/Makefile b/fs/Makefile
-index 4030cbf..5bd169a 100644
---- a/fs/Makefile
-+++ b/fs/Makefile
+Index: tree-jessie/fs/Makefile
+===================================================================
+--- tree-jessie.orig/fs/Makefile
++++ tree-jessie/fs/Makefile
 @@ -125,3 +125,4 @@ obj-y				+= exofs/ # Multiple modules
  obj-$(CONFIG_CEPH_FS)		+= ceph/
  obj-$(CONFIG_PSTORE)		+= pstore/
  obj-$(CONFIG_EFIVAR_FS)		+= efivarfs/
 +obj-$(CONFIG_AUFS_FS)           += aufs/
-diff --git a/include/uapi/linux/Kbuild b/include/uapi/linux/Kbuild
-index 24e9033..fe9a8d4 100644
---- a/include/uapi/linux/Kbuild
-+++ b/include/uapi/linux/Kbuild
+Index: tree-jessie/include/uapi/linux/Kbuild
+===================================================================
+--- tree-jessie.orig/include/uapi/linux/Kbuild
++++ tree-jessie/include/uapi/linux/Kbuild
 @@ -56,6 +56,7 @@ header-y += atmppp.h
  header-y += atmsap.h
  header-y += atmsvc.h

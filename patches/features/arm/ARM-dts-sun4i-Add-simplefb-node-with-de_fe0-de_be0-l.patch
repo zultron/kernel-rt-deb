@@ -20,10 +20,10 @@ Signed-off-by: Maxime Ripard <maxime.ripard@free-electrons.com>
  arch/arm/boot/dts/sun4i-a10.dtsi | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
-index a9a657c..7e3e5dd 100644
---- a/arch/arm/boot/dts/sun4i-a10.dtsi
-+++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+Index: tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm/boot/dts/sun4i-a10.dtsi
++++ tree-jessie/arch/arm/boot/dts/sun4i-a10.dtsi
 @@ -39,6 +39,14 @@
  				 <&ahb_gates 44>;
  			status = "disabled";
@@ -39,6 +39,3 @@ index a9a657c..7e3e5dd 100644
  	};
  
  	cpus {
--- 
-2.1.4
-

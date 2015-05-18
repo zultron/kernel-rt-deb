@@ -13,8 +13,10 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
  drivers/gpu/drm/i915/i915_reg.h        | 2 ++
  2 files changed, 5 insertions(+)
 
---- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-+++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+Index: tree-jessie/drivers/gpu/drm/i915/i915_cmd_parser.c
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/i915/i915_cmd_parser.c
++++ tree-jessie/drivers/gpu/drm/i915/i915_cmd_parser.c
 @@ -426,6 +426,9 @@ static const u32 gen7_render_regs[] = {
  	GEN7_SO_WRITE_OFFSET(1),
  	GEN7_SO_WRITE_OFFSET(2),
@@ -25,8 +27,10 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
  };
  
  static const u32 gen7_blt_regs[] = {
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
+Index: tree-jessie/drivers/gpu/drm/i915/i915_reg.h
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/i915/i915_reg.h
++++ tree-jessie/drivers/gpu/drm/i915/i915_reg.h
 @@ -4630,6 +4630,8 @@ enum punit_power_well {
  #define GEN7_L3CNTLREG1				0xB01C
  #define  GEN7_WA_FOR_GEN7_L3_CONTROL			0x3C47FF8C

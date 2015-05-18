@@ -23,10 +23,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  arch/mips/kernel/scall64-o32.S |    8 ++++----
  4 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/arch/mips/kernel/scall32-o32.S b/arch/mips/kernel/scall32-o32.S
-index 3245474..6bfdc82 100644
---- a/arch/mips/kernel/scall32-o32.S
-+++ b/arch/mips/kernel/scall32-o32.S
+Index: tree-jessie/arch/mips/kernel/scall32-o32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall32-o32.S
++++ tree-jessie/arch/mips/kernel/scall32-o32.S
 @@ -495,8 +495,8 @@ EXPORT(sys_call_table)
  	PTR	sys_tgkill
  	PTR	sys_utimes
@@ -38,10 +38,10 @@ index 3245474..6bfdc82 100644
  	PTR	sys_mq_open
  	PTR	sys_mq_unlink
  	PTR	sys_mq_timedsend
-diff --git a/arch/mips/kernel/scall64-64.S b/arch/mips/kernel/scall64-64.S
-index be2fedd..0952139 100644
---- a/arch/mips/kernel/scall64-64.S
-+++ b/arch/mips/kernel/scall64-64.S
+Index: tree-jessie/arch/mips/kernel/scall64-64.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-64.S
++++ tree-jessie/arch/mips/kernel/scall64-64.S
 @@ -347,8 +347,8 @@ EXPORT(sys_call_table)
  	PTR	sys_tgkill			/* 5225 */
  	PTR	sys_utimes
@@ -53,10 +53,10 @@ index be2fedd..0952139 100644
  	PTR	sys_mq_open			/* 5230 */
  	PTR	sys_mq_unlink
  	PTR	sys_mq_timedsend
-diff --git a/arch/mips/kernel/scall64-n32.S b/arch/mips/kernel/scall64-n32.S
-index c1dbcda..7641c87 100644
---- a/arch/mips/kernel/scall64-n32.S
-+++ b/arch/mips/kernel/scall64-n32.S
+Index: tree-jessie/arch/mips/kernel/scall64-n32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-n32.S
++++ tree-jessie/arch/mips/kernel/scall64-n32.S
 @@ -339,9 +339,9 @@ EXPORT(sysn32_call_table)
  	PTR	compat_sys_clock_nanosleep
  	PTR	sys_tgkill
@@ -88,11 +88,11 @@ index c1dbcda..7641c87 100644
  	PTR	compat_sys_set_robust_list
  	PTR	compat_sys_get_robust_list
  	PTR	compat_sys_kexec_load
-diff --git a/arch/mips/kernel/scall64-o32.S b/arch/mips/kernel/scall64-o32.S
-index f1343cc..18cfa11 100644
---- a/arch/mips/kernel/scall64-o32.S
-+++ b/arch/mips/kernel/scall64-o32.S
-@@ -473,9 +473,9 @@ EXPORT(sys32_call_table)
+Index: tree-jessie/arch/mips/kernel/scall64-o32.S
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/scall64-o32.S
++++ tree-jessie/arch/mips/kernel/scall64-o32.S
+@@ -477,9 +477,9 @@ EXPORT(sys32_call_table)
  	PTR	compat_sys_clock_nanosleep	/* 4265 */
  	PTR	sys_tgkill
  	PTR	compat_sys_utimes
@@ -105,7 +105,7 @@ index f1343cc..18cfa11 100644
  	PTR	compat_sys_mq_open
  	PTR	sys_mq_unlink
  	PTR	compat_sys_mq_timedsend
-@@ -492,7 +492,7 @@ EXPORT(sys32_call_table)
+@@ -496,7 +496,7 @@ EXPORT(sys32_call_table)
  	PTR	sys_inotify_init
  	PTR	sys_inotify_add_watch		/* 4285 */
  	PTR	sys_inotify_rm_watch
@@ -114,6 +114,3 @@ index f1343cc..18cfa11 100644
  	PTR	compat_sys_openat
  	PTR	sys_mkdirat
  	PTR	sys_mknodat			/* 4290 */
--- 
-1.7.10.4
-

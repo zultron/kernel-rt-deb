@@ -17,11 +17,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_rmhandlers.S |   18 ++++++++++++++----
  1 file changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv_rmhandlers.S b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-index bf5270e..364ca0c 100644
---- a/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-+++ b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-@@ -2350,7 +2350,18 @@ kvmppc_read_intr:
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rmhandlers.S
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+@@ -2349,7 +2349,18 @@ kvmppc_read_intr:
  	cmpdi	r6, 0
  	beq-	1f
  	lwzcix	r0, r6, r7
@@ -41,7 +41,7 @@ index bf5270e..364ca0c 100644
  	sync
  	beq	1f			/* if nothing pending in the ICP */
  
-@@ -2382,10 +2393,9 @@ kvmppc_read_intr:
+@@ -2381,10 +2392,9 @@ kvmppc_read_intr:
  	li	r3, -1
  1:	blr
  
@@ -54,6 +54,3 @@ index bf5270e..364ca0c 100644
  	li	r3, 1
  	b	1b
  
--- 
-1.7.10.4
-

@@ -14,8 +14,10 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  drivers/input/mouse/synaptics.c    | 17 +++--------------
  3 files changed, 18 insertions(+), 14 deletions(-)
 
---- a/drivers/input/mouse/psmouse-base.c
-+++ b/drivers/input/mouse/psmouse-base.c
+Index: tree-jessie/drivers/input/mouse/psmouse-base.c
+===================================================================
+--- tree-jessie.orig/drivers/input/mouse/psmouse-base.c
++++ tree-jessie/drivers/input/mouse/psmouse-base.c
 @@ -462,6 +462,20 @@ static int psmouse_poll(struct psmouse *
  			   PSMOUSE_CMD_POLL | (psmouse->pktsize << 8));
  }
@@ -37,8 +39,10 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  
  /*
   * Genius NetMouse magic init.
---- a/drivers/input/mouse/psmouse.h
-+++ b/drivers/input/mouse/psmouse.h
+Index: tree-jessie/drivers/input/mouse/psmouse.h
+===================================================================
+--- tree-jessie.orig/drivers/input/mouse/psmouse.h
++++ tree-jessie/drivers/input/mouse/psmouse.h
 @@ -108,6 +108,7 @@ void psmouse_set_resolution(struct psmou
  psmouse_ret_t psmouse_process_byte(struct psmouse *psmouse);
  int psmouse_activate(struct psmouse *psmouse);
@@ -47,9 +51,11 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  
  struct psmouse_attribute {
  	struct device_attribute dattr;
---- a/drivers/input/mouse/synaptics.c
-+++ b/drivers/input/mouse/synaptics.c
-@@ -188,18 +188,6 @@ static const char * const topbuttonpad_p
+Index: tree-jessie/drivers/input/mouse/synaptics.c
+===================================================================
+--- tree-jessie.orig/drivers/input/mouse/synaptics.c
++++ tree-jessie/drivers/input/mouse/synaptics.c
+@@ -182,18 +182,6 @@ static const char * const topbuttonpad_p
  	NULL
  };
  
@@ -68,7 +74,7 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  /*****************************************************************************
   *	Synaptics communications functions
   ****************************************************************************/
-@@ -365,7 +353,8 @@ static int synaptics_resolution(struct p
+@@ -359,7 +347,8 @@ static int synaptics_resolution(struct p
  	}
  
  	for (i = 0; min_max_pnpid_table[i].pnp_ids; i++) {
@@ -78,7 +84,7 @@ Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
  			priv->x_min = min_max_pnpid_table[i].x_min;
  			priv->x_max = min_max_pnpid_table[i].x_max;
  			priv->y_min = min_max_pnpid_table[i].y_min;
-@@ -1448,7 +1437,7 @@ static void set_input_params(struct psmo
+@@ -1440,7 +1429,7 @@ static void set_input_params(struct psmo
  
  	if (SYN_CAP_CLICKPAD(priv->ext_cap_0c)) {
  		__set_bit(INPUT_PROP_BUTTONPAD, dev->propbit);

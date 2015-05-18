@@ -15,10 +15,10 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_rmhandlers.S |   20 ++++++++++----------
  1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv_rmhandlers.S b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-index e66c1e38..bf5270e 100644
---- a/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-+++ b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rmhandlers.S
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
 @@ -32,10 +32,6 @@
  
  #define VCPU_GPRS_TM(reg) (((reg) * ULONG_SIZE) + VCPU_GPR_TM)
@@ -69,6 +69,3 @@ index e66c1e38..bf5270e 100644
  	andis.	r7,r5,SLB_ESID_V@h
  	beq	1f
  	slbmte	r6,r5
--- 
-1.7.10.4
-

@@ -13,10 +13,10 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_hv_rmhandlers.S |   16 ++++++++--------
  1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv_rmhandlers.S b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-index 364ca0c..855521e 100644
---- a/arch/powerpc/kvm/book3s_hv_rmhandlers.S
-+++ b/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+Index: tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_hv_rmhandlers.S
++++ tree-jessie/arch/powerpc/kvm/book3s_hv_rmhandlers.S
 @@ -668,9 +668,9 @@ END_FTR_SECTION_IFCLR(CPU_FTR_TM)
  
  	mr	r31, r4
@@ -41,7 +41,7 @@ index 364ca0c..855521e 100644
  	mfspr	r6, SPRN_VRSAVE
  	stw	r6, VCPU_VRSAVE_TM(r9)
  1:
-@@ -2430,11 +2430,11 @@ END_FTR_SECTION_IFSET(CPU_FTR_VSX)
+@@ -2429,11 +2429,11 @@ END_FTR_SECTION_IFSET(CPU_FTR_VSX)
  	mtmsrd	r8
  	isync
  	addi	r3,r3,VCPU_FPRS
@@ -55,7 +55,7 @@ index 364ca0c..855521e 100644
  END_FTR_SECTION_IFSET(CPU_FTR_ALTIVEC)
  #endif
  	mfspr	r6,SPRN_VRSAVE
-@@ -2466,11 +2466,11 @@ END_FTR_SECTION_IFSET(CPU_FTR_VSX)
+@@ -2465,11 +2465,11 @@ END_FTR_SECTION_IFSET(CPU_FTR_VSX)
  	mtmsrd	r8
  	isync
  	addi	r3,r4,VCPU_FPRS
@@ -69,6 +69,3 @@ index 364ca0c..855521e 100644
  END_FTR_SECTION_IFSET(CPU_FTR_ALTIVEC)
  #endif
  	lwz	r7,VCPU_VRSAVE(r31)
--- 
-1.7.10.4
-

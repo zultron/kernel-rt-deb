@@ -14,8 +14,10 @@ correctness.
 [bwh: Also #if-out the init functions for these PHYs to avoid
  compiler warnings]
 
---- a/drivers/net/phy/marvell.c
-+++ b/drivers/net/phy/marvell.c
+Index: tree-jessie/drivers/net/phy/marvell.c
+===================================================================
+--- tree-jessie.orig/drivers/net/phy/marvell.c
++++ tree-jessie/drivers/net/phy/marvell.c
 @@ -591,6 +591,7 @@ static int m88e1118_config_init(struct p
  	return phy_write(phydev, MII_BMCR, BMCR_RESET);
  }

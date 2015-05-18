@@ -66,8 +66,10 @@ Tested-by: Chuck Lever <chuck.lever@oracle.com>
  security/keys/request_key.c | 3 ++-
  3 files changed, 5 insertions(+), 2 deletions(-)
 
---- a/security/keys/internal.h
-+++ b/security/keys/internal.h
+Index: tree-jessie/security/keys/internal.h
+===================================================================
+--- tree-jessie.orig/security/keys/internal.h
++++ tree-jessie/security/keys/internal.h
 @@ -121,6 +121,7 @@ struct keyring_search_context {
  #define KEYRING_SEARCH_NO_UPDATE_TIME	0x0008	/* Don't update times */
  #define KEYRING_SEARCH_NO_CHECK_PERM	0x0010	/* Don't check permissions */
@@ -76,8 +78,10 @@ Tested-by: Chuck Lever <chuck.lever@oracle.com>
  
  	int (*iterator)(const void *object, void *iterator_data);
  
---- a/security/keys/keyring.c
-+++ b/security/keys/keyring.c
+Index: tree-jessie/security/keys/keyring.c
+===================================================================
+--- tree-jessie.orig/security/keys/keyring.c
++++ tree-jessie/security/keys/keyring.c
 @@ -526,7 +526,8 @@ static int keyring_search_iterator(const
  		}
  
@@ -88,8 +92,10 @@ Tested-by: Chuck Lever <chuck.lever@oracle.com>
  			kleave(" = %d [expire]", ctx->skipped_ret);
  			goto skipped;
  		}
---- a/security/keys/request_key.c
-+++ b/security/keys/request_key.c
+Index: tree-jessie/security/keys/request_key.c
+===================================================================
+--- tree-jessie.orig/security/keys/request_key.c
++++ tree-jessie/security/keys/request_key.c
 @@ -533,7 +533,8 @@ struct key *request_key_and_link(struct
  		.cred			= current_cred(),
  		.match			= type->match,

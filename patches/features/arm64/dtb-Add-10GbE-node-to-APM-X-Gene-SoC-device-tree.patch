@@ -14,10 +14,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  arch/arm64/boot/dts/apm-storm.dtsi  | 29 ++++++++++++++++++++++++++++-
  2 files changed, 32 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/apm-mustang.dts b/arch/arm64/boot/dts/apm-mustang.dts
-index b2f5622..2ae782b 100644
---- a/arch/arm64/boot/dts/apm-mustang.dts
-+++ b/arch/arm64/boot/dts/apm-mustang.dts
+Index: tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-mustang.dts
++++ tree-jessie/arch/arm64/boot/dts/apm-mustang.dts
 @@ -32,3 +32,7 @@
  &menet {
  	status = "ok";
@@ -26,10 +26,10 @@ index b2f5622..2ae782b 100644
 +&xgenet {
 +	status = "ok";
 +};
-diff --git a/arch/arm64/boot/dts/apm-storm.dtsi b/arch/arm64/boot/dts/apm-storm.dtsi
-index c0aceef..4d762a3 100644
---- a/arch/arm64/boot/dts/apm-storm.dtsi
-+++ b/arch/arm64/boot/dts/apm-storm.dtsi
+Index: tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
+===================================================================
+--- tree-jessie.orig/arch/arm64/boot/dts/apm-storm.dtsi
++++ tree-jessie/arch/arm64/boot/dts/apm-storm.dtsi
 @@ -176,6 +176,16 @@
  				clock-output-names = "menetclk";
  			};
@@ -47,7 +47,7 @@ index c0aceef..4d762a3 100644
  			sataphy1clk: sataphy1clk@1f21c000 {
  				compatible = "apm,xgene-device-clock";
  				#clock-cells = <1>;
-@@ -407,7 +417,8 @@
+@@ -412,7 +422,8 @@
  			interrupts = <0x0 0x3c 0x4>;
  			dma-coherent;
  			clocks = <&menetclk 0>;
@@ -57,7 +57,7 @@ index c0aceef..4d762a3 100644
  			phy-connection-type = "rgmii";
  			phy-handle = <&menetphy>;
  			mdio {
-@@ -421,5 +432,21 @@
+@@ -426,5 +437,21 @@
  
  			};
  		};
@@ -79,6 +79,3 @@ index c0aceef..4d762a3 100644
 +
  	};
  };
--- 
-2.1.0
-

@@ -31,10 +31,10 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/Kconfig |    1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/ethernet/apm/xgene/Kconfig b/drivers/net/ethernet/apm/xgene/Kconfig
-index 616dff6..f4054d24 100644
---- a/drivers/net/ethernet/apm/xgene/Kconfig
-+++ b/drivers/net/ethernet/apm/xgene/Kconfig
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/Kconfig
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/Kconfig
++++ tree-jessie/drivers/net/ethernet/apm/xgene/Kconfig
 @@ -1,5 +1,6 @@
  config NET_XGENE
  	tristate "APM X-Gene SoC Ethernet Driver"
@@ -42,6 +42,3 @@ index 616dff6..f4054d24 100644
  	select PHYLIB
  	help
  	  This is the Ethernet driver for the on-chip ethernet interface on the
--- 
-1.7.10.4
-

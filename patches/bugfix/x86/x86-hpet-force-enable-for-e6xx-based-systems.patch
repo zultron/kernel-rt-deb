@@ -24,8 +24,10 @@ Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
  include/linux/pci_ids.h  |  1 +
  2 files changed, 19 insertions(+)
 
---- a/arch/x86/kernel/quirks.c
-+++ b/arch/x86/kernel/quirks.c
+Index: tree-jessie/arch/x86/kernel/quirks.c
+===================================================================
+--- tree-jessie.orig/arch/x86/kernel/quirks.c
++++ tree-jessie/arch/x86/kernel/quirks.c
 @@ -498,6 +498,24 @@ void force_hpet_resume(void)
  }
  
@@ -51,8 +53,10 @@ Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
   * HPET MSI on some boards (ATI SB700/SB800) has side effect on
   * floppy DMA. Disable HPET MSI on such platforms.
   * See erratum #27 (Misinterpreted MSI Requests May Result in
---- a/include/linux/pci_ids.h
-+++ b/include/linux/pci_ids.h
+Index: tree-jessie/include/linux/pci_ids.h
+===================================================================
+--- tree-jessie.orig/include/linux/pci_ids.h
++++ tree-jessie/include/linux/pci_ids.h
 @@ -2859,6 +2859,7 @@
  #define PCI_DEVICE_ID_INTEL_82372FB_1	0x7601
  #define PCI_DEVICE_ID_INTEL_SCH_LPC	0x8119

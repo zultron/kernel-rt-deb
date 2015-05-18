@@ -28,11 +28,11 @@ Acked-by: Paul Mackerras <paulus@samba.org>
  arch/powerpc/kvm/book3s_pr.c |   12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/arch/powerpc/kvm/book3s_pr.c b/arch/powerpc/kvm/book3s_pr.c
-index 3da412e..8ea7da4 100644
---- a/arch/powerpc/kvm/book3s_pr.c
-+++ b/arch/powerpc/kvm/book3s_pr.c
-@@ -71,6 +71,12 @@ static void kvmppc_core_vcpu_load_pr(struct kvm_vcpu *vcpu, int cpu)
+Index: tree-jessie/arch/powerpc/kvm/book3s_pr.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_pr.c
++++ tree-jessie/arch/powerpc/kvm/book3s_pr.c
+@@ -71,6 +71,12 @@ static void kvmppc_core_vcpu_load_pr(str
  	svcpu->in_use = 0;
  	svcpu_put(svcpu);
  #endif
@@ -45,7 +45,7 @@ index 3da412e..8ea7da4 100644
  	vcpu->cpu = smp_processor_id();
  #ifdef CONFIG_PPC_BOOK3S_32
  	current->thread.kvm_shadow_vcpu = vcpu->arch.shadow_vcpu;
-@@ -91,6 +97,12 @@ static void kvmppc_core_vcpu_put_pr(struct kvm_vcpu *vcpu)
+@@ -91,6 +97,12 @@ static void kvmppc_core_vcpu_put_pr(stru
  
  	kvmppc_giveup_ext(vcpu, MSR_FP | MSR_VEC | MSR_VSX);
  	kvmppc_giveup_fac(vcpu, FSCR_TAR_LG);
@@ -58,6 +58,3 @@ index 3da412e..8ea7da4 100644
  	vcpu->cpu = -1;
  }
  
--- 
-1.7.10.4
-

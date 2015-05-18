@@ -28,9 +28,11 @@ Tested-by: Johannes W <jargon <at> molb.org>
 drivers/gpu/drm/i915/i915_gem_stolen.c | 10 ++++++----
  1 file changed, 6 insertions(+), 4 deletions(-)
 
---- a/drivers/gpu/drm/i915/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/i915_gem_stolen.c
-@@ -431,13 +431,15 @@ i915_gem_object_create_stolen_for_preall
+Index: tree-jessie/drivers/gpu/drm/i915/i915_gem_stolen.c
+===================================================================
+--- tree-jessie.orig/drivers/gpu/drm/i915/i915_gem_stolen.c
++++ tree-jessie/drivers/gpu/drm/i915/i915_gem_stolen.c
+@@ -427,13 +427,15 @@ i915_gem_object_create_stolen_for_preall
  	DRM_DEBUG_KMS("creating preallocated stolen object: stolen_offset=%x, gtt_offset=%x, size=%x\n",
  			stolen_offset, gtt_offset, size);
  

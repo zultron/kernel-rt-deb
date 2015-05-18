@@ -21,10 +21,10 @@ Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
  virt/kvm/irqchip.c |   61 --------------------------------------------------
  2 files changed, 63 insertions(+), 61 deletions(-)
 
-diff --git a/virt/kvm/eventfd.c b/virt/kvm/eventfd.c
-index f0075ff..99957df 100644
---- a/virt/kvm/eventfd.c
-+++ b/virt/kvm/eventfd.c
+Index: tree-jessie/virt/kvm/eventfd.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/eventfd.c
++++ tree-jessie/virt/kvm/eventfd.c
 @@ -34,7 +34,9 @@
  #include <linux/srcu.h>
  #include <linux/slab.h>
@@ -35,7 +35,7 @@ index f0075ff..99957df 100644
  #include "iodev.h"
  
  #ifdef CONFIG_HAVE_KVM_IRQ_ROUTING
-@@ -865,3 +867,64 @@ kvm_ioeventfd(struct kvm *kvm, struct kvm_ioeventfd *args)
+@@ -865,3 +867,64 @@ kvm_ioeventfd(struct kvm *kvm, struct kv
  
  	return kvm_assign_ioeventfd(kvm, args);
  }
@@ -100,11 +100,11 @@ index f0075ff..99957df 100644
 +	kvm_vcpu_request_scan_ioapic(kvm);
 +#endif
 +}
-diff --git a/virt/kvm/irqchip.c b/virt/kvm/irqchip.c
-index 04faac5..7f256f3 100644
---- a/virt/kvm/irqchip.c
-+++ b/virt/kvm/irqchip.c
-@@ -69,67 +69,6 @@ int kvm_irq_map_chip_pin(struct kvm *kvm, unsigned irqchip, unsigned pin)
+Index: tree-jessie/virt/kvm/irqchip.c
+===================================================================
+--- tree-jessie.orig/virt/kvm/irqchip.c
++++ tree-jessie/virt/kvm/irqchip.c
+@@ -69,67 +69,6 @@ int kvm_irq_map_chip_pin(struct kvm *kvm
  	return irq_rt->chip[irqchip][pin];
  }
  
@@ -172,6 +172,3 @@ index 04faac5..7f256f3 100644
  int kvm_send_userspace_msi(struct kvm *kvm, struct kvm_msi *msi)
  {
  	struct kvm_kernel_irq_routing_entry route;
--- 
-1.7.10.4
-

@@ -21,8 +21,10 @@ Change in v2:
  fs/fhandle.c |    5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
---- a/fs/fhandle.c
-+++ b/fs/fhandle.c
+Index: tree-jessie/fs/fhandle.c
+===================================================================
+--- tree-jessie.orig/fs/fhandle.c
++++ tree-jessie/fs/fhandle.c
 @@ -195,8 +195,9 @@ static int handle_to_path(int mountdirfd
  		goto out_err;
  	}

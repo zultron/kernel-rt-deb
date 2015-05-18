@@ -17,8 +17,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  mm/memcontrol.c                     |    3 +++
  4 files changed, 29 insertions(+), 6 deletions(-)
 
---- a/Documentation/kernel-parameters.txt
-+++ b/Documentation/kernel-parameters.txt
+Index: tree-jessie/Documentation/kernel-parameters.txt
+===================================================================
+--- tree-jessie.orig/Documentation/kernel-parameters.txt
++++ tree-jessie/Documentation/kernel-parameters.txt
 @@ -569,8 +569,8 @@ bytes respectively. Such letter suffixes
  	ccw_timeout_log [S390]
  			See Documentation/s390/CommonIO for details.
@@ -30,8 +32,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  			The effects of cgroup_disable=foo are:
  			- foo isn't auto-mounted if you mount all cgroups in
  			  a single hierarchy
---- a/init/Kconfig
-+++ b/init/Kconfig
+Index: tree-jessie/init/Kconfig
+===================================================================
+--- tree-jessie.orig/init/Kconfig
++++ tree-jessie/init/Kconfig
 @@ -960,6 +960,14 @@ config MEMCG
  	  disable memory resource controller and you can avoid overheads.
  	  (and lose benefits of memory resource controller)
@@ -47,9 +51,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  config MEMCG_SWAP
  	bool "Memory Resource Controller Swap Extension"
  	depends on MEMCG && SWAP
---- a/kernel/cgroup.c
-+++ b/kernel/cgroup.c
-@@ -5182,7 +5182,7 @@ static void cgroup_release_agent(struct
+Index: tree-jessie/kernel/cgroup.c
+===================================================================
+--- tree-jessie.orig/kernel/cgroup.c
++++ tree-jessie/kernel/cgroup.c
+@@ -5191,7 +5191,7 @@ static void cgroup_release_agent(struct
  	mutex_unlock(&cgroup_mutex);
  }
  
@@ -58,7 +64,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  {
  	struct cgroup_subsys *ss;
  	char *token;
-@@ -5194,17 +5194,29 @@ static int __init cgroup_disable(char *s
+@@ -5203,17 +5203,29 @@ static int __init cgroup_disable(char *s
  
  		for_each_subsys(ss, i) {
  			if (!strcmp(token, ss->name)) {
@@ -91,9 +97,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  /**
   * css_tryget_online_from_dir - get corresponding css from a cgroup dentry
   * @dentry: directory dentry of interest
---- a/mm/memcontrol.c
-+++ b/mm/memcontrol.c
-@@ -7015,6 +7015,9 @@ static void mem_cgroup_bind(struct cgrou
+Index: tree-jessie/mm/memcontrol.c
+===================================================================
+--- tree-jessie.orig/mm/memcontrol.c
++++ tree-jessie/mm/memcontrol.c
+@@ -7045,6 +7045,9 @@ static void mem_cgroup_bind(struct cgrou
  }
  
  struct cgroup_subsys memory_cgrp_subsys = {

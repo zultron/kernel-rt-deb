@@ -14,10 +14,10 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/include/asm/kvm_host.h | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/powerpc/include/asm/kvm_host.h b/arch/powerpc/include/asm/kvm_host.h
-index faf2f0e..855ba4d 100644
---- a/arch/powerpc/include/asm/kvm_host.h
-+++ b/arch/powerpc/include/asm/kvm_host.h
+Index: tree-jessie/arch/powerpc/include/asm/kvm_host.h
+===================================================================
+--- tree-jessie.orig/arch/powerpc/include/asm/kvm_host.h
++++ tree-jessie/arch/powerpc/include/asm/kvm_host.h
 @@ -255,7 +255,6 @@ struct kvm_arch {
  	atomic_t hpte_mod_interest;
  	spinlock_t slot_phys_lock;
@@ -37,6 +37,3 @@ index faf2f0e..855ba4d 100644
  };
  
  /*
--- 
-2.0.0
-

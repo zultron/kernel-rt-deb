@@ -11,11 +11,11 @@ Signed-off-by: Alexander Graf <agraf@suse.de>
  arch/powerpc/kvm/book3s_pr.c |    1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/powerpc/kvm/book3s_pr.c b/arch/powerpc/kvm/book3s_pr.c
-index 8ea7da4..3b82e86 100644
---- a/arch/powerpc/kvm/book3s_pr.c
-+++ b/arch/powerpc/kvm/book3s_pr.c
-@@ -988,6 +988,7 @@ int kvmppc_handle_exit_pr(struct kvm_run *run, struct kvm_vcpu *vcpu,
+Index: tree-jessie/arch/powerpc/kvm/book3s_pr.c
+===================================================================
+--- tree-jessie.orig/arch/powerpc/kvm/book3s_pr.c
++++ tree-jessie/arch/powerpc/kvm/book3s_pr.c
+@@ -972,6 +972,7 @@ int kvmppc_handle_exit_pr(struct kvm_run
  	case BOOK3S_INTERRUPT_DECREMENTER:
  	case BOOK3S_INTERRUPT_HV_DECREMENTER:
  	case BOOK3S_INTERRUPT_DOORBELL:
@@ -23,6 +23,3 @@ index 8ea7da4..3b82e86 100644
  		vcpu->stat.dec_exits++;
  		r = RESUME_GUEST;
  		break;
--- 
-1.7.10.4
-

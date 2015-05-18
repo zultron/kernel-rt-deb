@@ -15,11 +15,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/xenbus.c |    9 +++++----
  1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/xen-netback/xenbus.c b/drivers/net/xen-netback/xenbus.c
-index 0b4f1c7..cc8f8ba 100644
---- a/drivers/net/xen-netback/xenbus.c
-+++ b/drivers/net/xen-netback/xenbus.c
-@@ -404,6 +404,7 @@ static int backend_create_xenvif(struct backend_info *be)
+Index: tree-jessie/drivers/net/xen-netback/xenbus.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/xenbus.c
++++ tree-jessie/drivers/net/xen-netback/xenbus.c
+@@ -404,6 +404,7 @@ static int backend_create_xenvif(struct
  	int err;
  	long handle;
  	struct xenbus_device *dev = be->dev;
@@ -27,7 +27,7 @@ index 0b4f1c7..cc8f8ba 100644
  
  	if (be->vif != NULL)
  		return 0;
-@@ -414,13 +415,13 @@ static int backend_create_xenvif(struct backend_info *be)
+@@ -414,13 +415,13 @@ static int backend_create_xenvif(struct
  		return (err < 0) ? err : -EINVAL;
  	}
  
@@ -45,6 +45,3 @@ index 0b4f1c7..cc8f8ba 100644
  
  	kobject_uevent(&dev->dev.kobj, KOBJ_ONLINE);
  	return 0;
--- 
-1.7.10.4
-

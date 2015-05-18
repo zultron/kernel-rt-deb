@@ -26,11 +26,11 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  3 files changed, 72 insertions(+), 1 deletion(-)
  create mode 100644 arch/mips/loongson/loongson-3/cop2-ex.c
 
-diff --git a/arch/mips/include/asm/cop2.h b/arch/mips/include/asm/cop2.h
-index c1516cc..d035298 100644
---- a/arch/mips/include/asm/cop2.h
-+++ b/arch/mips/include/asm/cop2.h
-@@ -32,6 +32,14 @@ extern void nlm_cop2_restore(struct nlm_cop2_state *);
+Index: tree-jessie/arch/mips/include/asm/cop2.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/cop2.h
++++ tree-jessie/arch/mips/include/asm/cop2.h
+@@ -32,6 +32,14 @@ extern void nlm_cop2_restore(struct nlm_
  #define cop2_present		1
  #define cop2_lazy_restore	0
  
@@ -45,10 +45,10 @@ index c1516cc..d035298 100644
  #else
  
  #define cop2_present		0
-diff --git a/arch/mips/loongson/loongson-3/Makefile b/arch/mips/loongson/loongson-3/Makefile
-index 471b0f2a..b4df775 100644
---- a/arch/mips/loongson/loongson-3/Makefile
-+++ b/arch/mips/loongson/loongson-3/Makefile
+Index: tree-jessie/arch/mips/loongson/loongson-3/Makefile
+===================================================================
+--- tree-jessie.orig/arch/mips/loongson/loongson-3/Makefile
++++ tree-jessie/arch/mips/loongson/loongson-3/Makefile
 @@ -1,7 +1,7 @@
  #
  # Makefile for Loongson-3 family machines
@@ -58,11 +58,10 @@ index 471b0f2a..b4df775 100644
  
  obj-$(CONFIG_SMP)	+= smp.o
  
-diff --git a/arch/mips/loongson/loongson-3/cop2-ex.c b/arch/mips/loongson/loongson-3/cop2-ex.c
-new file mode 100644
-index 0000000..9182e8d
+Index: tree-jessie/arch/mips/loongson/loongson-3/cop2-ex.c
+===================================================================
 --- /dev/null
-+++ b/arch/mips/loongson/loongson-3/cop2-ex.c
++++ tree-jessie/arch/mips/loongson/loongson-3/cop2-ex.c
 @@ -0,0 +1,63 @@
 +/*
 + * This file is subject to the terms and conditions of the GNU General Public
@@ -127,6 +126,3 @@ index 0000000..9182e8d
 +	return cu2_notifier(loongson_cu2_call, 0);
 +}
 +early_initcall(loongson_cu2_setup);
--- 
-1.7.10.4
-

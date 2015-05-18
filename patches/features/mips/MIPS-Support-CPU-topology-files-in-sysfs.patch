@@ -24,10 +24,10 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
  arch/mips/kernel/smp.c           |   26 +++++++++++++++++++++++++-
  4 files changed, 33 insertions(+), 1 deletion(-)
 
-diff --git a/arch/mips/include/asm/cpu-info.h b/arch/mips/include/asm/cpu-info.h
-index a28e3de..6690d7a 100644
---- a/arch/mips/include/asm/cpu-info.h
-+++ b/arch/mips/include/asm/cpu-info.h
+Index: tree-jessie/arch/mips/include/asm/cpu-info.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/cpu-info.h
++++ tree-jessie/arch/mips/include/asm/cpu-info.h
 @@ -61,6 +61,7 @@ struct cpuinfo_mips {
  	struct cache_desc	scache; /* Secondary cache */
  	struct cache_desc	tcache; /* Tertiary/split secondary cache */
@@ -36,10 +36,10 @@ index a28e3de..6690d7a 100644
  	int			core;	/* physical core number */
  #ifdef CONFIG_64BIT
  	int			vmbits; /* Virtual memory size in bits */
-diff --git a/arch/mips/include/asm/smp.h b/arch/mips/include/asm/smp.h
-index b037334..1e0f20a 100644
---- a/arch/mips/include/asm/smp.h
-+++ b/arch/mips/include/asm/smp.h
+Index: tree-jessie/arch/mips/include/asm/smp.h
+===================================================================
+--- tree-jessie.orig/arch/mips/include/asm/smp.h
++++ tree-jessie/arch/mips/include/asm/smp.h
 @@ -22,6 +22,7 @@
  
  extern int smp_num_siblings;
@@ -60,11 +60,11 @@ index b037334..1e0f20a 100644
  #define SMP_RESCHEDULE_YOURSELF 0x1	/* XXX braindead */
  #define SMP_CALL_FUNCTION	0x2
  /* Octeon - Tell another core to flush its icache */
-diff --git a/arch/mips/kernel/proc.c b/arch/mips/kernel/proc.c
-index 037a44d..62c4439 100644
---- a/arch/mips/kernel/proc.c
-+++ b/arch/mips/kernel/proc.c
-@@ -123,6 +123,7 @@ static int show_cpuinfo(struct seq_file *m, void *v)
+Index: tree-jessie/arch/mips/kernel/proc.c
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/proc.c
++++ tree-jessie/arch/mips/kernel/proc.c
+@@ -123,6 +123,7 @@ static int show_cpuinfo(struct seq_file
  		      cpu_data[n].srsets);
  	seq_printf(m, "kscratch registers\t: %d\n",
  		      hweight8(cpu_data[n].kscratch_mask));
@@ -72,10 +72,10 @@ index 037a44d..62c4439 100644
  	seq_printf(m, "core\t\t\t: %d\n", cpu_data[n].core);
  
  	sprintf(fmt, "VCE%%c exceptions\t\t: %s\n",
-diff --git a/arch/mips/kernel/smp.c b/arch/mips/kernel/smp.c
-index 9bad52e..c94c4e9 100644
---- a/arch/mips/kernel/smp.c
-+++ b/arch/mips/kernel/smp.c
+Index: tree-jessie/arch/mips/kernel/smp.c
+===================================================================
+--- tree-jessie.orig/arch/mips/kernel/smp.c
++++ tree-jessie/arch/mips/kernel/smp.c
 @@ -59,9 +59,16 @@ EXPORT_SYMBOL(smp_num_siblings);
  cpumask_t cpu_sibling_map[NR_CPUS] __read_mostly;
  EXPORT_SYMBOL(cpu_sibling_map);
@@ -93,7 +93,7 @@ index 9bad52e..c94c4e9 100644
  cpumask_t cpu_coherent_mask;
  
  static inline void set_cpu_sibling_map(int cpu)
-@@ -72,7 +79,8 @@ static inline void set_cpu_sibling_map(int cpu)
+@@ -72,7 +79,8 @@ static inline void set_cpu_sibling_map(i
  
  	if (smp_num_siblings > 1) {
  		for_each_cpu_mask(i, cpu_sibling_setup_map) {
@@ -103,7 +103,7 @@ index 9bad52e..c94c4e9 100644
  				cpu_set(i, cpu_sibling_map[cpu]);
  				cpu_set(cpu, cpu_sibling_map[i]);
  			}
-@@ -81,6 +89,20 @@ static inline void set_cpu_sibling_map(int cpu)
+@@ -81,6 +89,20 @@ static inline void set_cpu_sibling_map(i
  		cpu_set(cpu, cpu_sibling_map[cpu]);
  }
  
@@ -132,7 +132,7 @@ index 9bad52e..c94c4e9 100644
  
  	cpu_set(cpu, cpu_callin_map);
  
-@@ -175,6 +198,7 @@ void __init smp_prepare_cpus(unsigned int max_cpus)
+@@ -175,6 +198,7 @@ void __init smp_prepare_cpus(unsigned in
  	current_thread_info()->cpu = 0;
  	mp_ops->prepare_cpus(max_cpus);
  	set_cpu_sibling_map(0);
@@ -140,6 +140,3 @@ index 9bad52e..c94c4e9 100644
  #ifndef CONFIG_HOTPLUG_CPU
  	init_cpu_present(cpu_possible_mask);
  #endif
--- 
-1.7.10.4
-

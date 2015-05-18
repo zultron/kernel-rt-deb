@@ -16,11 +16,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/xenbus.c |    8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/xen-netback/xenbus.c b/drivers/net/xen-netback/xenbus.c
-index 4c9041e..9c47b89 100644
---- a/drivers/net/xen-netback/xenbus.c
-+++ b/drivers/net/xen-netback/xenbus.c
-@@ -174,10 +174,9 @@ static const struct file_operations xenvif_dbg_io_ring_ops_fops = {
+Index: tree-jessie/drivers/net/xen-netback/xenbus.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/xenbus.c
++++ tree-jessie/drivers/net/xen-netback/xenbus.c
+@@ -174,10 +174,9 @@ static const struct file_operations xenv
  	.write = xenvif_write_io_ring,
  };
  
@@ -32,7 +32,7 @@ index 4c9041e..9c47b89 100644
  	int i;
  
  	if (IS_ERR_OR_NULL(xen_netback_dbg_root))
-@@ -736,10 +735,11 @@ static void connect(struct backend_info *be)
+@@ -736,10 +735,11 @@ static void connect(struct backend_info
  			be->vif->num_queues = queue_index;
  			goto err;
  		}
@@ -46,6 +46,3 @@ index 4c9041e..9c47b89 100644
  
  	/* Initialisation completed, tell core driver the number of
  	 * active queues.
--- 
-1.7.10.4
-

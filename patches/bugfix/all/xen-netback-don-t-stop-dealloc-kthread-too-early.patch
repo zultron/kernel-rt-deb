@@ -20,11 +20,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/xen-netback/netback.c   |   26 +++++++++++++++++++-------
  3 files changed, 42 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/xen-netback/common.h b/drivers/net/xen-netback/common.h
-index ef3026f..d4eb8d2 100644
---- a/drivers/net/xen-netback/common.h
-+++ b/drivers/net/xen-netback/common.h
-@@ -165,6 +165,7 @@ struct xenvif_queue { /* Per-queue data for xenvif */
+Index: tree-jessie/drivers/net/xen-netback/common.h
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/common.h
++++ tree-jessie/drivers/net/xen-netback/common.h
+@@ -165,6 +165,7 @@ struct xenvif_queue { /* Per-queue data
  	u16 dealloc_ring[MAX_PENDING_REQS];
  	struct task_struct *dealloc_task;
  	wait_queue_head_t dealloc_wq;
@@ -41,10 +41,10 @@ index ef3026f..d4eb8d2 100644
 +void xenvif_skb_zerocopy_complete(struct xenvif_queue *queue);
 +
  #endif /* __XEN_NETBACK__COMMON_H__ */
-diff --git a/drivers/net/xen-netback/interface.c b/drivers/net/xen-netback/interface.c
-index 23702ea..428c57c 100644
---- a/drivers/net/xen-netback/interface.c
-+++ b/drivers/net/xen-netback/interface.c
+Index: tree-jessie/drivers/net/xen-netback/interface.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/interface.c
++++ tree-jessie/drivers/net/xen-netback/interface.c
 @@ -43,6 +43,23 @@
  #define XENVIF_QUEUE_LENGTH 32
  #define XENVIF_NAPI_WEIGHT  64
@@ -69,7 +69,7 @@ index 23702ea..428c57c 100644
  static inline void xenvif_stop_queue(struct xenvif_queue *queue)
  {
  	struct net_device *dev = queue->vif->dev;
-@@ -557,6 +574,7 @@ int xenvif_connect(struct xenvif_queue *queue, unsigned long tx_ring_ref,
+@@ -557,6 +574,7 @@ int xenvif_connect(struct xenvif_queue *
  
  	init_waitqueue_head(&queue->wq);
  	init_waitqueue_head(&queue->dealloc_wq);
@@ -77,11 +77,11 @@ index 23702ea..428c57c 100644
  
  	if (tx_evtchn == rx_evtchn) {
  		/* feature-split-event-channels == 0 */
-diff --git a/drivers/net/xen-netback/netback.c b/drivers/net/xen-netback/netback.c
-index 4734472..08f6599 100644
---- a/drivers/net/xen-netback/netback.c
-+++ b/drivers/net/xen-netback/netback.c
-@@ -1525,10 +1525,12 @@ static int xenvif_handle_frag_list(struct xenvif_queue *queue, struct sk_buff *s
+Index: tree-jessie/drivers/net/xen-netback/netback.c
+===================================================================
+--- tree-jessie.orig/drivers/net/xen-netback/netback.c
++++ tree-jessie/drivers/net/xen-netback/netback.c
+@@ -1525,10 +1525,12 @@ static int xenvif_handle_frag_list(struc
  	/* remove traces of mapped pages and frag_list */
  	skb_frag_list_init(skb);
  	uarg = skb_shinfo(skb)->destructor_arg;
@@ -95,7 +95,7 @@ index 4734472..08f6599 100644
  	kfree_skb(nskb);
  
  	return 0;
-@@ -1589,7 +1591,7 @@ static int xenvif_tx_submit(struct xenvif_queue *queue)
+@@ -1589,7 +1591,7 @@ static int xenvif_tx_submit(struct xenvi
  				if (net_ratelimit())
  					netdev_err(queue->vif->dev,
  						   "Not enough memory to consolidate frag_list!\n");
@@ -104,7 +104,7 @@ index 4734472..08f6599 100644
  				kfree_skb(skb);
  				continue;
  			}
-@@ -1609,7 +1611,7 @@ static int xenvif_tx_submit(struct xenvif_queue *queue)
+@@ -1609,7 +1611,7 @@ static int xenvif_tx_submit(struct xenvi
  				   "Can't setup checksum in net_tx_action\n");
  			/* We have to set this flag to trigger the callback */
  			if (skb_shinfo(skb)->destructor_arg)
@@ -113,7 +113,7 @@ index 4734472..08f6599 100644
  			kfree_skb(skb);
  			continue;
  		}
-@@ -1641,7 +1643,7 @@ static int xenvif_tx_submit(struct xenvif_queue *queue)
+@@ -1641,7 +1643,7 @@ static int xenvif_tx_submit(struct xenvi
  		 * skb. E.g. the __pskb_pull_tail earlier can do such thing.
  		 */
  		if (skb_shinfo(skb)->destructor_arg) {
@@ -122,7 +122,7 @@ index 4734472..08f6599 100644
  			queue->stats.tx_zerocopy_sent++;
  		}
  
-@@ -1681,6 +1683,7 @@ void xenvif_zerocopy_callback(struct ubuf_info *ubuf, bool zerocopy_success)
+@@ -1681,6 +1683,7 @@ void xenvif_zerocopy_callback(struct ubu
  		queue->stats.tx_zerocopy_success++;
  	else
  		queue->stats.tx_zerocopy_fail++;
@@ -158,6 +158,3 @@ index 4734472..08f6599 100644
  			break;
  
  		xenvif_tx_dealloc_action(queue);
--- 
-1.7.10.4
-

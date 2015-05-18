@@ -21,11 +21,11 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
  drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h | 1 -
  6 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
-index c8f3824..63ea194 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
-@@ -410,7 +410,6 @@ static void xgene_gmac_set_mac_addr(struct xgene_enet_pdata *pdata)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.c
+@@ -410,7 +410,6 @@ static void xgene_gmac_set_mac_addr(stru
  	addr0 = (dev_addr[3] << 24) | (dev_addr[2] << 16) |
  		(dev_addr[1] << 8) | dev_addr[0];
  	addr1 = (dev_addr[5] << 24) | (dev_addr[4] << 16);
@@ -33,10 +33,10 @@ index c8f3824..63ea194 100644
  
  	xgene_enet_wr_mcx_mac(pdata, STATION_ADDR0_ADDR, addr0);
  	xgene_enet_wr_mcx_mac(pdata, STATION_ADDR1_ADDR, addr1);
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-index 15ec426..2efc4d9 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_hw.h
 @@ -179,7 +179,6 @@ enum xgene_enet_rm {
  #define TUND_ADDR			0x4a
  
@@ -45,11 +45,11 @@ index 15ec426..2efc4d9 100644
  
  #define USERINFO_POS			0
  #define USERINFO_LEN			32
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-index 9b85239..9e251ec 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
-@@ -833,11 +833,9 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+@@ -833,11 +833,9 @@ static int xgene_enet_get_resources(stru
  	if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII) {
  		pdata->mcx_mac_addr = base_addr + BLOCK_ETH_MAC_OFFSET;
  		pdata->mcx_mac_csr_addr = base_addr + BLOCK_ETH_MAC_CSR_OFFSET;
@@ -61,7 +61,7 @@ index 9b85239..9e251ec 100644
  	}
  	pdata->rx_buff_cnt = NUM_PKT_BUF;
  
-@@ -881,10 +879,12 @@ static void xgene_enet_setup_ops(struct xgene_enet_pdata *pdata)
+@@ -881,10 +879,12 @@ static void xgene_enet_setup_ops(struct
  	case PHY_INTERFACE_MODE_RGMII:
  		pdata->mac_ops = &xgene_gmac_ops;
  		pdata->port_ops = &xgene_gport_ops;
@@ -74,7 +74,7 @@ index 9b85239..9e251ec 100644
  		break;
  	}
  }
-@@ -895,6 +895,7 @@ static int xgene_enet_probe(struct platform_device *pdev)
+@@ -895,6 +895,7 @@ static int xgene_enet_probe(struct platf
  	struct xgene_enet_pdata *pdata;
  	struct device *dev = &pdev->dev;
  	struct napi_struct *napi;
@@ -82,7 +82,7 @@ index 9b85239..9e251ec 100644
  	int ret;
  
  	ndev = alloc_etherdev(sizeof(struct xgene_enet_pdata));
-@@ -937,10 +938,11 @@ static int xgene_enet_probe(struct platform_device *pdev)
+@@ -937,10 +938,11 @@ static int xgene_enet_probe(struct platf
  
  	napi = &pdata->rx_ring->napi;
  	netif_napi_add(ndev, napi, xgene_enet_napi, NAPI_POLL_WEIGHT);
@@ -95,10 +95,10 @@ index 9b85239..9e251ec 100644
  
  	return ret;
  err:
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-index 86cf68b..10b03a1 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_main.h
 @@ -76,6 +76,7 @@ struct xgene_mac_ops {
  	void (*tx_disable)(struct xgene_enet_pdata *pdata);
  	void (*rx_disable)(struct xgene_enet_pdata *pdata);
@@ -115,11 +115,11 @@ index 86cf68b..10b03a1 100644
  	int phy_mode;
  	enum xgene_enet_rm rm;
  	struct rtnl_link_stats64 stats;
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
-index cd64b9f..67d0720 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
-@@ -284,7 +284,7 @@ static void xgene_enet_shutdown(struct xgene_enet_pdata *pdata)
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.c
+@@ -284,7 +284,7 @@ static void xgene_enet_shutdown(struct x
  	clk_disable_unprepare(pdata->clk);
  }
  
@@ -136,10 +136,10 @@ index cd64b9f..67d0720 100644
  };
  
  struct xgene_port_ops xgene_xgport_ops = {
-diff --git a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
-index d2d59e7..dcb2087 100644
---- a/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
-+++ b/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
+Index: tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
+===================================================================
+--- tree-jessie.orig/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
++++ tree-jessie/drivers/net/ethernet/apm/xgene/xgene_enet_xgmac.h
 @@ -50,7 +50,6 @@
  #define PHY_POLL_LINK_ON	(10 * HZ)
  #define PHY_POLL_LINK_OFF	(PHY_POLL_LINK_ON / 5)
@@ -148,6 +148,3 @@ index d2d59e7..dcb2087 100644
  extern struct xgene_mac_ops xgene_xgmac_ops;
  extern struct xgene_port_ops xgene_xgport_ops;
  
--- 
-2.1.0
-
