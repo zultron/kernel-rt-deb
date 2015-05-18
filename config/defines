@@ -66,7 +66,8 @@ enabled: false
 enabled: true
 
 [featureset-xenomai.beaglebone_base]
-enabled: true
+# No 3.16.7 kernel for armhf ATM
+enabled: false
 
 [featureset-rtai.x86_base]
 enabled: true
