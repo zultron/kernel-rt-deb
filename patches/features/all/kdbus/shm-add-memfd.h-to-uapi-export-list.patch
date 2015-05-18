@@ -15,9 +15,11 @@ Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
  include/uapi/linux/Kbuild | 1 +
  1 file changed, 1 insertion(+)
 
---- a/include/uapi/linux/Kbuild
-+++ b/include/uapi/linux/Kbuild
-@@ -241,6 +241,7 @@ header-y += matroxfb.h
+Index: tree-jessie/include/uapi/linux/Kbuild
+===================================================================
+--- tree-jessie.orig/include/uapi/linux/Kbuild
++++ tree-jessie/include/uapi/linux/Kbuild
+@@ -240,6 +240,7 @@ header-y += matroxfb.h
  header-y += mdio.h
  header-y += media.h
  header-y += mei.h

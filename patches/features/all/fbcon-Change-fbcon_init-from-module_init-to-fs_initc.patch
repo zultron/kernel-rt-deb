@@ -17,11 +17,11 @@ Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
  drivers/video/console/fbcon.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/video/console/fbcon.c b/drivers/video/console/fbcon.c
-index eb976ee..ea43724 100644
---- a/drivers/video/console/fbcon.c
-+++ b/drivers/video/console/fbcon.c
-@@ -3624,7 +3624,7 @@ static int __init fb_console_init(void)
+Index: tree-jessie/drivers/video/console/fbcon.c
+===================================================================
+--- tree-jessie.orig/drivers/video/console/fbcon.c
++++ tree-jessie/drivers/video/console/fbcon.c
+@@ -3625,7 +3625,7 @@ static int __init fb_console_init(void)
  	return 0;
  }
  
@@ -30,6 +30,3 @@ index eb976ee..ea43724 100644
  
  #ifdef MODULE
  
--- 
-2.1.4
-

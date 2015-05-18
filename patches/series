@@ -16,15 +16,15 @@ bugfix/all/firmware_class-log-every-success-and-failure.patch
 bugfix/all/firmware-remove-redundant-log-messages-from-drivers.patch
 bugfix/all/radeon-firmware-is-required-for-drm-and-kms-on-r600-onward.patch
 
-# Patches and source files from aufs3 repository, imported with
-# debian/patches/features/all/aufs3/gen-patch.
-features/all/aufs3/aufs3-kbuild.patch
-features/all/aufs3/aufs3-base.patch
-features/all/aufs3/aufs3-mmap.patch
-features/all/aufs3/aufs3-standalone.patch
-features/all/aufs3/aufs3-add.patch
-# Debian-specific changes
-debian/aufs3-mark-as-staging.patch
+# # Patches and source files from aufs3 repository, imported with
+# # /patches/features/all/aufs3/gen-patch.
+# features/all/aufs3/aufs3-kbuild.patch
+# features/all/aufs3/aufs3-base.patch
+# features/all/aufs3/aufs3-mmap.patch
+# features/all/aufs3/aufs3-standalone.patch
+# features/all/aufs3/aufs3-add.patch
+# # Debian-specific changes
+# debian/aufs3-mark-as-staging.patch
 
 # Change some defaults for security reasons
 debian/af_802154-Disable-auto-loading-as-mitigation-against.patch
@@ -179,7 +179,7 @@ bugfix/all/xen-netback-Disable-NAPI-after-disabling-interrupts.patch
 bugfix/all/xen-netback-do-not-report-success-if-backend_create_.patch
 bugfix/all/netback-don-t-store-invalid-vif-pointer.patch
 bugfix/all/xen-netback-support-frontends-without-feature-rx-not.patch
-bugfix/all/aufs-move-d_rcu-from-overlapping-d_child-to-overlapping-d.patch
+# bugfix/all/aufs-move-d_rcu-from-overlapping-d_child-to-overlapping-d.patch
 bugfix/all/net-mv643xx-disable-tso-by-default.patch
 bugfix/all/xen-balloon-cancel-ballooning-if-adding-new-memory-f.patch
 bugfix/all/xen-balloon-Don-t-continue-ballooning-when-BP_ECANCE.patch
@@ -196,22 +196,22 @@ debian/emmc-don-t-initialize-partitions-on-rpmb-flagged-areas.patch
 bugfix/all/xen-netfront-release-per-queue-Tx-and-Rx-resource-wh.patch
 
 # memfd_create() & kdbus backport
-features/all/kdbus/mm-allow-drivers-to-prevent-new-writable-mappings.patch
-features/all/kdbus/shm-add-sealing-API.patch
-features/all/kdbus/shm-add-memfd_create-syscall.patch
-features/all/kdbus/selftests-add-memfd_create-sealing-tests.patch
-features/all/kdbus/selftests-add-memfd-sealing-page-pinning-tests.patch
-features/all/kdbus/shm-wait-for-pins-to-be-released-when-sealing.patch
-features/all/kdbus/tools-selftests-fix-build-issue-with-make-kselftests.patch
-features/all/kdbus/ARM-wire-up-memfd_create-syscall.patch
-features/all/kdbus/arm64-compat-wire-up-memfd_create-syscall.patch
-features/all/kdbus/s390-wire-up-memfd_create-syscall.patch
-features/all/kdbus/sparc-Hook-up-memfd_create-system-call.patch
-features/all/kdbus/asm-generic-add-memfd_create-system-call-to-unistd.h.patch
-features/all/kdbus/m68k-Wire-up-memfd_create.patch
-features/all/kdbus/MIPS-Wire-up-new-syscalls-getrandom-and-memfd_create.patch
-features/all/kdbus/powerpc-Wire-up-sys_seccomp-sys_getrandom-and-sys_me.patch
-features/all/kdbus/shm-add-memfd.h-to-uapi-export-list.patch
+# features/all/kdbus/mm-allow-drivers-to-prevent-new-writable-mappings.patch
+# features/all/kdbus/shm-add-sealing-API.patch
+# features/all/kdbus/shm-add-memfd_create-syscall.patch
+# features/all/kdbus/selftests-add-memfd_create-sealing-tests.patch
+# features/all/kdbus/selftests-add-memfd-sealing-page-pinning-tests.patch
+# features/all/kdbus/shm-wait-for-pins-to-be-released-when-sealing.patch
+# features/all/kdbus/tools-selftests-fix-build-issue-with-make-kselftests.patch
+# features/all/kdbus/ARM-wire-up-memfd_create-syscall.patch
+# features/all/kdbus/arm64-compat-wire-up-memfd_create-syscall.patch
+# features/all/kdbus/s390-wire-up-memfd_create-syscall.patch
+# features/all/kdbus/sparc-Hook-up-memfd_create-system-call.patch
+# features/all/kdbus/asm-generic-add-memfd_create-system-call-to-unistd.h.patch
+# features/all/kdbus/m68k-Wire-up-memfd_create.patch
+# features/all/kdbus/MIPS-Wire-up-new-syscalls-getrandom-and-memfd_create.patch
+# features/all/kdbus/powerpc-Wire-up-sys_seccomp-sys_getrandom-and-sys_me.patch
+# features/all/kdbus/shm-add-memfd.h-to-uapi-export-list.patch
 
 # Miscellaneous features
 features/all/efi-autoload-efivars.patch
