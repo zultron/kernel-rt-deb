@@ -1,10 +1,8 @@
-# Kernel config for Xenomai 2.6.2, i386                              -*-conf-*-
+# Kernel config for Xenomai 3.0-rc4, x86                              -*-conf-*-
 #
 # This config should be applied on top of a generic kernel config to,
 # hopefully, create a working configuration for a Xenomai-patched
 # kernel.
-#
-# This config is not yet tested on i386 arch on any distro.
 #
 #
 # General problem options; see
@@ -191,8 +189,10 @@ CONFIG_XENO_OPT_BUFP_NRPORT=32
 # IPIPE options
 #
 CONFIG_IPIPE=y
-# memleak recommends this; why?
-CONFIG_IPIPE_LEGACY=y
+#
+# Build error:   #error "CONFIG_IPIPE_LEGACY must be switched off"
+# CONFIG_IPIPE_LEGACY is not set
+#
 # CONFIG_IPIPE_DEBUG is not set
 #
 #
@@ -288,3 +288,23 @@ CONFIG_NR_CPUS=8
 # http://permalink.gmane.org/gmane.linux.real-time.xenomai.users/18499
 # https://github.com/zultron/kernel-rt-deb/issues/2
 CONFIG_PREEMPT_NONE=y
+
+
+############################################################
+# Defaults from Xenomai-3.0
+CONFIG_XENO_OPT_RR_QUANTUM=1000
+CONFIG_XENO_OPT_AUTOTUNE=y
+CONFIG_XENO_OPT_PRIVATE_HEAPSZ=32
+CONFIG_XENO_OPT_SHARED_HEAPSZ=32
+CONFIG_XENO_OPT_NRTIMERS=128
+CONFIG_XENO_OPT_TIMING_KSCHEDLAT=0
+CONFIG_XENO_OPT_TIMING_IRQLAT=0
+# CONFIG_XENO_OPT_DEBUG_COBALT is not set
+# CONFIG_XENO_OPT_DEBUG_CONTEXT is not set
+CONFIG_XENO_OPT_DEBUG_LOCKING=y
+# CONFIG_XENO_OPT_DEBUG_USER is not set
+# CONFIG_XENO_OPT_DEBUG_TRACE_RELAX is not set
+CONFIG_XENO_OPT_RTDM_COMPAT_DEVNODE=y
+# CONFIG_XENO_DRIVERS_NET is not set
+# CONFIG_XENO_DRIVERS_ANALOGY_DEBUG_FTRACE is not set
+# CONFIG_XENO_DRIVERS_UDD is not set
