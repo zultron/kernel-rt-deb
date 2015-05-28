@@ -248,6 +248,13 @@ CONFIG_IPIPE=y
 ############################################
 # Other changes
 #
+# $ switchtest -s 1000
+# Xenomai/cobalt: __map_umm(): cannot open RTDM device /dev/rtdm/memdev-private:
+#     Permission denied
+# Xenomai/cobalt: init_bind(): cannot map private umm area: Permission denied
+#                (CONFIG_DEVTMPFS_MOUNT not enabled?)
+CONFIG_DEVTMPFS_MOUNT=y
+#
 # Disable FTRACE to improve latencies
 # http://www.xenomai.org/pipermail/xenomai/2013-January/027272.html
 # CONFIG_FTRACE is not set
