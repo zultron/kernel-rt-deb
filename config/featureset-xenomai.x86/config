@@ -6,11 +6,21 @@
 #
 #
 # General problem options; see
-# http://www.xenomai.org/documentation/xenomai-2.6/html/TROUBLESHOOTING/index.html#kconf
+# http://xenomai.org/troubleshooting-a-dual-kernel-configuration/#kconf
 #
-# CONFIG_CPU_IDLE is not set
+# This option should not be enabled, except with x86.
 #
 # CONFIG_KGDB is not set
+#
+# This option which appeared in kernel 3.8 is forced off by I-pipe
+# patches since 3.14 onward, as it is incompatible with interrupt
+# pipelining, and has no upside for regular users. However, you have
+# to manually disable it for older kernels when present. Common
+# effects observed with this feature enabled include RCU-related
+# kernel warnings during real-time activities, and pathologically
+# high latencies.
+#
+# CONFIG_CONTEXT_TRACKING_FORCE is not set
 #
 #############################################
 # Xenomai options
@@ -198,52 +208,53 @@ CONFIG_IPIPE=y
 #
 #######################################
 # x86 kernel configuration
-# http://www.xenomai.org/index.php/Configuring_x86_kernels
+# http://xenomai.org/2014/06/configuring-for-x86-based-dual-kernels/
 #
-# Do not disable power management globally, the only configuration
-# options which should be disabled in this area are:
+# This allows the CPU frequency to be modulated with workload, but
+# many CPUs change the TSC counting frequency also, which makes it
+# useless for accurate timing when the CPU clock can change. Also
+# some CPUs can take several milliseconds to ramp up to full speed.
+#
+# CONFIG_CPU_FREQ
+#
+# Allows the CPU to enter deep sleep states, increasing the time it
+# takes to get out of these sleep states, hence the latency of an
+# idle system. Also, on some CPU, entering these deep sleep states
+# causes the timers used by Xenomai to stop functioning.
+#
+# CONFIG_CPU_IDLE is not set
+#
+# The APM model assigns power management control to the BIOS, and
+# BIOS code is never written with best latency in mind. If
+# configured, APM routines are invoked with SMI priority, which
+# bypasses the I-pipe entirely. Resorting to the Xenomai workaround
+# for SMI won’t help here.
 #
 # CONFIG_APM is not set
+#
+# For systems with ACPI support in the BIOS, this ACPI sub-option
+# installs an idle handler that uses ACPI C2 and C3 processor states to
+# save power. The CPU must warm-up from these sleep states, increasing
+# latency in ways dependent upon both the BIOS’s ACPI tables and
+# code. You may be able to suppress the sleeping with idle=poll
+# boot-arg, test to find out. With recents versions of Linux (probably
+# starting around Linux 2.6.21), the acpi processor module disables the
+# local APIC when loaded. This will cause Xenomai timer initialization
+# to fail. This makes a second reason for disabling this option.
+#
 # CONFIG_ACPI_PROCESSOR is not set
-#
-# This option creates issues with Xenomai timing code, as well as
-# unpredictable run-time for your tasks, and possibly high latencies
-# when changing frequency:
-#
-# CONFIG_CPU_FREQ is not set
-#
-# This can cause big latency spikes:
-#
-# CONFIG_INPUT_PCSPKR is not set
-#
-# The option CONFIG_PCI_MSI should be turned off. For more details,
-# see the thread at:
-# https://mail.gna.org/public/adeos-main/2008-08/threads.html
-#
-# CONFIG_PCI_MSI is not set
-#
-############################################
-# Tips and tricks setting up your x86 kernel; see
-# http://www.xenomai.org/index.php/FAQs#Tips_and_tricks_setting_up_your_x86_kernel
-#
-# This tries to disable System Management Interrupts on Intel
-# chipsets. These interrupts run at higher priority than Xenomai core
-# code or even the I-pipe layer. So they can cause high latencies to
-# the real-time jobs (up to miliseconds). ATTENTION: On some systems,
-# SMI may be involved in thermal throttling of the CPU. Thus,
-# switching it off can cause hardware damage in overheat situations.
-#
-# Don't enable this by default
-# http://www.xenomai.org/pipermail/xenomai/2013-January/027292.html
-# Hopefully upstream will make this a run-time option; until then,
-# use smictrl
-# CONFIG_XENO_HW_SMI_WORKAROUND is not set
 #
 # Just like CONFIG_ACPI_PROCESSOR, this idle driver sends the CPU into
 # deep C states, also causing huge latencies because the APIC timer
 # that Xenomai uses may not fire anymore.
 #
 # CONFIG_INTEL_IDLE is not set
+#
+#  This option may be enabled, provided the following operations on
+#  interrupt lines are always done from a mere Linux context, aka
+#  secondary mode, and never from the real-time mode: [...]
+#
+# CONFIG_PCI_MSI is not set
 #
 ############################################
 # Other changes
@@ -253,12 +264,18 @@ CONFIG_IPIPE=y
 #     Permission denied
 # Xenomai/cobalt: init_bind(): cannot map private umm area: Permission denied
 #                (CONFIG_DEVTMPFS_MOUNT not enabled?)
+# https://xenomai.org/migrating-from-xenomai-2-x-to-3-x/#Application_interface
+CONFIG_DEVTMPFS=y
 CONFIG_DEVTMPFS_MOUNT=y
 #
 # [...]/testsuite/smokey: sched_setconfig_np(add-quota-group): Invalid argument
 # http://www.xenomai.org/pipermail/xenomai/2014-September/031764.html
 # This overrides the above from Gilles's old config.
 CONFIG_XENO_OPT_SCHED_CLASSES=y
+CONFIG_XENO_OPT_SCHED_WEAK=y
+CONFIG_XENO_OPT_SCHED_TP=y
+CONFIG_XENO_OPT_SCHED_SPORADIC=y
+CONFIG_XENO_OPT_SCHED_QUOTA=y
 #
 # Enable autotune(1)
 # http://www.xenomai.org/documentation/xenomai-3/html/man1/autotune/index.html
@@ -289,12 +306,6 @@ CONFIG_NR_CPUS=8
 # invalid opcode: 0000 [#2] SMP 
 # http://www.xenomai.org/pipermail/xenomai-help/2011-06/msg00197.html
 # CONFIG_TRANSPARENT_HUGEPAGE is not set
-#
-# Gilles says this improves latencies
-# http://www.xenomai.org/pipermail/xenomai/2013-January/027272.html
-# CONFIG_FTRACE is not set
-# This apparently depends on !FTRACE
-# CONFIG_KMEMCHECK is not set
 #
 # gpio-pch is broken
 # http://www.xenomai.org/pipermail/xenomai/2013-January/027365.html
