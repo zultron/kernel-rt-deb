@@ -260,6 +260,10 @@ CONFIG_DEVTMPFS_MOUNT=y
 # This overrides the above from Gilles's old config.
 CONFIG_XENO_OPT_SCHED_CLASSES=y
 #
+# Enable autotune(1)
+# http://www.xenomai.org/documentation/xenomai-3/html/man1/autotune/index.html
+CONFIG_XENO_OPT_AUTOTUNE=y
+#
 # Disable FTRACE to improve latencies
 # http://www.xenomai.org/pipermail/xenomai/2013-January/027272.html
 # CONFIG_FTRACE is not set
@@ -305,7 +309,6 @@ CONFIG_PREEMPT_NONE=y
 ############################################################
 # Defaults from Xenomai-3.0
 CONFIG_XENO_OPT_RR_QUANTUM=1000
-CONFIG_XENO_OPT_AUTOTUNE=y
 CONFIG_XENO_OPT_PRIVATE_HEAPSZ=32
 CONFIG_XENO_OPT_SHARED_HEAPSZ=32
 CONFIG_XENO_OPT_NRTIMERS=128
