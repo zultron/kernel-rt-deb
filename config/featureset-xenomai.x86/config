@@ -255,6 +255,11 @@ CONFIG_IPIPE=y
 #                (CONFIG_DEVTMPFS_MOUNT not enabled?)
 CONFIG_DEVTMPFS_MOUNT=y
 #
+# [...]/testsuite/smokey: sched_setconfig_np(add-quota-group): Invalid argument
+# http://www.xenomai.org/pipermail/xenomai/2014-September/031764.html
+# This overrides the above from Gilles's old config.
+CONFIG_XENO_OPT_SCHED_CLASSES=y
+#
 # Disable FTRACE to improve latencies
 # http://www.xenomai.org/pipermail/xenomai/2013-January/027272.html
 # CONFIG_FTRACE is not set
