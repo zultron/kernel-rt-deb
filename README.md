@@ -1,4 +1,4 @@
-# Xenomai and RTAI kernel Debian packaging for Linux 3.8.13
+# Xenomai and RTAI kernel Debian packaging for Linux 3.16.7
 
 This builds Xenomai- and RTAI-patched kernel packages for Debian and
 Ubuntu.
@@ -14,19 +14,21 @@ repository][da-repo] configured.
     apt-get install xenomai-kernel-source rtai-source
 
     ### Set up source package tree
-    wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.8.13.tar.xz \
-	 -O linux_3.8.13.orig.tar.xz
-    tar xf linux_3.8.13.orig.tar.xz
-    cd linux-3.8.13
+    wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.16.7.tar.xz \
+	 -O linux_3.16.7.orig.tar.xz
+    tar xf linux_3.16.7.orig.tar.xz
+    cd linux-3.16.7
     git clone https://github.com/zultron/linux-ipipe-deb.git debian
 
     ### Configure source package
-    # for Wheezy, use gcc-4.7; Trusty, 4.8; Jessie, 4.9
+    # for Wheezy, use gcc-4.7; Trusty, 4.8; Jessie, 4.8
     sed -i config/defines -e '/^compiler:/ s/4.9/4.7/'
-    # disable Xenomai kernel build, if desired
-    sed -i config/defines -e '/^ xenomai.x86/ s/^/#/'
+    # disable Xenomai kernel build, if desired; set 'enabled: false'
+    sed -i config/defines \
+        -e '/featureset-xenomai.x86_base/,/^[[]/ s/enabled:.*/enabled: false/'
     # disable RTAI kernel build, if desired
-    sed -i config/defines -e '/^ rtai.x86/ s/^/#/'
+    sed -i config/defines \
+        -e '/featureset-rtai.x86_base/,/^[[]/ s/enabled:.*/enabled: false/'
     # configure package
     debian/rules debian/control  # This will fail; that's normal
     debian/rules clean
@@ -49,7 +51,7 @@ the `prjconf` and add:
 
 # Methodology:
 
-Started from a clone of the Debian kernel packaging for Sid, r20131:
+Started from a clone of the Debian kernel packaging for Sid, r22524:
 
     git svn clone \
         svn://anonscm.debian.org/svn/kernel/dists/sid/linux/debian
@@ -58,17 +60,13 @@ Followed Debian Linux Kernel Handbook, [4.3 Building a development
 version of the Debian kernel package][dlkh-4.3].
 
 Summary of changes:
-- Removed a lot of non-x86 architectures (pkg is x86-only for now)
-- Removed the rt feature set
-- Imported [configs from Ubuntu Raring][raring-configs]
-  (Sid configs excluded virtio)
 - Added featureset-friendly modifications to packaging
 - Added the Xenomai feature set
-- Added the r8168 driver
 - Added the RTAI feature set
+- Disabled `none` and `rt` featuresets
+- Backed out patches that interfered with i-pipe patch
 
 [dlkh-4.3]: http://kernel-handbook.alioth.debian.org/ch-common-tasks.html#s-common-official-vcs
-[raring-configs]: http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.8.13.23-raring
 
 # Updating:
 
